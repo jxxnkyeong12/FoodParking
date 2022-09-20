@@ -36,11 +36,9 @@
         <ImageView
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/title_o" />
 
     </LinearLayout>
-
-
 
     <LinearLayout
         android:layout_width="wrap_content"

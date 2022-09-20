@@ -36,14 +36,12 @@
         <activity
             android:name=".myinfo.LikeHistoryActivity"
             android:exported="true" />
-
         <activity
             android:name=".common.BasketActivity"
             android:exported="true" />
         <activity
             android:name=".common.MapActivity"
             android:exported="true" />
-
         <activity
             android:name=".order.BillActivity"
             android:exported="true" />
@@ -60,8 +58,12 @@
             android:name=".store.StoreActivity"
             android:exported="true" />
         <activity
+            android:name=".SplashActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
