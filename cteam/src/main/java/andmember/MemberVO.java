@@ -3,12 +3,29 @@ package andmember;
 public class MemberVO {
 	
 		 private int id;
-		 private String  email, pw, name, nickname, addr, phone, social, manager, profile_image, b_num;
+		 private String  email, pw, name, nickname
+		 						   , addr,  post, phone, social, manager
+		 						   , profile_image, b_num
+		 						   , salt;
 		
 
 		 
 		 
-		 public int getId() {
+		 
+		 
+		 public String getPost() {
+			return post;
+		}
+		public void setPost(String post) {
+			this.post = post;
+		}
+		public String getSalt() {
+			return salt;
+		}
+		public void setSalt(String salt) {
+			this.salt = salt;
+		}
+		public int getId() {
 			return id;
 		}
 		public void setId(int id) {
