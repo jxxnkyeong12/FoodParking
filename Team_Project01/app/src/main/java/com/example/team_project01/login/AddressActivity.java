@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.PermissionRequest;
@@ -36,6 +37,9 @@ public class AddressActivity extends AppCompatActivity {
             extra.putString("post", dataArr[0]);
             intent.putExtras(extra);
             setResult(RESULT_OK, intent);
+
+            Log.d("TAG", "주소: " + addr + ", " + dataArr.toString());
+
             finish();
 
         }
@@ -59,7 +63,7 @@ public class AddressActivity extends AppCompatActivity {
             }
         });
 
-        browser.loadUrl("http://localhost/cteam/daum.html");
+        browser.loadUrl("http://www.inspond.com/daum.html");
 
     }
 }
