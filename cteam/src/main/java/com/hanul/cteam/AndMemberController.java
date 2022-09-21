@@ -8,15 +8,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
-import andmember.AndMemberServiceImpl;
+import andmember.AndMemberDAO;
+
 import andmember.MemberVO;
 
 @Controller
 public class AndMemberController {
 
-	@Autowired private AndMemberServiceImpl service;
+  @Autowired AndMemberDAO dao;
 	Gson gson = new Gson();
-	 
+	
+	
 	
 	@ResponseBody @RequestMapping("/login")
 	public String login(String email, String pw, String social) {
@@ -27,7 +29,7 @@ public class AndMemberController {
 	   
 	   vo.setEmail(email);
 	   vo.setPw(pw);
-	   vo = service.member_login(vo, social);
+	    vo = dao.login(vo, social);
 		
 		
 		return gson.toJson(vo);
