@@ -6,10 +6,12 @@
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/drawable/ic_nav_home.xml" value="0.22395833333333334" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/drawable/ic_nav_order.xml" value="0.22395833333333334" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/drawable/shape.xml" value="0.22395833333333334" />
-        <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_join.xml" value="0.33" />
+        <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_address.xml" value="0.2907608695652174" />
+        <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_join.xml" value="0.4919852034525277" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_like.xml" value="0.1723684210526316" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_list.xml" value="0.2726449275362319" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_login.xml" value="0.5" />
+        <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_login_social.xml" value="0.5" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_loginmain.xml" value="0.1723684210526316" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_mao.xml" value="0.25" />
@@ -32,6 +34,8 @@
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/item_more_recv.xml" value="0.67" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/item_noti_pager.xml" value="0.4865616311399444" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/item_searach.xml" value="0.33" />
+        <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/network_security_config.xml" value="0.2907608695652174" />
+        <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/roadaddress_dialog.xml" value="0.33" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/menu/bottom_nav.xml" value="0.3692708333333333" />
         <entry key="..\:/Study_Android/Workspace/Team_Project01/app/src/main/res/drawable/arror.xml" value="0.378125" />
         <entry key="..\:/Study_Android/Workspace/Team_Project01/app/src/main/res/drawable/gradient.xml" value="0.378125" />
@@ -63,7 +67,6 @@
         <entry key="..\:/Study_Android/Workspace/Team_Project01/app/src/main/res/layout/item_searach.xml" value="0.36614583333333334" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/drawable-v24/button_round.xml" value="0.3144736842105263" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/drawable-v24/click_time_shape.xml" value="0.3144736842105263" />
-        <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/drawable-v24/ic_baseline_account_circle.xml" value="0.22719298245614036" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/drawable/gradient.xml" value="0.38229166666666664" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/drawable/trans_shap.xml" value="0.38229166666666664" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_basket.xml" value="0.1675438596491228" />
@@ -72,7 +75,7 @@
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_like.xml" value="0.536" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_like_history.xml" value="0.30833333333333335" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_list.xml" value="0.30087719298245613" />
-        <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_login.xml" value="0.21359649122807017" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_login_social.xml" value="0.17280701754385966" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_loginmain.xml" value="0.2" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_main.xml" value="0.20104166666666667" />
@@ -92,7 +95,6 @@
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_reserve.xml" value="0.264" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_review.xml" value="0.30833333333333335" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_review_list.xml" value="0.30833333333333335" />
-        <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_splash.xml" value="0.30833333333333335" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/activity_store.xml" value="0.30833333333333335" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/fragment_first.xml" value="0.30087719298245613" />
         <entry key="..\:/Study_Android/workspace/Team_Project01/app/src/main/res/layout/fragment_home.xml" value="0.33" />
