@@ -18,10 +18,12 @@
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/imgv_join_back"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_margin="15dp"
                 android:src="@drawable/arrow" />
+<<<<<<< HEAD
         </LinearLayout>
 
 
@@ -195,5 +197,198 @@
 
     </LinearLayout>
 
+=======
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일반 회원가입"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="이메일"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/edtv_join_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_gray"
+                android:hint="이메일 입력"
+                android:textColor="@color/black"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="2dp"
+                android:text="비밀번호"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edtv_join_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_gray"
+                android:hint="비밀번호 입력"
+                android:textColor="@color/black"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="2dp"
+                android:text="비밀번호 확인"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edtv_join_pwchk"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_gray"
+                android:hint="비밀번호 확인"
+                android:textColor="@color/black"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="2dp"
+                android:text="이름"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edtv_join_name"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_gray"
+                android:hint="이름 입력"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="2dp"
+                android:text="닉네임"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/detv_join_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_gray"
+                android:hint="닉네임 입력"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="2dp"
+                android:text=" 전화번호"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edtv_join_phone"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:background="@drawable/shape_gray"
+                android:hint="전화번호 입력"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:padding="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="주소"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edtv_join_zipcode"
+                    android:layout_width="100dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="4dp"
+                    android:hint="우편번호 검색"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/shape_gray" />
+
+                <Button
+                    android:id="@+id/btn_join_address"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:backgroundTint="@color/orange"
+                    android:text="주소 검색"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/edtv_join_address"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_gray"
+                android:hint="주소입력"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:padding="10dp"/>
+
+            <Button
+                android:id="@+id/btn_join"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#F25C05"
+                android:text="회원가입" />
+
+        </LinearLayout>
+
+    </ScrollView>
+>>>>>>> dc676867db1ce564c8155803d0f911e534654a4b
 
 </LinearLayout>
