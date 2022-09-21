@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="andmember">
+
+<!-- 로그인 -->
+<select id="login" resultType="andmember.MemberVO">
+SELECT * FROM member 
+WHERE email=#{email} and pw = #{pw, jdbcType= VARCHAR}
+ AND NVL(pw,0) = NVL(#{pw,jdbcType=VARCHAR},0)
+
+</select>
+<select id="social_login" resultType="andmember.MemberVO">
+SELECT * FROM MEMBER 
+WHERE email=#{email}
+</select>
+
+
+</mapper>
