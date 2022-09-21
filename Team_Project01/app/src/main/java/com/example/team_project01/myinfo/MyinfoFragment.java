@@ -20,12 +20,12 @@ import com.example.team_project01.myinfo.modify.ModifyActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class MyinfoFragment extends Fragment {
+public class MyinfoFragment extends Fragment implements View.OnClickListener {
 
    CircleImageView profile_image, myinfo_orderhistory, myinfo_review, myinfo_like;
    CardView myinfo_cardview;
    LinearLayout myinfo_liner, myinfo_modify;
-
+    Intent intent ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,13 +39,7 @@ public class MyinfoFragment extends Fragment {
         myinfo_modify = v.findViewById(R.id.myinfo_modify);
         myinfo_like = v.findViewById(R.id.myinfo_like);
 
-        myinfo_orderhistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), OrderHistoryActivity.class);
-                startActivity(intent);
-            }
-        });
+        myinfo_orderhistory.setOnClickListener(this);
 
         myinfo_review.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,5 +65,13 @@ public class MyinfoFragment extends Fragment {
             }
         });
         return v;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.myinfo_orderhistory){
+            intent = new Intent(getContext(), OrderHistoryActivity.class);
+            startActivity(intent);
+        }
     }
 }

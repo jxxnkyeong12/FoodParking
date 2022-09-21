@@ -23,6 +23,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
         btn_login =findViewById(R.id.btn_login);
         imgv_join_email = findViewById(R.id.imgv_join_email);
 
+
         btn_login.setOnClickListener(this);
         imgv_join_email.setOnClickListener(this);
     }
