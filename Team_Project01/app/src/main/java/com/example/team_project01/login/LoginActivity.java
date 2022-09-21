@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void login(String email, String pw, String social_yn) {
-        CommonAskTask task = new CommonAskTask(LoginActivity.this, "login");
+        CommonAskTask task = new CommonAskTask(LoginActivity.this, "andlogin");
         task.addParams("email",email);  //여기가 고정되면 안돼 edt_getText()+"" -> email 파라메터로 바꿔주기
         task.addParams("pw",pw);
         task.addParams("social", social_yn);
