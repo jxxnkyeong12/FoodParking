@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.example.team_project01.R;
 import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
@@ -61,9 +62,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     //네이버 지도 API -jk 2022/09/19
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
-        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(35.150075, 126.8924309));
+        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(35.1535583,126.8879957));
         //d35.150075!4d126.8924309  - 지금 현재는 광주 서구 농성동 갈매기봉이 나옴! jk
+
         naverMap.moveCamera(cameraUpdate);
 
+
+
     }
+
+
+
 }

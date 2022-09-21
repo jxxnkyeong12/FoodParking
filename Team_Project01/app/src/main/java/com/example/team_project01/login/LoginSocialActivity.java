@@ -19,6 +19,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
 
         btn_login =findViewById(R.id.btn_login);
 
+
         btn_login.setOnClickListener(this);
     }
 
