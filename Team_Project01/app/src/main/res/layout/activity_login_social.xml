@@ -32,7 +32,7 @@
         <Button
             android:id="@+id/btn_login"
             android:layout_width="265dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:backgroundTint="#F25C05"
             android:text="로그인" />
 
@@ -76,21 +76,21 @@
 
             <ImageView
                 android:layout_width="265dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/kakao_button" />
 
             <ImageView
                 android:layout_width="265dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/naver_button" />
 
             <ImageView
                 android:layout_width="265dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/google_button" />
@@ -98,8 +98,7 @@
             <ImageView
                 android:id="@+id/imgv_join_email"
                 android:layout_width="265dp"
-                android:layout_height="35dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="40dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/mail_button" />
 
