@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="andmember">
+
+<!-- 로그인 -->
+<select id="login" resultType="andmember.MemberVO">
+SELECT * FROM member 
+WHERE email=#{email} and pw = #{pw, jdbcType= VARCHAR}
+ AND NVL(pw,0) = NVL(#{pw,jdbcType=VARCHAR},0)
+
+</select>
+
+
+<!-- 회원의 salt조회  -->
+<select id="salt" resultType="String">
+select salt from member where email= #{email}
+</select>
+
+
+<!-- 소셜 로그인, 소셜 구분이 안 되어있어서 아직은 일반도 가능!! -->
+<select id="social_login" resultType="andmember.MemberVO">
+SELECT * FROM MEMBER 
+WHERE email=#{email}
+</select>
+
+
+<!-- 회원가입 salt 비번으로 변해서 등록, 일반 회원가입 -->
+<insert id="and_join">
+	insert into member (email, pw, name, nickname, addr, post
+						, phone, social, manager, profile_image
+						, b_num, salt)
+	values ( #{email}, #{pw}, #{name}, #{nickname, jdbcType = VARCHAR}, #{addr}, #{post}
+			, #{phone}, #{social}, 'N', #{profile_image, jdbcType = VARCHAR}
+			, #{b_num, jdbcType = VARCHAR}, #{salt})		
+</insert>
+
+</mapper>
