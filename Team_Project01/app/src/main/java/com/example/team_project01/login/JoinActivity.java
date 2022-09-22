@@ -88,15 +88,7 @@ public class JoinActivity extends AppCompatActivity {
                     vo.setPost(edtv_join_zipcode.getText().toString());
                     vo.setManager("N");
 
-                    CommonConn conn = new CommonConn(JoinActivity.this, "andJoin");
-                    conn.addParams("vo", new Gson().toJson(vo));
-                    conn.excuteConn(new CommonConn.ConnCallback() {
-                        @Override
-                        public void onResult(boolean isResult, String data) {
-
-                        }
-                    });
-
+                    
                     CommonAskTask askTask = new CommonAskTask(JoinActivity.this, "andJoin");
                     askTask.addParams("vo", new Gson().toJson(vo));
                     askTask.execute(new Runnable() {

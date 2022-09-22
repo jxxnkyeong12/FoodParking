@@ -75,33 +75,18 @@
             android:orientation="vertical">
 
             <ImageView
-<<<<<<< HEAD
-=======
-                android:id="@+id/btn_kakao"
->>>>>>> e7f89409f9a67767e8fcda74f1b62ad0913fd685
                 android:layout_width="265dp"
                 android:layout_height="35dp"
                 android:layout_marginBottom="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/kakao_button" />
 
-<<<<<<< HEAD
             <ImageView
                 android:layout_width="265dp"
                 android:layout_height="35dp"
                 android:layout_marginBottom="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/naver_button" />
-=======
-
-            <com.navercorp.nid.oauth.view.NidOAuthLoginButton
-                android:layout_gravity="center"
-                android:id="@+id/btn_naver"
-                android:layout_width="265dp"
-                android:layout_height="35dp"
-                android:layout_marginBottom="10dp"
-                android:scaleType="fitXY"/>
->>>>>>> e7f89409f9a67767e8fcda74f1b62ad0913fd685
 
             <ImageView
                 android:layout_width="265dp"
