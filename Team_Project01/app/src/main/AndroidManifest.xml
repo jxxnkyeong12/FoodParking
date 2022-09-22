@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.team_project01">
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <application
+        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="푸드파킹"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Team_Project01">
+        <activity
+            android:name=".login.AddressActivity"
+            android:exported="true" />
+        <activity
+            android:name=".order.OrderDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".order.ReserveActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.JoinActivity"
+            android:exported="true" />
+        <activity
+            android:name=".myinfo.modify.ModifyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.LoginSocialActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.PwEmailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.PwSendEmailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".myinfo.LikeHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".common.BasketActivity"
+            android:exported="true" />
+        <activity
+            android:name=".common.MapActivity"
+            android:exported="true" />
+        <activity
+            android:name=".order.BillActivity"
+            android:exported="true" />
+        <activity
+            android:name=".list.ListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".myinfo.OrderHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".common.ReviewListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".store.StoreActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
