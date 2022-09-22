@@ -31,7 +31,7 @@
             android:layout_marginTop="5dp"
             android:backgroundTint="#F25C05"
             android:padding="0dp"
-            android:text="일반 회원가입"
+            android:text="소셜 회원가입"
             android:textSize="12dp" />
 
         <Space
@@ -50,6 +50,8 @@
         android:layout_marginHorizontal="10dp"
         android:orientation="vertical">
 
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,6 +60,7 @@
             android:textColor="@color/black"/>
 
         <EditText
+            android:id="@+id/sj_email"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_gravity="center"
@@ -67,41 +70,8 @@
             android:textSize="10dp"
             android:padding="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="2dp"
-            android:text="비밀번호"
-            android:textColor="@color/black" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_gravity="center"
-            android:background="@drawable/shape_gray"
-            android:hint="비밀번호 입력"
-            android:textColor="#A8B3BD"
-            android:textSize="10dp"
-            android:padding="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="2dp"
-            android:text="비밀번호 확인"
-            android:textColor="@color/black" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_gravity="center"
-            android:background="@drawable/shape_gray"
-            android:hint="비밀번호 확인"
-            android:textColor="#A8B3BD"
-            android:textSize="10dp"
-            android:padding="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -112,6 +82,7 @@
             android:textColor="@color/black" />
 
         <EditText
+            android:id="@+id/sj_name"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_gravity="center"
@@ -130,6 +101,7 @@
             android:textColor="@color/black" />
 
         <EditText
+            android:id="@+id/sj_phone"
             android:layout_width="265dp"
             android:layout_height="36dp"
             android:background="@drawable/shape_gray"

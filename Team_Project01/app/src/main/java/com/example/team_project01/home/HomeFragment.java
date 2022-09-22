@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.team_project01.R;
 import com.example.team_project01.common.BasketActivity;
 import com.example.team_project01.common.MapActivity;
+import com.example.team_project01.login.JoinActivity;
 import com.example.team_project01.login.LoginActivity;
 import com.example.team_project01.login.LoginSocialActivity;
 import com.example.team_project01.store.StoreActivity;
@@ -79,6 +80,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
 
         return v;
     }
