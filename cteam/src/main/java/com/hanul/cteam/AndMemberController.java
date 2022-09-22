@@ -1,35 +1,62 @@
 package com.hanul.cteam;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import andmember.AndMemberServiceImpl;
-import andmember.MemberVO;
+import andmember.AndMemberDAO;
 
-@Controller
+import andmember.MemberVO;
+import common.Common;
+
+@RestController
 public class AndMemberController {
 
-	@Autowired private AndMemberServiceImpl service;
+  @Autowired AndMemberDAO dao;
+  @Autowired Common common;
 	Gson gson = new Gson();
-	 
 	
-	@ResponseBody @RequestMapping("/login")
+	
+	
+	//로그인 (salt찾아서..로그인 되게)
+	@RequestMapping("/andlogin")
 	public String login(String email, String pw, String social) {
 	   MemberVO vo = new MemberVO();
 	   if(email == null || pw == null) {
-			return gson.toJson(null);
+			//return gson.toJson(null);
 		}
+	   
+	   String salt = dao.member_salt(email);
+	   pw = common.getEncrypt(salt, pw);
 	   
 	   vo.setEmail(email);
 	   vo.setPw(pw);
-	   vo = service.member_login(vo, social);
+	   vo = dao.login(vo, social);
 		
-		
+		return gson.toJson(vo);
+	}
+	
+	
+	
+	
+	//회원가입
+	@RequestMapping(value = "/andJoin", produces = "text/html;charset=utf-8")
+	public String join(String vo) {
+		MemberVO joinInfo = new Gson().fromJson(vo, MemberVO.class);
+		//소셜 로그인 회원가입
+		if(joinInfo.getSocial().equals("Y")) {
+			dao.social_join(joinInfo);
+		}else {
+			dao.join(joinInfo);			
+		}
 		return gson.toJson(vo);
 	}
 	

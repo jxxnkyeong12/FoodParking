@@ -1,75 +1,56 @@
 package andmember;
 
+
+
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-@Repository
-public class AndMemberDAO implements AndMemberService {
+import org.springframework.web.bind.annotation.RestController;
+
+import common.Common;
+
+  
+@RestController
+public class AndMemberDAO {
+ 
+	@Autowired @Qualifier("cteam") private SqlSession sql;
+	@Autowired private Common common;
 	
-	  @Autowired private SqlSession sql;
 	
-	@Override
-	public int member_join(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-//	@Override
-//	public MemberVO member_login(MemberVO vo, String soical) {
-//		if(vo.getSocial().equals("Y")) {
-//			return sql.selectOne("andmember.soical_login", vo);
-//		}else {
-//			return sql.selectOne("andmember.login", vo);
-//			
-//		}
-//	}
-
+	//로그인 
+	public MemberVO login(MemberVO vo, String social) {
+		//여기서 분기
+				if(social.equals("Y")) {
+					return sql.selectOne("andmember.social_login", vo);
+				}else {
+					return sql.selectOne("andmember.login", vo);
+					
+				}
+				
+				
+	}//login
 	
-	@Override
-	public boolean member_id_check(String userid) {
-		// TODO Auto-generated method stub
-		return false;
+	//로그인시 salt 찾아주기
+	public String member_salt (String email) {
+		return sql.selectOne("andmember.salt", email);
 	}
-
-	@Override
-	public String member_salt(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	
+	//회원가입
+	public int join(MemberVO vo) {
+			String salt = common.generateSalt();
+			String pw = common.getEncrypt(salt, vo.getPw()); //데이터 객체에 담겨왔을 pw!
+			vo.setSalt(salt);
+			vo.setPw(pw);
+		  
+			return sql.insert("andmember.and_join", vo);
 	}
-
-	@Override
-	public int member_update(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	
+	public int social_join(MemberVO vo) {
+		return sql.insert("andmember.social_join", vo);
 	}
-
-	@Override
-	public int member_reset_password(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int member_userid_email(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int member_delete(String userid) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public MemberVO member_login(MemberVO vo, String social) {
-		if(social.equals("Y")) {
-			return sql.selectOne("andmember.soical_login", vo);
-		}else {
-			return sql.selectOne("andmember.login", vo);
-			
-		}
-	}
-
+	
 }
