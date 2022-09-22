@@ -7,7 +7,19 @@
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/drawable/ic_nav_order.xml" value="0.22395833333333334" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/drawable/shape.xml" value="0.22395833333333334" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_address.xml" value="0.2907608695652174" />
+<<<<<<< HEAD
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_join.xml" value="0.30286168521462636" />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_join.xml" value="0.36272727272727273" />
+=======
+        <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_join.xml" value="0.4919852034525277" />
+>>>>>>> dc676867db1ce564c8155803d0f911e534654a4b
+=======
+        <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_join.xml" value="0.36272727272727273" />
+>>>>>>> e7f89409f9a67767e8fcda74f1b62ad0913fd685
+>>>>>>> 3c573349d6685087846ce8f5bb8824932b1ea85f
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_like.xml" value="0.1723684210526316" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_list.xml" value="0.2726449275362319" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_login.xml" value="0.5" />
@@ -22,7 +34,11 @@
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_order_history2.xml" value="0.33" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_pw_setting.xml" value="0.25" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_pw_setting2.xml" value="0.33" />
+<<<<<<< HEAD
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_review.xml" value="0.175" />
+=======
+        <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_social_join.xml" value="0.25" />
+>>>>>>> 3c573349d6685087846ce8f5bb8824932b1ea85f
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_splash.xml" value="0.2966485507246377" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_store.xml" value="0.33" />
         <entry key="..\:/Study_Android/WorkSpace/Team_Project01/app/src/main/res/layout/activity_test.xml" value="0.16973684210526316" />

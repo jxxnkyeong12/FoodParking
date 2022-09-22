@@ -23,6 +23,7 @@
                 android:layout_height="20dp"
                 android:layout_margin="15dp"
                 android:src="@drawable/arrow" />
+<<<<<<< HEAD
 
             <TextView
                 android:layout_width="wrap_content"
@@ -390,5 +391,179 @@
         </LinearLayout>
 
     </ScrollView>
+=======
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#F25C05"
+            android:padding="0dp"
+            android:text="일반 회원가입"
+            android:textSize="12dp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="이메일"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_gray"
+            android:hint="이메일 입력"
+            android:textColor="#A8B3BD"
+            android:textSize="10dp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="2dp"
+            android:text="비밀번호"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_gray"
+            android:hint="비밀번호 입력"
+            android:textColor="#A8B3BD"
+            android:textSize="10dp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="2dp"
+            android:text="비밀번호 확인"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_gray"
+            android:hint="비밀번호 확인"
+            android:textColor="#A8B3BD"
+            android:textSize="10dp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="2dp"
+            android:text="이름"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_gray"
+            android:hint="이름 입력"
+            android:textColor="#A8B3BD"
+            android:textSize="10dp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="2dp"
+            android:text=" 전화번호"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="265dp"
+            android:layout_height="36dp"
+            android:background="@drawable/shape_gray"
+            android:hint="전화번호 입력"
+            android:textColor="#A8B3BD"
+            android:textSize="10dp"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="주소"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtv_join_zipcode"
+                android:layout_width="100dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="4dp"
+                android:hint="우편번호 검색"
+                android:textColor="#A8B3BD"
+                android:textSize="10dp"
+                android:padding="10dp"
+                android:background="@drawable/shape_gray" />
+
+            <Button
+                android:id="@+id/btn_join_address"
+                android:layout_gravity="center"
+                android:layout_width="80dp"
+                android:layout_height="31dp"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/orange"
+                android:padding="0dp"
+                android:text="주소 검색"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edtv_join_address"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_gray"
+            android:hint="주소입력"
+            android:textColor="#A8B3BD"
+            android:textSize="10dp"
+            android:padding="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#F25C05"
+            android:text="회원가입" />
+
+    </LinearLayout>
+>>>>>>> e7f89409f9a67767e8fcda74f1b62ad0913fd685
 
 </LinearLayout>
