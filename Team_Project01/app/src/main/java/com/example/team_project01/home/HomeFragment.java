@@ -54,6 +54,8 @@ public class HomeFragment extends Fragment {
 
         indicator.setViewPager2(pager2);
 
+
+
         //autoSlide();
 
         tv_home_address.setOnClickListener(new View.OnClickListener() {
