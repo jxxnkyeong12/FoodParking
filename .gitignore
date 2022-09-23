@@ -84,3 +84,4 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 Team_Project01/.idea/
+Team_Project01/.gradle/

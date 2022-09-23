@@ -86,6 +86,7 @@
                 android:src="@drawable/kakao_button" />
 
 
+
             <com.navercorp.nid.oauth.view.NidOAuthLoginButton
                 android:layout_gravity="center"
                 android:id="@+id/btn_naver"
@@ -93,6 +94,7 @@
                 android:layout_height="40dp"
                 android:layout_marginBottom="10dp"
                 android:scaleType="fitXY"/>
+
 
             <ImageView
                 android:layout_width="265dp"

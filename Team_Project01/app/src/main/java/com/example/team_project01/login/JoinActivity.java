@@ -14,14 +14,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.example.team_project01.R;
 import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.conn.CommonConn;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +38,8 @@ public class JoinActivity extends AppCompatActivity {
             , edtv_join_phone, edtv_join_zipcode, edtv_join_address, edtv_join_address_more;
     TextView tv_email_chk, tv_pw_chk, tv_pw_chk_chk, tv_name_chk, tv_nickname_chk, tv_phone_chk;
 
-    private final int SEARCH_ADDR_CODE = 1001;
+        private final int SEARCH_ADDR_CODE = 1001;
+
 
     //비밀번호 ** 처리 --> 완료
     //비밀번호와 비밀번호 확인 일치 --> 완료
@@ -256,4 +260,5 @@ public class JoinActivity extends AppCompatActivity {
         }
     }
 }
+
 

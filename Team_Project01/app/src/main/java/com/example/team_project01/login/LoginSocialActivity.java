@@ -15,6 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.team_project01.R;
+import com.example.team_project01.conn.CommonAskTask;
+import com.example.team_project01.conn.CommonConn;
+import com.example.team_project01.home.HomeFragment;
+import com.google.gson.Gson;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApiClient;
@@ -85,22 +89,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
 
         KakaoSdk.init(this, "1c40100fd84e7b943cf17cb4ec9b7413");
 
-       /*
-          나중에 지울 예정 -sb 09/21
-        //카카오 로그아웃
-        UserApiClient.getInstance().logout(new Function1<Throwable, Unit>() {
-            @Override
-            public Unit invoke(Throwable throwable) {
-                return null;
-            }
-        });
-        //카카오 열결끊기
-        UserApiClient.getInstance().unlink(new Function1<Throwable, Unit>() {
-            @Override
-            public Unit invoke(Throwable throwable) {
-                return null;
-            }
-        });*/
+
 
         btn_kakao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,28 +117,6 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 }else{
                     apiClient.loginWithKakaoAccount(LoginSocialActivity.this, callback);
                 }
-                /*
-                // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
-                if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
-                    UserApiClient.instance.loginWithKakaoTalk(context) { token, error ->
-                        if (error != null) {
-                            Log.e(TAG, "카카오톡으로 로그인 실패", error)
-
-                            // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우,
-                            // 의도적인 로그인 취소로 보고 카카오계정으로 로그인 시도 없이 로그인 취소로 처리 (예: 뒤로 가기)
-                            if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
-                                return@loginWithKakaoTalk
-                            }
-
-                            // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
-                            UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
-                        } else if (token != null) {
-                            Log.i(TAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
-                        }
-                    }
-                } else {
-                    UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
-                }*/
 
             }
         });
@@ -158,7 +125,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
 
 
 
-
+    //네이버 로그인
     public void naver_profile(){
         //NidOAuthLogin().callProfileApi(nidProfileCallback) Kotiln
         NidOAuthLogin authLogin = new NidOAuthLogin();
@@ -173,11 +140,33 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 // 소셜로그인했을때 회원가입이 되어있는 소셜계정인지 아닌지를 판단해서
                 // 회원가입이되어있으면 => MainActivity
                 // 안되어있으면 해당 정보로 => JoinActivity
-                Intent intent = new Intent(LoginSocialActivity.this, SocialJoinActivity.class);
+                MemberVO vo = new MemberVO();
+                vo.setEmail(res.getProfile().getEmail());
+                vo.setName(res.getProfile().getName());
+                vo.setPhone(res.getProfile().getMobile());
+                vo.setSocial("Y");
+                //회원가입 하기전에 우선 멤버테이블에 이메일이 있는지 select 하고 없으면
+
+                //네이버로 회원가입시 필요한 정보를 가져올 수 있으므로 바로 회원가입 진행
+                CommonAskTask askTask = new CommonAskTask(LoginSocialActivity.this, "andJoin");
+                askTask.addParams("vo", new Gson().toJson(vo));
+                askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+                    @Override
+                    public void onResult(String data, boolean isResult) {
+                        if (isResult){
+
+                        }
+                    }
+                });
+
+
+
+
+                /*Intent intent = new Intent(LoginSocialActivity.this, SocialJoinActivity.class);
                 intent.putExtra("email", res.getProfile().getEmail());
                 intent.putExtra("phone", res.getProfile().getMobile());
                 intent.putExtra("name", res.getProfile().getName());
-                startActivity(intent);
+                startActivity(intent);*/
 
             }
 
@@ -194,16 +183,26 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-
+    //카카오 로그인
     public void kakao_profile(){
         UserApiClient.getInstance().me((user, throwable) -> {
             if(throwable != null){
                 //오류가 났을때 어떤 오류인지 코드로 줌 KOE + 숫자 ( 단무지가 있음 )
             }else{
                 Log.d("카카오", "kakao_profile: " + user.getKakaoAccount().getEmail());
-                //카카오 로그인 성공지 이메일정보를 가지고 회원가입(joinactivity)로 이동 -sb 09/21
+
+
+
+                Log.d("카카오", "kakao_profile: "+ user.getKakaoAccount().getProfile().getNickname());
+                Log.d("카카오", "kakao_profile: "+ user.getKakaoAccount().getPhoneNumber());
+
+
+
+                //카카오로 회원가입시 전화번호를 가져 올수 없으므로 전화번호를 따로 입력할수 있는 화면으로 이동 후 회원가입 진행
                 Intent intent = new Intent(LoginSocialActivity.this, SocialJoinActivity.class);
                 intent.putExtra("email", user.getKakaoAccount().getEmail());
+                intent.putExtra("name", user.getKakaoAccount().getProfile().getNickname());
+                intent.putExtra("social", "K");
                 startActivity(intent);
             }
 
@@ -211,12 +210,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
             return null;
         });
 
-       /* UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
-            @Override
-            public Unit invoke(User user, Throwable throwable) {
-                return null;
-            }
-        });*/
+
 
     }
     @Override

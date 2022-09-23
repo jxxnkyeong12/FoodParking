@@ -25,23 +25,21 @@ WHERE email=#{email}
 </select>
 
 
-<!-- 회원가입 salt 비번으로 변해서 등록 -->
+<!-- 회원가입 salt 비번으로 변해서 등록, 일반 회원가입 -->
 <insert id="and_join">
-	insert into member (email, pw, name, nickname, addr, post, phone, social, manager, profile_image, b_num, salt)
-	values ( #{email}
-	        , #{pw, jdbcType = VARCHAR}
-			, #{name} 
-			, #{nickname, jdbcType = VARCHAR}
-			, #{addr, jdbcType = VARCHAR}
-			, #{post, jdbcType = VARCHAR}
-			, #{phone, jdbcType = VARCHAR}
-			, #{social, jdbcType = VARCHAR}
-			, #{manager, jdbcType = VARCHAR}
-			, #{profile_image, jdbcType = VARCHAR}
-			, #{b_num, jdbcType = VARCHAR}
-			, #{salt, jdbcType = VARCHAR})
-			
-				
+	insert into member (email, pw, name, nickname, addr, post
+						, phone, social, manager, profile_image
+						, b_num, salt)
+	values ( #{email}, #{pw}, #{name}, #{nickname, jdbcType = VARCHAR}, #{addr}, #{post}
+			, #{phone}, #{social}, 'N', #{profile_image, jdbcType = VARCHAR}
+			, #{b_num, jdbcType = VARCHAR}, #{salt})		
+</insert>
+
+
+<insert id="social_join">
+	insert into member (email, name, phone, social)
+	values (#{email}, #{name}, #{phone}, #{social})	
+
 </insert>
 
 </mapper>

@@ -49,4 +49,10 @@ public class AndMemberDAO {
 	}
 	
 	
+
+	public int social_join(MemberVO vo) {
+		return sql.insert("andmember.social_join", vo);
+	}
+	
+
 }

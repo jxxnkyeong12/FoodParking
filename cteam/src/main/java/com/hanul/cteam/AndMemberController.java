@@ -45,11 +45,19 @@ public class AndMemberController {
 	}
 	
 	
+
 	//회원가입
 	@RequestMapping(value = "/andJoin", produces = "text/html;charset=utf-8")
 	public String join(String vo) {
 		MemberVO joinInfo = new Gson().fromJson(vo, MemberVO.class);
-		dao.join(joinInfo);
+
+		//소셜 로그인 회원가입
+		if(joinInfo.getSocial().equals("Y")) {
+			dao.social_join(joinInfo);
+		}else {
+			dao.join(joinInfo);			
+		}
+
 		return gson.toJson(vo);
 	}
 	
