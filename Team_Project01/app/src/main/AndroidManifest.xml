@@ -14,9 +14,11 @@
     <uses-permission android:name="android.permission.CAMERA"/>
 
 
+
     <!--네이버맵 지도 API 내 위치 설정 jk 2022/9/22-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
 
 
@@ -27,6 +29,7 @@
         android:label="푸드파킹"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
         android:theme="@style/Theme.Team_Project01"
         android:usesCleartextTraffic="true">
         <activity
@@ -35,7 +38,6 @@
         <activity
             android:name=".login.AddressActivity"
             android:exported="true" />
-
         <activity
             android:name=".order.OrderDetailActivity"
             android:exported="true" />
@@ -120,6 +122,7 @@
                 android:value="gov" />-->
 
         </activity>
+
     </application>
 
 </manifest>

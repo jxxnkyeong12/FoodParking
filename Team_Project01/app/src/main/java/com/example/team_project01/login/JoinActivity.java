@@ -161,7 +161,6 @@ public class JoinActivity extends AppCompatActivity {
     //09.22 hs 추가
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
-
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
 
@@ -259,6 +258,7 @@ public class JoinActivity extends AppCompatActivity {
             }
         }
     }
+
 }
 
 

@@ -28,13 +28,13 @@ select salt from member where email= #{email}
 	values ( #{email}, #{pw}, #{name}, #{nickname, jdbcType = VARCHAR}, #{addr}, #{post}
 			, #{phone}, #{social}, 'N', #{profile_image, jdbcType = VARCHAR}
 			, #{b_num, jdbcType = VARCHAR}, #{salt})		
+
 </insert>
 
 
 <insert id="social_join">
 	insert into member (email, name, phone, social)
 	values (#{email}, #{name}, #{phone}, #{social})	
-
 </insert>
 
 </mapper>

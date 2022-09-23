@@ -1,20 +1,15 @@
 package com.example.team_project01.login;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.team_project01.R;
+
 import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.conn.CommonConn;
 import com.example.team_project01.home.HomeFragment;
@@ -37,28 +32,17 @@ import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 
 public class LoginSocialActivity extends AppCompatActivity implements View.OnClickListener {
-     NidOAuthLoginButton btn_naver;
-     Button btn_login;
-     ImageView imgv_join_email, btn_kakao;
 
+     Button btn_login;
+     ImageView imgv_join_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_social);
 
-        getHashKey();
-
-        NaverIdLoginSDK.INSTANCE.initialize(this,
-                "AjoMyNyYbiTJqPYaup6o",
-                "S7SKuN5P0O",
-                "Team_Project01");
-
         btn_login =findViewById(R.id.btn_login);
         imgv_join_email = findViewById(R.id.imgv_join_email);
-        btn_naver = findViewById(R.id.btn_naver);
-        btn_kakao = findViewById(R.id.btn_kakao);
-
 
 
         btn_login.setOnClickListener(this);
@@ -213,6 +197,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
 
 
     }
+
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btn_login){
@@ -224,27 +209,5 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-
-
-    private void getHashKey(){
-        PackageInfo packageInfo = null;
-        try {
-            packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (packageInfo == null)
-            Log.e("KeyHash", "KeyHash:null");
-
-        for (Signature signature : packageInfo.signatures) {
-            try {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            } catch (NoSuchAlgorithmException e) {
-                Log.e("KeyHash", "Unable to get MessageDigest. signature=" + signature, e);
-            }
-        }
-    }
 
 }

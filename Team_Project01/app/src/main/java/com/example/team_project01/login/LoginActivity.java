@@ -51,7 +51,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void login(String email, String pw, String social_yn) {
 
 
+
         CommonAskTask task = new CommonAskTask(LoginActivity.this, "andLogin");
+
 
 
 

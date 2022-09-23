@@ -17,8 +17,7 @@ select salt from member where email= #{email}
 </select>
 
 
-
-<!-- 소셜 로그인 -->
+<!-- 소셜 로그인, 소셜 구분이 안 되어있어서 아직은 일반도 가능!! -->
 <select id="social_login" resultType="andmember.MemberVO">
 SELECT * FROM MEMBER 
 WHERE email=#{email}
@@ -39,7 +38,6 @@ WHERE email=#{email}
 <insert id="social_join">
 	insert into member (email, name, phone, social)
 	values (#{email}, #{name}, #{phone}, #{social})	
-
 </insert>
 
 </mapper>
