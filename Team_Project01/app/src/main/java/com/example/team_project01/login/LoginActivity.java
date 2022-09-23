@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.team_project01.MainActivity;
 import com.example.team_project01.R;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText login_email, login_pw;
     Button btn_login;
     Intent intent;
+    ImageView login_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +32,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login_email = findViewById(R.id.login_email);
         login_pw = findViewById(R.id.login_pw);
         btn_login = findViewById(R.id.btn_login);
+        login_back = findViewById(R.id.login_back);
+        btn_login.setOnClickListener(this);
 
-     btn_login.setOnClickListener(this);
 
-
+        login_back.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if(v.getId() ==R.id.btn_login){
             login(login_email.getText().toString(), login_pw.getText().toString(), "N");
+        }else if(v.getId() == R.id.login_back) {
+            onBackPressed();
         }
     }
 
