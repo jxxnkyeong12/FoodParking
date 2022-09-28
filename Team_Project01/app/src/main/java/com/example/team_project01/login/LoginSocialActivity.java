@@ -37,10 +37,11 @@ import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 
 public class LoginSocialActivity extends AppCompatActivity implements View.OnClickListener {
-     NidOAuthLoginButton btn_naver;
-     Button btn_login;
-     ImageView imgv_join_email, btn_kakao;
+    NidOAuthLoginButton btn_naver;
+    Button btn_login;
+    ImageView imgv_join_email, btn_kakao;
 
+    CommonAskTask askTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,25 +138,28 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 Log.d("프로필", "onSuccess: " + res.getProfile().getMobile());
                 Log.d("프로필", "onSuccess: " + res.getProfile().getName());
 
-                // 소셜로그인했을때 회원가입이 되어있는 소셜계정인지 아닌지를 판단해서
-                // 회원가입이되어있으면 => MainActivity
-                // 안되어있으면 해당 정보로 => JoinActivity
+
+
                 MemberVO vo = new MemberVO();
                 vo.setEmail(res.getProfile().getEmail());
                 vo.setName(res.getProfile().getName());
                 vo.setPhone(res.getProfile().getMobile());
                 vo.setSocial("Y");
-                //회원가입 하기전에 우선 멤버테이블에 이메일이 있는지 select 하고 없으면
 
-                //네이버로 회원가입시 필요한 정보를 가져올 수 있으므로 바로 회원가입 진행
-                CommonAskTask askTask = new CommonAskTask(LoginSocialActivity.this, "andJoin");
+                //회원가입 하기전에 우선 멤버테이블에 이메일이 있는지 select 하고 없으면 회원가입
+
+
+
+
+
+
+               //네이버로 회원가입시 필요한 정보를 가져올 수 있으므로 바로 회원가입 진행
+                askTask = new CommonAskTask(LoginSocialActivity.this, "andJoin");
                 askTask.addParams("vo", new Gson().toJson(vo));
                 askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                     @Override
                     public void onResult(String data, boolean isResult) {
-                        if (isResult){
 
-                        }
                     }
                 });
 

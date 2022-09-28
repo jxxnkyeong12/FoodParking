@@ -7,18 +7,29 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
     <uses-permission android:name="android.permission.CAMERA"/>
 
 
+
+    <!--네이버맵 지도 API 내 위치 설정 jk 2022/9/22-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
+
+
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="푸드파킹"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
         android:theme="@style/Theme.Team_Project01"
         android:usesCleartextTraffic="true">
         <activity
@@ -101,7 +112,17 @@
                     android:host="oauth"
                     android:scheme="kakao1c40100fd84e7b943cf17cb4ec9b7413" />
             </intent-filter>
+
+            <!--네이버 지도 API jk 2022/9/22-->
+            <meta-data
+                android:name="com.naver.maps.map.CLIENT_ID"
+                android:value="7jbtb9ge0p" />
+          <!--  <meta-data
+                android:name="com.naver.maps.map.CLIENT_TYPE"
+                android:value="gov" />-->
+
         </activity>
+
     </application>
 
 </manifest>

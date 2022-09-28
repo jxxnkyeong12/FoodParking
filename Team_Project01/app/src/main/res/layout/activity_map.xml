@@ -44,7 +44,7 @@
         <com.naver.maps.map.MapView
             android:id="@+id/map_view"
             android:layout_width="match_parent"
-            android:layout_height="510dp" />
+            android:layout_height="wrap_content" >
 
 
         <View
@@ -59,21 +59,34 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/map_text"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/non_time_shape"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:text="광주 서구 내방로 345 (화정동)"
                 android:textColor="@color/black"
                 android:textSize="15dp"/>
 
-            <Button
+            <TextView
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:text="이 위치로 주소 설정"
+                android:id="@+id/map_btn"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="@color/orange"
-                android:text="이 위치로 주소 설정" />
+                android:layout_height="50dp"
+                android:background="@drawable/select_time_shpae"
+                 />
 
         </LinearLayout>
-
+        </com.naver.maps.map.MapView>
     </LinearLayout>
 
 </LinearLayout>

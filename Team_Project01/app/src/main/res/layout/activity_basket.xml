@@ -44,13 +44,7 @@
         android:layout_height="wrap_content"/>
 
 
-    <Button
-        android:layout_marginHorizontal="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#F25C05"
-        android:text="+더 담으러 가기" />
+
 
 </LinearLayout>
 
@@ -66,21 +60,44 @@
         >
 
         <TextView
-            android:layout_weight="1"
+            android:id="@+id/basket_total_cnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2개"
+            android:text="2"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             />
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="개"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+
+            />
+
+        <TextView
+            android:id="@+id/basket_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17,000"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="17,000 원"
+            android:text="원"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="20dp"

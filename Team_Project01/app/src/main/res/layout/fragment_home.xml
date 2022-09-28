@@ -43,17 +43,6 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:id="@+id/home_basket"
-                android:layout_width="29dp"
-                android:layout_height="25dp"
-                android:src="@drawable/shopping"
-                android:gravity="right"/>
 
         </LinearLayout>
 

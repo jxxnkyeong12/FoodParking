@@ -6,27 +6,53 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".store.StoreActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
+    <LinearLayout
+        android:layout_weight="9"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:layout_height="0dp"
+        android:orientation="vertical">
+        <LinearLayout
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/store_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:menu="@menu/menu_store">
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="17dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="가게이름"
-                android:textColor="@color/black" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center">
 
-        </androidx.appcompat.widget.Toolbar>
 
-    </com.google.android.material.appbar.AppBarLayout>
+                <TextView
+                    android:id="@+id/store_name1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="가게이름"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/store_basket"
+                android:layout_width="29dp"
+                android:layout_height="25dp"
+                android:src="@drawable/shopping"
+                android:gravity="right"/>
+
+        </LinearLayout>
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -80,9 +106,10 @@
                 android:layout_height="1dp"
                 android:background="@color/gray" />
 
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"
                 android:orientation="vertical"
                 android:padding="10dp">
@@ -95,6 +122,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/store_name2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="황남비빔밥"
@@ -106,7 +134,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="비빔밥  >"
+                        android:text="지도보기  >"
                         android:textSize="12dp" />
 
                     <View
@@ -166,11 +194,13 @@
 
                 </LinearLayout>
 
+
                 <!-- 메뉴 탭 -->
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_weight="9"
                     android:id="@+id/recv_store_menu"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="15dp"
                     android:visibility="gone"/>
 
@@ -518,10 +548,7 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+
 
             </LinearLayout>
 
@@ -529,20 +556,19 @@
 
     </ScrollView>
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
+    </LinearLayout>
     <!-- 하단 주문 버튼 -->
+
     <LinearLayout
+        android:paddingTop="10dp"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="bottom"
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="318dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
@@ -551,7 +577,7 @@
             android:textColor="@color/black" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="317dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/orange"
@@ -559,5 +585,6 @@
             android:textColor="@color/black" />
 
     </LinearLayout>
+
 
 </LinearLayout>

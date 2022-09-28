@@ -21,7 +21,6 @@ public class MemberVO {
 		public void setSalt(String salt) {
 			this.salt = salt;
 		}
-
 		public int getId() {
 			return id;
 		}
