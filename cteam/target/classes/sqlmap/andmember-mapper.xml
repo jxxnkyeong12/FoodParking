@@ -7,20 +7,12 @@
 SELECT * FROM member 
 WHERE email=#{email} and pw = #{pw, jdbcType= VARCHAR}
  AND NVL(pw,0) = NVL(#{pw,jdbcType=VARCHAR},0)
-
 </select>
 
 
 <!-- 회원의 salt조회  -->
 <select id="salt" resultType="String">
 select salt from member where email= #{email}
-</select>
-
-
-<!-- 소셜 로그인, 소셜 구분이 안 되어있어서 아직은 일반도 가능!! -->
-<select id="social_login" resultType="andmember.MemberVO">
-SELECT * FROM MEMBER 
-WHERE email=#{email}
 </select>
 
 
@@ -32,12 +24,19 @@ WHERE email=#{email}
 	values ( #{email}, #{pw}, #{name}, #{nickname, jdbcType = VARCHAR}, #{addr}, #{post}
 			, #{phone}, #{social}, 'N', #{profile_image, jdbcType = VARCHAR}
 			, #{b_num, jdbcType = VARCHAR}, #{salt})		
-</insert>
 
+</insert>
 
 <insert id="social_join">
 	insert into member (email, name, phone, social)
 	values (#{email}, #{name}, #{phone}, #{social})	
 </insert>
 
+
+<!-- 이메일 중복체크 - hs -->
+<select id="email_check" resultType="Integer">
+	select count(*)
+	from member
+	where email = #{email}
+</select>
 </mapper>

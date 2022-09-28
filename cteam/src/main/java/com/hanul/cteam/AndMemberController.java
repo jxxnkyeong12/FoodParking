@@ -22,14 +22,11 @@ public class AndMemberController {
 	@Autowired Common common;
 	Gson gson = new Gson();
 	
-	// 로그인 (salt찾아서..로그인 되게)
-	@RequestMapping("/andLogin")
+	
+	//로그인 (salt찾아서..로그인 되게)
+	@RequestMapping(value = "/andLogin", produces = "text/html;charset=utf-8")
 	public String login(String email, String pw) {
 		MemberVO vo = new MemberVO();
-		if (email == null || pw == null) {
-			// return gson.toJson(null);
-		}
-
 		String salt = dao.member_salt(email);
 		pw = common.getEncrypt(salt, pw);
 
@@ -40,6 +37,7 @@ public class AndMemberController {
 		return gson.toJson(vo);
 	}
 
+	
 	//회원가입
 	@RequestMapping(value = "/andJoin", produces = "text/html;charset=utf-8")
 	public String join(String vo) {
