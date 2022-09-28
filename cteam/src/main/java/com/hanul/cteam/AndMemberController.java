@@ -1,7 +1,13 @@
 package com.hanul.cteam;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
+
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,6 +30,7 @@ public class AndMemberController {
 	
 	
 	//로그인 (salt찾아서..로그인 되게)
+
 	@RequestMapping(value = "/andLogin", produces = "text/html;charset=utf-8")
 	public String login(String email, String pw) {
 		MemberVO vo = new MemberVO();
@@ -38,6 +45,7 @@ public class AndMemberController {
 	}
 
 	
+
 	//회원가입
 	@RequestMapping(value = "/andJoin", produces = "text/html;charset=utf-8")
 	public String join(String vo) {
@@ -51,9 +59,11 @@ public class AndMemberController {
 		}
 
 		return gson.toJson(vo);
+	
 	}
 
 	
+
 	//이메일 중복체크
 	@RequestMapping(value = "/andEmailChk", produces = "text/html;charset=utf-8")
 	public String email_check(HttpServletRequest req, HttpServletResponse res) {

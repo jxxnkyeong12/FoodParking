@@ -27,6 +27,7 @@ select salt from member where email= #{email}
 
 </insert>
 
+<!-- 소셜회원가입 -->
 <insert id="social_join">
 	insert into member (email, name, phone, social)
 	values (#{email}, #{name}, #{phone}, #{social})	
@@ -39,4 +40,12 @@ select salt from member where email= #{email}
 	from member
 	where email = #{email}
 </select>
+
+<!-- 소셜 이메일 중복체크 -->
+<select id="social_id_check" resultType='integer'>
+select count(*) 
+from    member
+where   email = #{email}
+</select>
+
 </mapper>
