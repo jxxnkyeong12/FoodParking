@@ -6,4 +6,5 @@ public class CommonVal {
 
  public static MemberVO loginInfo = null;
 
+
 }
