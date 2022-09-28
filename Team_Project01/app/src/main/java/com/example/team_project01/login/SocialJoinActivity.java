@@ -19,8 +19,6 @@ public class SocialJoinActivity extends AppCompatActivity {
     Button btn_sj_join;
 
 
-    private final int SEARCH_ADDR_CODE = 1001;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,14 +50,15 @@ public class SocialJoinActivity extends AppCompatActivity {
                 MemberVO vo = new MemberVO();
                 vo.setEmail(intent.getStringExtra("email"));
                 vo.setName(intent.getStringExtra("name"));
-                vo.setPhone(intent.getStringExtra("phone"));
+                vo.setPhone(sj_phone.getText().toString());
+                vo.setSocial("Y");
 
 
-                CommonAskTask askTask = new CommonAskTask(SocialJoinActivity.this, "andjoin");
+                CommonAskTask askTask = new CommonAskTask(SocialJoinActivity.this, "andJoin");
                 askTask.addParams("vo", new Gson().toJson(vo));
-                askTask.execute(new Runnable() {
+                askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                     @Override
-                    public void run() {
+                    public void onResult(String data, boolean isResult) {
 
                     }
                 });

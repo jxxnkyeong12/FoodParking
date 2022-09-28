@@ -9,10 +9,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class ApiClient {
 
 
-
+<<<<<<< HEAD
     private static final String BASE_URL =  "http://192.168.0.113/cteam/";
 
+=======
 
+
+    private static final String BASE_URL =  "http://192.168.0.27/cteam/";
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 
 
 

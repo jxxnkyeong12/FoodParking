@@ -1,36 +1,61 @@
 package com.example.team_project01.store;
 
-public class StoreMenuDTO {
-    private int imgv_menu_image;
-    private String tv_menu_name, tv_menu_price;
+import java.io.Serializable;
 
-    public StoreMenuDTO(int imgv_menu_image, String tv_menu_name, String tv_menu_price) {
-        this.imgv_menu_image = imgv_menu_image;
-        this.tv_menu_name = tv_menu_name;
-        this.tv_menu_price = tv_menu_price;
+public class StoreMenuDTO implements Serializable {
+    private int menu_id, store_code, menu_code, price;
+    private String menu_image, menu_name;
+
+
+
+
+
+
+    public int getMenu_id() {
+        return menu_id;
     }
 
-    public int getImgv_menu_image() {
-        return imgv_menu_image;
+    public void setMenu_id(int menu_id) {
+        this.menu_id = menu_id;
     }
 
-    public void setImgv_menu_image(int imgv_menu_image) {
-        this.imgv_menu_image = imgv_menu_image;
+    public int getStore_code() {
+        return store_code;
     }
 
-    public String getTv_menu_name() {
-        return tv_menu_name;
+    public void setStore_code(int store_code) {
+        this.store_code = store_code;
     }
 
-    public void setTv_menu_name(String tv_menu_name) {
-        this.tv_menu_name = tv_menu_name;
+    public int getMenu_code() {
+        return menu_code;
     }
 
-    public String getTv_menu_price() {
-        return tv_menu_price;
+    public void setMenu_code(int menu_code) {
+        this.menu_code = menu_code;
     }
 
-    public void setTv_menu_price(String tv_menu_price) {
-        this.tv_menu_price = tv_menu_price;
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getMenu_image() {
+        return menu_image;
+    }
+
+    public void setMenu_image(String menu_image) {
+        this.menu_image = menu_image;
+    }
+
+    public String getMenu_name() {
+        return menu_name;
+    }
+
+    public void setMenu_name(String menu_name) {
+        this.menu_name = menu_name;
     }
 }

@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+<<<<<<< HEAD
 import android.graphics.Color;
+=======
 import android.content.Intent;
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,18 +20,23 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import com.example.team_project01.R;
+<<<<<<< HEAD
 import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.login.MemberVO;
 import com.example.team_project01.myinfo.LikeAdapter;
 import com.example.team_project01.myinfo.LikeHistoryActivity;
+=======
 import com.example.team_project01.common.BasketActivity;
 import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.list.Store_infoDTO;
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -38,10 +47,13 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
     View layout_store_info;
     LinearLayout layout_store_tab_info, layout_store_tab_review;
     Spinner store_spinner;
-
-    TextView store_tv_spinner, store_name1,store_name2;
+<<<<<<< HEAD
+    TextView store_tv_spinner;
     ImageView store_imgv_back, store_imgv_favEmp, store_imgv_favFill;
-
+=======
+    TextView store_tv_spinner, store_name1,store_name2;
+    ImageView store_basket;
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 
     String[] items = {"최신순", "평점 높은 순", "평점 낮은 순"};
 
@@ -61,6 +73,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         layout_store_tab_review = findViewById(R.id.layout_store_tab_review);
         store_spinner = findViewById(R.id.store_spinner);
         store_tv_spinner = findViewById(R.id.store_tv_spinner);
+<<<<<<< HEAD
         store_imgv_back = findViewById(R.id.store_imgv_back);
         store_imgv_favEmp = findViewById(R.id.store_imgv_favEmp);
         store_imgv_favFill = findViewById(R.id.store_imgv_favFill);
@@ -69,10 +82,11 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         store_imgv_back.setOnClickListener(this);
         store_imgv_favEmp.setOnClickListener(this);
         store_imgv_favFill.setOnClickListener(this);
-
+=======
         store_name1 = findViewById(R.id.store_name1);
         store_name2 = findViewById(R.id.store_name2);
         store_basket = findViewById(R.id.store_basket);
+
 
 
         Intent intent = getIntent();
@@ -86,7 +100,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         store_name2.setText(vo.getStore_name());
 
 
-
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 
         //기본화면
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(StoreActivity.this, RecyclerView.VERTICAL, false);
@@ -99,7 +113,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         layout_store_tab_info.setVisibility(View.GONE);
         layout_store_tab_review.setVisibility(View.GONE);
 
-
+<<<<<<< HEAD
         if(CommonVal.loginInfo == null) {
             store_imgv_favFill.setVisibility(View.GONE);
             store_imgv_favEmp.setVisibility(View.VISIBLE);
@@ -127,7 +141,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                 }
             });
         }
-
+=======
         store_basket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +153,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         });
 
 
-
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 
         //탭
         tab_store.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -207,14 +221,17 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+<<<<<<< HEAD
+    }
 
+=======
 
     }
 
 
 
     //뒤로가기 버튼 활성화
-
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
     @Override
     public void onClick(View v) {
         //뒤로가기
@@ -281,4 +298,17 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
+    //탭 - 메뉴
+    //디비 가게 메뉴 리스트 테스트 위해 주석처리 해놈 - sb 2022/09/26
+    /*public ArrayList<StoreMenuDTO> menu_list() {
+        ArrayList<StoreMenuDTO> list = new ArrayList<>();
+        list.add(new StoreMenuDTO(R.drawable.black, "순희비빔밥", "8000원"));
+        list.add(new StoreMenuDTO(R.drawable.black, "열무비빔밥", "9000원"));
+        list.add(new StoreMenuDTO(R.drawable.black, "순희비빔밥", "8000원"));
+        list.add(new StoreMenuDTO(R.drawable.black, "열무비빔밥", "9000원"));
+        list.add(new StoreMenuDTO(R.drawable.black, "순희비빔밥", "8000원"));
+        list.add(new StoreMenuDTO(R.drawable.black, "열무비빔밥", "9000원"));
+
+        return list;
+    }*/
 }

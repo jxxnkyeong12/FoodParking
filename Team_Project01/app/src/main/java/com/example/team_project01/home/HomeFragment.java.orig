@@ -27,9 +27,13 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-
-    ImageView imgv_test;
+<<<<<<< HEAD
+    ImageView imgv_test, home_basket;
     TextView tv_home_address, home_tv_name;
+=======
+    ImageView imgv_test;
+    TextView tv_home_address;
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
     ViewPager2 pager2;
     SpringDotsIndicator indicator;
     LinearLayout home_map;
@@ -45,10 +49,12 @@ public class HomeFragment extends Fragment {
         home_tv_name = v.findViewById(R.id.home_tv_name);
         pager2 = v.findViewById(R.id.pager2);
         indicator = v.findViewById(R.id.indicator);
+<<<<<<< HEAD
+        home_basket = v.findViewById(R.id.home_basket);
         home_map = v.findViewById(R.id.home_map);
+=======
 
-
-
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 
         img_list.add(R.drawable.banner1);
         img_list.add(R.drawable.banner2);
@@ -64,6 +70,7 @@ public class HomeFragment extends Fragment {
         indicator.setViewPager2(pager2);
 
 
+<<<<<<< HEAD
         if (CommonVal.loginInfo == null) {  //로그인 안 했을 경우
             home_tv_name.setText("로그인 필요");
 
@@ -75,7 +82,8 @@ public class HomeFragment extends Fragment {
             }
         }
 
-
+=======
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 
         //autoSlide();
 

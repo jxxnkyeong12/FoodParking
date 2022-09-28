@@ -7,7 +7,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
-
+<<<<<<< HEAD
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -15,26 +15,29 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-
+=======
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.ImageView;
-
+=======
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.team_project01.R;
 import com.example.team_project01.home.HomeFragment;
-
+<<<<<<< HEAD
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
-
+=======
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraUpdate;
@@ -48,6 +51,7 @@ import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
 
+<<<<<<< HEAD
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -70,7 +74,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private double lat, lon;
     String area1, area2, area3, area4, con;
+=======
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
+    Toolbar map_toolbar;
+    MapView map_View ;
+    NaverMap naverMap;
+    TextView map_text, map_btn;
+
+
+    private double lat, lon;
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
     private FusedLocationSource locationSource;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private static final String[] PERMISSIONS = {
@@ -86,10 +100,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         map_btn = findViewById(R.id.map_btn);
         map_btn.setOnClickListener(this);
+<<<<<<< HEAD
+=======
+
+        map_toolbar = findViewById(R.id.map_toolbar);
+        setSupportActionBar(map_toolbar);
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
+
 
         map_View = findViewById(R.id.map_view);
         map_text = findViewById(R.id.map_text);
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 
         //임시로 키를 넣음! jk 2022/9/17
         NaverMapSdk.getInstance(this).setClient(
@@ -98,6 +122,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         // 내 위치 jk - 2022/09/22
         map_View.getMapAsync(this);
         locationSource = new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 
 
     }
@@ -191,11 +221,29 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
+<<<<<<< HEAD
+=======
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,  @NonNull int[] grantResults) {
+        if (locationSource.onRequestPermissionsResult(
+                requestCode, permissions, grantResults)) {
 
+            return;
+        }
+        super.onRequestPermissionsResult( requestCode, permissions, grantResults);
+    }
+
+
+
+
+
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
     //네이버 지도 API -jk 2022/09/19
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
 
+<<<<<<< HEAD
         naverMap.setLocationSource(locationSource);  //현재 위치
         ActivityCompat.requestPermissions(this, PERMISSIONS, LOCATION_PERMISSION_REQUEST_CODE);  //현재위치 표시할때 권한 확인
 
@@ -217,7 +265,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         requestGeocode(con);
                     }
                 }).start();
-
+=======
+//        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(35.1535583,126.8879957));
+//        //d35.150075!4d126.8924309  - 지금 현재는 광주 서구 농성동 갈매기봉이 나옴! jk
+//
+//        naverMap.moveCamera(cameraUpdate);
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
 
 
                 Log.d("지도", "onLocationChange: " + lat + lon);
@@ -232,7 +285,36 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
+        naverMap.setLocationSource(locationSource);  //현재 위치
+        ActivityCompat.requestPermissions(this, PERMISSIONS, LOCATION_PERMISSION_REQUEST_CODE);  //현재위치 표시할때 권한 확인
+        map_text.setText(locationSource.toString());
 
+
+        naverMap.setLocationSource(locationSource);
+        naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+
+
+
+        naverMap.addOnLocationChangeListener(new NaverMap.OnLocationChangeListener() {
+            @Override
+            public void onLocationChange(@NonNull Location location) {
+                lat = location.getLatitude();
+                lon = location.getLongitude();
+
+
+
+                Log.d("지도", "onLocationChange: " + lat + lon);
+
+//                  마커 위치
+//                Marker marker = new Marker();
+//                marker.setPosition(new LatLng(lat, lon));
+//                marker.setMap(naverMap);
+
+
+
+                Toast.makeText(getApplicationContext(),  lat+" , "+lon, Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
@@ -247,5 +329,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
- 
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.map_btn){
+
+            Intent intent = new Intent(MapActivity.this, HomeFragment.class);
+            intent.putExtra("주소", "map_text");
+            startActivity(intent);
+        }
+    }
 }

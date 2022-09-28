@@ -65,8 +65,8 @@
             android:background="#F25C05"
             android:orientation="vertical">
 
+<<<<<<< HEAD
             <LinearLayout
-                android:id="@+id/myinfo_login"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,6 +89,8 @@
 
 
             </LinearLayout>
+=======
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
         </LinearLayout>
 
 

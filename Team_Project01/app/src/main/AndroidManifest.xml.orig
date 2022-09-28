@@ -156,6 +156,7 @@
                     android:scheme="kakao1c40100fd84e7b943cf17cb4ec9b7413" />
             </intent-filter>
 
+<<<<<<< HEAD
 
 
         </activity>
@@ -175,7 +176,7 @@
 
         </provider>
 
-
+=======
             <!--네이버 지도 API jk 2022/9/22-->
             <meta-data
                 android:name="com.naver.maps.map.CLIENT_ID"
@@ -186,7 +187,7 @@
 
         </activity>
 
-
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
     </application>
 
 </manifest>
