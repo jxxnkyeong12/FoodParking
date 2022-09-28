@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import android.widget.Toast;
 
 import com.example.team_project01.MainActivity;
@@ -26,8 +27,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Intent intent;
     ImageView login_back;
 
+
     //자동로그인 salt
     //소셜로그인 아이디 중복체크
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

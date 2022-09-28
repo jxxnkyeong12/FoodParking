@@ -38,11 +38,13 @@ import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 
 public class LoginSocialActivity extends AppCompatActivity implements View.OnClickListener {
+
      NidOAuthLoginButton btn_naver;
      Button btn_login;
      ImageView imgv_join_email, btn_kakao, btn_google;
 
      CommonAskTask askTask;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +144,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 Log.d("프로필", "onSuccess: " + res.getProfile().getMobile());
                 Log.d("프로필", "onSuccess: " + res.getProfile().getName());
 
+
                 MemberVO vo = new MemberVO();
                 vo.setEmail(res.getProfile().getEmail());
                 vo.setName(res.getProfile().getName());
@@ -171,6 +174,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                                 }
                             });
                         }
+
                     }
                 });
             }

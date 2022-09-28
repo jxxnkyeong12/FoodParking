@@ -1,28 +1,21 @@
 package com.example.team_project01.myinfo;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.team_project01.R;
 import com.example.team_project01.common.CommonVal;
-import com.example.team_project01.common.ReviewActivity;
 import com.example.team_project01.common.ReviewListActivity;
-import com.example.team_project01.conn.CommonConn;
-import com.example.team_project01.login.JoinActivity;
-import com.example.team_project01.myinfo.modify.ModifyActivity;
 
 
 import de.hdodenhof.circleimageview.CircleImageView;

@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,21 +16,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.team_project01.MainActivity;
 import com.example.team_project01.R;
 import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.login.MemberVO;
 import com.example.team_project01.myinfo.LikeAdapter;
 import com.example.team_project01.myinfo.LikeHistoryActivity;
+import com.example.team_project01.common.BasketActivity;
+import com.example.team_project01.common.BasketVO;
+import com.example.team_project01.list.Store_infoDTO;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class StoreActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,12 +38,16 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
     View layout_store_info;
     LinearLayout layout_store_tab_info, layout_store_tab_review;
     Spinner store_spinner;
-    TextView store_tv_spinner;
-    ImageView store_imgv_back, store_imgv_favEmp, store_imgv_favFill;
+
+    TextView store_tv_spinner, store_name1,store_name2;
+    ImageView store_imgv_back, store_imgv_favEmp, store_imgv_favFill, store_basket;
 
     String[] items = {"최신순", "평점 높은 순", "평점 낮은 순"};
+    ArrayList<Store_infoDTO> list;
 
-    AndBookmarkVO vo = new AndBookmarkVO();
+    public StoreActivity(ArrayList<Store_infoDTO> list) {
+        this.list = list;
+    }
 
     //이전 페이지(가게리스트)와 데이터 연동
 
@@ -69,9 +72,28 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         store_imgv_favEmp.setOnClickListener(this);
         store_imgv_favFill.setOnClickListener(this);
 
+        store_name1 = findViewById(R.id.store_name1);
+        store_name2 = findViewById(R.id.store_name2);
+        store_basket = findViewById(R.id.store_basket);
+
+
+        Intent intent = getIntent();
+        BasketVO basketDTO = (BasketVO) intent.getSerializableExtra("basketDTO");
+        ArrayList<StoreMenuDTO> list = (ArrayList<StoreMenuDTO>) intent.getSerializableExtra("list1");
+
+        //가게정보
+        Store_infoDTO vo = (Store_infoDTO) intent.getSerializableExtra("vo");
+
+        store_name1.setText(vo.getStore_name());
+        store_name2.setText(vo.getStore_name());
+
+
+
+
         //기본화면
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(StoreActivity.this, RecyclerView.VERTICAL, false);
-        StoreMenuAdapter adapter = new StoreMenuAdapter(menu_list(), getLayoutInflater());
+        StoreMenuAdapter adapter = new StoreMenuAdapter(list, getLayoutInflater(), StoreActivity.this, StoreActivity.this);
+
         recv_store_menu.setLayoutManager(layoutManager);
         recv_store_menu.setAdapter(adapter);
 
@@ -79,26 +101,27 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         layout_store_tab_info.setVisibility(View.GONE);
         layout_store_tab_review.setVisibility(View.GONE);
 
+
         if(CommonVal.loginInfo == null) {
             store_imgv_favFill.setVisibility(View.GONE);
             store_imgv_favEmp.setVisibility(View.VISIBLE);
 
         }else {
             CommonAskTask askTask = new CommonAskTask(StoreActivity.this, "andBMList");
-            AndBookmarkVO vo = new AndBookmarkVO();
-            vo.setId(CommonVal.loginInfo.getId());
+            AndBookmarkVO bookmarkVO = new AndBookmarkVO();
+            bookmarkVO.setId(CommonVal.loginInfo.getId());
 
-            askTask.addParams("id", vo.getId());
+            askTask.addParams("id", bookmarkVO.getId());
             askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                 @Override
                 public void onResult(String data, boolean isResult) {
                     Log.d("TAG", "onResut: " + data);
                     ArrayList<AndBookmarkVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<AndBookmarkVO>>(){}.getType());
                     for (int i = 0; i < list.size(); i++) {
-                        vo.setStore_code(list.get(i).getStore_code());
-                        vo.setBookmark(list.get(i).getBookmark());
+                        bookmarkVO.setStore_code(list.get(i).getStore_code());
+                        bookmarkVO.setBookmark(list.get(i).getBookmark());
 
-                        if(vo.getBookmark() == 1 && vo.getStore_code() == 1) {
+                        if(bookmarkVO.getBookmark() == 1 && bookmarkVO.getStore_code() == 1) {
                             store_imgv_favEmp.setVisibility(View.GONE);
                             store_imgv_favFill.setVisibility(View.VISIBLE);
                         }
@@ -107,6 +130,19 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
             });
         }
 
+        store_basket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<StoreMenuDTO> basketlist = adapter.getBasketlist();
+                Intent intent1 = new Intent(StoreActivity.this, BasketActivity.class);
+                intent1.putExtra("basketlist", basketlist);
+                startActivity(intent1);
+            }
+        });
+
+
+
+
         //탭
         tab_store.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -114,7 +150,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                 int position =  tab.getPosition();
                 if(position == 0) {
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(StoreActivity.this, RecyclerView.VERTICAL, false);
-                    StoreMenuAdapter adapter = new StoreMenuAdapter(menu_list(), getLayoutInflater());
+                    StoreMenuAdapter adapter = new StoreMenuAdapter(list, getLayoutInflater(), StoreActivity.this, StoreActivity.this);
                     recv_store_menu.setLayoutManager(layoutManager);
                     recv_store_menu.setAdapter(adapter);
 
@@ -148,7 +184,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                 int position =  tab.getPosition();
                 if(position == 0) {
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(StoreActivity.this, RecyclerView.VERTICAL, false);
-                    StoreMenuAdapter adapter = new StoreMenuAdapter(menu_list(), getLayoutInflater());
+                    StoreMenuAdapter adapter = new StoreMenuAdapter(list, getLayoutInflater(), StoreActivity.this, StoreActivity.this);
                     recv_store_menu.setLayoutManager(layoutManager);
                     recv_store_menu.setAdapter(adapter);
 
@@ -173,8 +209,11 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+
+
     }
 
+    //뒤로가기 버튼 활성화
     @Override
     public void onClick(View v) {
         //뒤로가기
@@ -241,16 +280,4 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
-    //탭 - 메뉴
-    public ArrayList<StoreMenuDTO> menu_list() {
-        ArrayList<StoreMenuDTO> list = new ArrayList<>();
-        list.add(new StoreMenuDTO(R.drawable.black, "순희비빔밥", "8000원"));
-        list.add(new StoreMenuDTO(R.drawable.black, "열무비빔밥", "9000원"));
-        list.add(new StoreMenuDTO(R.drawable.black, "순희비빔밥", "8000원"));
-        list.add(new StoreMenuDTO(R.drawable.black, "열무비빔밥", "9000원"));
-        list.add(new StoreMenuDTO(R.drawable.black, "순희비빔밥", "8000원"));
-        list.add(new StoreMenuDTO(R.drawable.black, "열무비빔밥", "9000원"));
-
-        return list;
-    }
 }

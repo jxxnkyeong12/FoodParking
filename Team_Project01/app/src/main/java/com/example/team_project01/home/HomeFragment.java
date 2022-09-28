@@ -27,7 +27,8 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-    ImageView imgv_test, home_basket;
+
+    ImageView imgv_test;
     TextView tv_home_address, home_tv_name;
     ViewPager2 pager2;
     SpringDotsIndicator indicator;
@@ -44,8 +45,10 @@ public class HomeFragment extends Fragment {
         home_tv_name = v.findViewById(R.id.home_tv_name);
         pager2 = v.findViewById(R.id.pager2);
         indicator = v.findViewById(R.id.indicator);
-        home_basket = v.findViewById(R.id.home_basket);
         home_map = v.findViewById(R.id.home_map);
+
+
+
 
         img_list.add(R.drawable.banner1);
         img_list.add(R.drawable.banner2);
@@ -73,6 +76,7 @@ public class HomeFragment extends Fragment {
         }
 
 
+
         //autoSlide();
 
         tv_home_address.setOnClickListener(new View.OnClickListener() {
@@ -93,13 +97,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        home_basket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), BasketActivity.class);
-                startActivity(intent);
-            }
-        });
 
         return v;
     }

@@ -63,7 +63,13 @@ dependencies {
     //메인 인디게이터 추가 - 한솔 2022/09/19
     implementation 'com.tbuonomo:dotsindicator:4.3'
 
+<<<<<<< HEAD
+=======
+    // 네이버 지도 SDK 추가  -jk 2022/9/17
+    implementation 'com.naver.maps:map-sdk:3.10.2'
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
 
+>>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
     //카카오 로그인에 필요한 Lib -sb 2022/9/21
     implementation 'com.kakao.sdk:v2-user:2.11.1' // 카카오 로그인
 

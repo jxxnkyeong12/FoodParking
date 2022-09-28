@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
+
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -14,18 +15,26 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+
+import android.location.Geocoder;
+import android.location.Location;
+import android.os.Bundle;
+
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.team_project01.R;
 import com.example.team_project01.home.HomeFragment;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
+
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraUpdate;
@@ -61,6 +70,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private double lat, lon;
     String area1, area2, area3, area4, con;
+
     private FusedLocationSource locationSource;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private static final String[] PERMISSIONS = {
@@ -77,9 +87,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         map_btn = findViewById(R.id.map_btn);
         map_btn.setOnClickListener(this);
 
-
         map_View = findViewById(R.id.map_view);
         map_text = findViewById(R.id.map_text);
+
 
         //임시로 키를 넣음! jk 2022/9/17
         NaverMapSdk.getInstance(this).setClient(
@@ -165,6 +175,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
+
+
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -175,6 +189,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
 
 
     //네이버 지도 API -jk 2022/09/19
@@ -204,6 +219,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }).start();
 
 
+
                 Log.d("지도", "onLocationChange: " + lat + lon);
 
 
@@ -215,6 +231,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             }
         });
+
+
+
 
     }
 
@@ -228,5 +247,5 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-
+ 
 }
