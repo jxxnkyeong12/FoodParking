@@ -115,20 +115,19 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
             MemberVO vo = new MemberVO();
             vo.setEmail(edtv_join_email.getText().toString());
 
-            CommonAskTask askTask = new CommonAskTask(JoinActivity.this, "andEmailChk");
-            askTask.addParams("email", vo.getEmail());
-            
-            askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+            CommonConn conn = new CommonConn(JoinActivity.this, "andEmailChk");
+            conn.addParams("email", vo.getEmail());
+            conn.excuteConn(new CommonConn.ConnCallback() {
                 @Override
-                public void onResult(String data, boolean isResult) {
-                    if(data.trim().equals("있음")) {
+                public void onResult(boolean isResult, String data) {
+                    if(data.equals("있음")) {
                         tv_email_chk.setText("❌ 존재하는 이메일입니다.");
                         tv_email_chk.setTextColor(Color.parseColor("#FF0000"));
                         join_btn_emailUse.setEnabled(false);
                         join_btn_emailUse.setBackgroundColor(Color.parseColor("#898989"));
                         emailChk = 1;
 
-                    }else if(data.trim().equals("없음")) {
+                    }else if(data.equals("없음")) {
                         join_btn_emailUse.setBackgroundColor(Color.parseColor("#F25C05"));
                         tv_email_chk.setText("✔ 사용 가능한 이메일입니다.");
                         join_btn_emailUse.setEnabled(true);
@@ -137,7 +136,6 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
             });
-
 
         }if(v.getId() == R.id.join_btn_emailUse){
             edtv_join_email.setEnabled(false);
