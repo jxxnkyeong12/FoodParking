@@ -3,6 +3,7 @@ package com.hanul.cteam;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,7 +28,7 @@ public class AndMemberController {
 	
 	
 	//로그인 (salt찾아서..로그인 되게)
-	@RequestMapping("/andlogin")
+	@RequestMapping("/andLogin")
 	public String login(String email, String pw, String social) {
 	   MemberVO vo = new MemberVO();
 	   if(email == null || pw == null) {
@@ -45,19 +46,25 @@ public class AndMemberController {
 	}
 	
 	
-	
-	
+
 	//회원가입
 	@RequestMapping(value = "/andJoin", produces = "text/html;charset=utf-8")
 	public String join(String vo) {
 		MemberVO joinInfo = new Gson().fromJson(vo, MemberVO.class);
+		
 		//소셜 로그인 회원가입
 		if(joinInfo.getSocial().equals("Y")) {
 			dao.social_join(joinInfo);
 		}else {
 			dao.join(joinInfo);			
 		}
+
 		return gson.toJson(vo);
+	
 	}
+	
+	
+	
+	
 	
 }

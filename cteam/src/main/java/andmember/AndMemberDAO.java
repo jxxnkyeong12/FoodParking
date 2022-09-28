@@ -49,8 +49,16 @@ public class AndMemberDAO {
 	}
 	
 	
+	//소셜 회원가입
 	public int social_join(MemberVO vo) {
 		return sql.insert("andmember.social_join", vo);
 	}
 	
+	
+	//소셜 아이디 중복체크
+	public int social_email_check(MemberVO vo) {
+		// 결과값이 1이상이면 true , 아니면 false
+		return (Integer)sql.selectOne("andmember.social_id_check", vo);
+	}
+
 }
