@@ -1,3 +1,5 @@
+
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -5,7 +7,9 @@ dependencyResolutionManagement {
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
         maven {url 'https://naver.jfrog.io/artifactory/maven/'}
+        maven { url 'https://www.jitpack.io' }
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+
     }
 }
 rootProject.name = "Team_Project01"

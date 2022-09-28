@@ -8,8 +8,16 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
 
+<<<<<<< HEAD
     private static final String BASE_URL =  "http://192.168.0.67/cteam/";
 
+=======
+
+
+    private static final String BASE_URL =  "http://192.168.0.113/cteam/";
+
+
+>>>>>>> 65a2ed0ce81c63afee67c195a7b646fc36702252
     //Retrofit 객체의 설정을 넣고 인스턴스화(초기화) 할 수 있는 클래스 정의
     private static Retrofit retrofit;
 
