@@ -5,8 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.team_project01.R;
+import com.example.team_project01.common.CommonVal;
+import com.example.team_project01.conn.CommonAskTask;
+import com.example.team_project01.store.AndBookmarkVO;
+import com.example.team_project01.store.StoreActivity;
 
 import java.util.ArrayList;
 
@@ -32,9 +37,6 @@ public class ListActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getLayoutInflater().getContext(), RecyclerView.VERTICAL, false);
         ListAdapter adapter = new ListAdapter(getLayoutInflater() , list, ListActivity.this);
-
-
-
         recv_list.setLayoutManager(layoutManager);
         recv_list.setAdapter(adapter);
     }

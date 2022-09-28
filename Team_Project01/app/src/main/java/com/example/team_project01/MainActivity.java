@@ -27,7 +27,6 @@ import com.luseen.spacenavigation.SpaceOnClickListener;
 public class MainActivity extends AppCompatActivity {
 
 
-
     FrameLayout container;
     SpaceNavigationView bottom_nav;
 

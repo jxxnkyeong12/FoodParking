@@ -1,17 +1,15 @@
 package com.example.team_project01.login;
 
-import java.io.Serializable;
-
-public class MemberVO implements Serializable {
+public class MemberVO {
 	
-		  int id;
-		  String  email, pw, name, nickname
+		 private int id;
+		 private String  email, pw, name, nickname
 		 						   , addr,  post, phone, social, manager
 		 						   , profile_image, b_num
 		 						   , salt;
+		
 
-
-	public String getPost() {
+		 public String getPost() {
 			return post;
 		}
 		public void setPost(String post) {

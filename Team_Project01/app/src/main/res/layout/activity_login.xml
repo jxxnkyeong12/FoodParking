@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity"
     android:orientation="vertical"
-    >
+    tools:context=".login.LoginActivity">
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -18,22 +17,25 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_margin="15dp"
-            android:src="@drawable/arrow"/>
+            android:src="@drawable/arrow" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textColor="#000000"
-            android:textSize="15dp"
-            android:text="로그인"/>
+            android:layout_gravity="center"
+            android:text="로그인"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
-        android:layout_gravity="center">
+        android:layout_marginBottom="20dp">
 
         <ImageView
             android:layout_width="160dp"
@@ -45,35 +47,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
 
             <!--보고 넣을지 수정할지 예정 jk 2022/09/20-->
-      <!--      <TextView
-                android:textColor="#000"
-                android:layout_marginLeft="22dp"
-                android:layout_gravity="left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="이메일"/>-->
+            <!--      <TextView
+                      android:textColor="#000"
+                      android:layout_marginLeft="22dp"
+                      android:layout_gravity="left"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="이메일"/>-->
 
             <com.google.android.material.textfield.TextInputLayout
 
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_width="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:hint="이메일 입력"
 
-                app:endIconMode="custom"
+                android:hint="이메일 입력"
                 app:endIconDrawable="@drawable/ic_baseline_account_circle"
-                android:layout_height="wrap_content">
+                app:endIconMode="custom">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -84,24 +86,24 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-          <!--  <TextView
-                android:textColor="#000"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="비밀번호"/>-->
+            <!--  <TextView
+                  android:textColor="#000"
+                  android:layout_marginLeft="22dp"
+                  android:layout_marginTop="10dp"
+                  android:layout_gravity="left"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="비밀번호"/>-->
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:hint="비밀번호 입력"
-                app:endIconMode="password_toggle"
-                android:layout_height="wrap_content">
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_pw"
@@ -110,28 +112,37 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <CheckBox
+                android:id="@+id/chk_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginHorizontal="20dp"
+                android:text="자동로그인" />
+
 
         </LinearLayout>
 
         <!--로그인-->
         <Button
-            android:layout_gravity="center"
             android:id="@+id/btn_login"
-            android:textColor="#fff"
             android:layout_width="350dp"
             android:layout_height="50dp"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:backgroundTint="#F25C05"
-            android:text="로그인" />
+            android:text="로그인"
+            android:textColor="#fff" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="10dp"
-            android:text=" 비밀번호 재설정"
-            android:textSize="10dp"
             android:layout_marginBottom="2dp"
-            android:textColor="@color/black"/>
+            android:gravity="center"
+            android:text=" 비밀번호 재설정"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
 
     </LinearLayout>
-    </LinearLayout>
+</LinearLayout>

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.team_project01.MainActivity;
 import com.example.team_project01.R;
@@ -25,6 +26,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Intent intent;
     ImageView login_back;
 
+    //자동로그인 salt
+    //소셜로그인 아이디 중복체크
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +37,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login_pw = findViewById(R.id.login_pw);
         btn_login = findViewById(R.id.btn_login);
         login_back = findViewById(R.id.login_back);
+
         btn_login.setOnClickListener(this);
-
-
         login_back.setOnClickListener(this);
     }
 
@@ -50,47 +53,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void login(String email, String pw, String social_yn) {
 
-
-
         CommonAskTask task = new CommonAskTask(LoginActivity.this, "andLogin");
-
-
-
 
         task.addParams("email",email);  //여기가 고정되면 안돼 edt_getText()+"" -> email 파라메터로 바꿔주기
         task.addParams("pw",pw);
-        task.addParams("social", social_yn);
         task.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
             @Override
             public void onResult(String data, boolean isResult) {
 
                 Log.d("로그인", "onResult: " + data);
-                CommonVal.loginInfo = new Gson().fromJson(data, MemberVO.class); //이걸 안해주면 디비랑 다 오류 안나고 회원가입이 잘 되지만...
-                //메인액티비티로 안간다 loginInfo 값이 바뀌도록 처리하는거
-                //  Toast.makeText(Login_Activity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-                if(social_yn.equals("N") && CommonVal.loginInfo == null){
-                    Log.d("로그인", "onResult: 아이디비번틀림");
-                }else if (social_yn.equals("Y") && CommonVal.loginInfo == null){
-                    //이때는 회원가입으로 보내줘야함
-                    intent = new Intent(LoginActivity.this, JoinActivity.class);
-                    intent.putExtra("email", email);
-                    startActivity(intent);
-                }else if (CommonVal.loginInfo !=null){
-                    //이때는 메인으로 보내줘야함!
+                CommonVal.loginInfo = new Gson().fromJson(data, MemberVO.class);
+               if (CommonVal.loginInfo !=null){  //로그인 성공
+                   Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
 
-                    intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+                   intent = new Intent(LoginActivity.this, MainActivity.class);
+                   startActivity(intent);
 
-                }else {
+               }else if(CommonVal.loginInfo == null) {
+                   Toast.makeText(LoginActivity.this, "아이디 혹은 비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show();
+
+               }else {
                     Log.d("로그", "onResult: 세개의 이프문모두 실패!!");
-
-
                 }
-
-
             }
         });
-
     }
-
 }
