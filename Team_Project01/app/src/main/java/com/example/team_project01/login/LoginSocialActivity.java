@@ -18,7 +18,6 @@ import com.example.team_project01.R;
 import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.conn.CommonConn;
 import com.example.team_project01.home.HomeFragment;
-import com.example.team_project01.store.StoreActivity;
 import com.google.gson.Gson;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.common.KakaoSdk;
@@ -40,7 +39,7 @@ import kotlin.jvm.functions.Function2;
 public class LoginSocialActivity extends AppCompatActivity implements View.OnClickListener {
      NidOAuthLoginButton btn_naver;
      Button btn_login;
-     ImageView imgv_join_email, btn_kakao, btn_google;
+     ImageView imgv_join_email, btn_kakao;
 
      CommonAskTask askTask;
 
@@ -60,18 +59,15 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
         imgv_join_email = findViewById(R.id.imgv_join_email);
         btn_naver = findViewById(R.id.btn_naver);
         btn_kakao = findViewById(R.id.btn_kakao);
-        btn_google = findViewById(R.id.btn_google);
+
+
 
         btn_login.setOnClickListener(this);
         imgv_join_email.setOnClickListener(this);
 
-        btn_google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginSocialActivity.this, StoreActivity.class);
-                startActivity(intent);
-            }
-        });
+
+
+
 
         btn_naver.setOAuthLoginCallback(new OAuthLoginCallback() {
             @Override
@@ -142,6 +138,8 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 Log.d("프로필", "onSuccess: " + res.getProfile().getMobile());
                 Log.d("프로필", "onSuccess: " + res.getProfile().getName());
 
+
+
                 MemberVO vo = new MemberVO();
                 vo.setEmail(res.getProfile().getEmail());
                 vo.setName(res.getProfile().getName());
@@ -149,30 +147,36 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 vo.setSocial("Y");
 
                 //회원가입 하기전에 우선 멤버테이블에 이메일이 있는지 select 하고 없으면
-                askTask = new CommonAskTask(LoginSocialActivity.this, "andEmailChk");
-                askTask.addParams("email", vo.getEmail());
+                askTask = new CommonAskTask(LoginSocialActivity.this, "ch_email");
+                askTask.addParams("vo", new Gson().toJson(vo));
                 askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                     @Override
                     public void onResult(String data, boolean isResult) {
-                        if(data.trim().equals("있음")) {
-                            Intent intent = new Intent(LoginSocialActivity.this, HomeFragment.class);
-                            startActivity(intent);
+                        
+                    }
+                });
 
-                        }else{
-                            //네이버로 회원가입시 필요한 정보를 가져올 수 있으므로 바로 회원가입 진행
-                            askTask = new CommonAskTask(LoginSocialActivity.this, "andJoin");
-                            askTask.addParams("vo", new Gson().toJson(vo));
-                            askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
-                                @Override
-                                public void onResult(String data, boolean isResult) {
-                                    if (isResult){
+                //네이버로 회원가입시 필요한 정보를 가져올 수 있으므로 바로 회원가입 진행
+                askTask = new CommonAskTask(LoginSocialActivity.this, "andJoin");
+                askTask.addParams("vo", new Gson().toJson(vo));
+                askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+                    @Override
+                    public void onResult(String data, boolean isResult) {
+                        if (isResult){
 
-                                    }
-                                }
-                            });
                         }
                     }
                 });
+
+
+
+
+                /*Intent intent = new Intent(LoginSocialActivity.this, SocialJoinActivity.class);
+                intent.putExtra("email", res.getProfile().getEmail());
+                intent.putExtra("phone", res.getProfile().getMobile());
+                intent.putExtra("name", res.getProfile().getName());
+                startActivity(intent);*/
+
             }
 
             @Override
@@ -195,6 +199,8 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 //오류가 났을때 어떤 오류인지 코드로 줌 KOE + 숫자 ( 단무지가 있음 )
             }else{
                 Log.d("카카오", "kakao_profile: " + user.getKakaoAccount().getEmail());
+
+
 
                 Log.d("카카오", "kakao_profile: "+ user.getKakaoAccount().getProfile().getNickname());
                 Log.d("카카오", "kakao_profile: "+ user.getKakaoAccount().getPhoneNumber());

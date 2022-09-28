@@ -7,51 +7,26 @@
     android:orientation="vertical"
     tools:context=".store.StoreActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="17dp">
+        android:theme="@style/Theme.AppCompat.Light">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/store_imgv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_back"
-                android:gravity="center"/>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/store_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/menu_store">
 
             <TextView
-                android:id="@+id/tv_home_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="황남비빔밥"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp"/>
+                android:text="가게이름"
+                android:textColor="@color/black" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:id="@+id/home_basket"
-            android:layout_width="29dp"
-            android:layout_height="25dp"
-            android:src="@drawable/shopping"
-            android:gravity="right"/>
-
-    </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -66,7 +41,7 @@
             <ImageView
                 android:id="@+id/imgv_menu_image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/black" />
 
@@ -146,25 +121,11 @@
                         android:layout_marginRight="10dp"
                         android:src="@drawable/ic_share" />
 
-
                     <ImageView
-                        android:id="@+id/store_imgv_favEmp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_favorite_empty"
-                        android:backgroundTint="@color/gray"
-                        android:clickable="true"/>
-
-                    <ImageView
-                        android:id="@+id/store_imgv_favFill"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_favorite_fill"
-                        android:backgroundTint="@color/orange"
-                        android:visibility="gone"
-                        android:clickable="true"/>
+                        android:src="@drawable/ic_favorite" />
 
                 </LinearLayout>
 
@@ -587,7 +548,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/orange"
             android:text="포장주문"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <Button
             android:layout_width="wrap_content"
@@ -595,7 +556,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/orange"
             android:text="자리예약"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

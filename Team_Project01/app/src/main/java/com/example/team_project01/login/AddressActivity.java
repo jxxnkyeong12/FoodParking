@@ -16,7 +16,6 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.team_project01.R;
@@ -24,7 +23,6 @@ import com.example.team_project01.R;
 public class AddressActivity extends AppCompatActivity {
 
     private WebView browser;
-    ImageView post_back;
 
     class MyJavaScriptInterface {
         @JavascriptInterface
@@ -53,7 +51,6 @@ public class AddressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
 
-        post_back = findViewById(R.id.post_back);
         browser = (WebView) findViewById(R.id.wv_search_address);
         browser.getSettings().setJavaScriptEnabled(true);
         browser.addJavascriptInterface(new MyJavaScriptInterface(), "Android");
@@ -63,13 +60,6 @@ public class AddressActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
 
                 browser.loadUrl("javascript:sample2_execDaumPostcode();");
-            }
-        });
-
-        post_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
             }
         });
 

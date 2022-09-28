@@ -1,37 +1,42 @@
 package com.example.team_project01.home;
 
 import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.team_project01.R;
 import com.example.team_project01.common.BasketActivity;
-import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.common.MapActivity;
 import com.example.team_project01.login.JoinActivity;
 import com.example.team_project01.login.LoginActivity;
 import com.example.team_project01.login.LoginSocialActivity;
 import com.example.team_project01.store.StoreActivity;
-import com.google.android.gms.common.internal.service.Common;
+import com.google.gson.Gson;
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     ImageView imgv_test, home_basket;
-    TextView tv_home_address, home_tv_name;
+    TextView tv_home_address;
     ViewPager2 pager2;
     SpringDotsIndicator indicator;
+    LinearLayout home_map;
 
     ArrayList<Integer> img_list = new ArrayList<>();
 
@@ -41,15 +46,16 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         imgv_test = v.findViewById(R.id.imgv_test);
         tv_home_address = v.findViewById(R.id.tv_home_address);
-        home_tv_name = v.findViewById(R.id.home_tv_name);
         pager2 = v.findViewById(R.id.pager2);
         indicator = v.findViewById(R.id.indicator);
         home_basket = v.findViewById(R.id.home_basket);
+        home_map = v.findViewById(R.id.home_map);
 
         img_list.add(R.drawable.banner1);
         img_list.add(R.drawable.banner2);
         img_list.add(R.drawable.banner3);
         img_list.add(R.drawable.banner4);
+        img_list.add(R.drawable.banner5);
         img_list.add(R.drawable.banner5);
 
         Pager2Adapter adapter = new Pager2Adapter(inflater, img_list);
@@ -59,17 +65,6 @@ public class HomeFragment extends Fragment {
         indicator.setViewPager2(pager2);
 
 
-        if(CommonVal.loginInfo == null) {  //로그인 안 했을 경우
-            home_tv_name.setText("로그인 필요");
-
-        }else if(CommonVal.loginInfo != null) {  //로그인 했을 경우
-            if(CommonVal.loginInfo.getNickname().isEmpty()) {
-                home_tv_name.setText(CommonVal.loginInfo.getName().toString() + " 님 안녕하세요!");
-            }else {
-                home_tv_name.setText(CommonVal.loginInfo.getNickname().toString() + " 님 안녕하세요!");
-            }
-        }
-
 
         //autoSlide();
 
@@ -78,6 +73,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), MapActivity.class);
                 startActivity(intent);
+
             }
         });
 
@@ -98,9 +94,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
         return v;
     }
+
+
+
+
 
     public void autoSlide() {
         //new Handler : SplashActivity 페이지 전환할 때 사용

@@ -18,25 +18,24 @@ import java.util.ArrayList;
 
 public class SearchAdapter extends BaseAdapter {
 
-    ArrayList<AndSearchVO> list;
+    ArrayList<SearchDTO> sample;
     LayoutInflater inflater;
     String newText;
 
-
-    public SearchAdapter(ArrayList<AndSearchVO> list, LayoutInflater inflater, String newText) {
-        this.list = list;
+    public SearchAdapter(ArrayList<SearchDTO> sample, LayoutInflater inflater, String newText) {
+        this.sample = sample;
         this.inflater = inflater;
         this.newText = newText;
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return sample.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return list.get(i);
+        return sample.get(i);
     }
 
     @Override
@@ -51,7 +50,7 @@ public class SearchAdapter extends BaseAdapter {
         TextView tv_search = convertView.findViewById(R.id.tv_search);
 
         //검색어와 일치한 문자열만 색 바꾸기
-        String content = list.get(i).getMenu_name();
+        String content = sample.get(i).getString();
         SpannableString spannableString = new SpannableString(content);
 
         int begin = content.indexOf(newText);
