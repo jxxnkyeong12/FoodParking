@@ -52,8 +52,6 @@ public class SocialJoinActivity extends AppCompatActivity {
                 vo.setName(intent.getStringExtra("name"));
                 vo.setPhone(sj_phone.getText().toString());
                 vo.setSocial("Y");
-                vo.setManager("N");
-
 
                 CommonAskTask askTask = new CommonAskTask(SocialJoinActivity.this, "andJoin");
                 askTask.addParams("vo", new Gson().toJson(vo));

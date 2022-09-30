@@ -7,11 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-
 import andstore.AndMapVO;
 import andstore.AndSearchDAO;
 import andstore.AndSearchVO;
 import storeinfo.StoreInfoVO;
+import andstore.AndSearchDAO;
+import andstore.AndSearchVO;
+
+import andstore.AndSearchDAO;
+import andstore.AndSearchVO;
+
 
 @RestController
 public class AndStoreController {
@@ -30,7 +35,7 @@ public class AndStoreController {
 	@RequestMapping(value = "andStoreMap", produces = "test/html; charset=utf-8")
 	public String store_map(int store_code) {
 		AndMapVO list = dao.store_map(store_code);
-		
+
 		return gson.toJson(list);
 	}
 }

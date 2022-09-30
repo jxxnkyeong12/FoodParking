@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="andReview">
+
+<!--리뷰 삭제  -->
+<delete id="delete">
+delete from review where email = #{email}
+</delete>
+
+<!--  리뷰 리스트 조회-->
+<select id="list" resultType="review.ReviewVO">
+select k.* 
+           from (select m.*,  r.content, r.star_code, f.store_name, f.store_image  
+                      from member m left outer join review r
+                      on r.id = m.id 
+                      left outer join store_info f
+                      on r.store_code = f.store_code )  k
+where email = #{email}  
+</select>
+
+<!-- 리뷰 insert 하는중-->
+<insert id="insert">
+insert into star_rating(star_code, id, store_code,)
+
+</insert>
+</mapper>

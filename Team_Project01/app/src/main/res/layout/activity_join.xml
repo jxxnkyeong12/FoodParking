@@ -38,7 +38,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+<<<<<<< HEAD
         android:layout_marginHorizontal="10dp">
+
+=======
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp">
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
 
         <LinearLayout
             android:layout_width="match_parent"

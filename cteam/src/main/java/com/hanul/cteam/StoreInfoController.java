@@ -43,5 +43,8 @@ public class StoreInfoController {
 		List<StoreMenuVO> list = dao.store_menu_list(store_code);
 		Gson gson = new Gson();
 		return gson.toJson(list);
+
+		
 	}
+
 }

@@ -29,6 +29,10 @@ public class LikeHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_history);
 
+        
+        //item_like_history recv 붙일 예정
+
+
         like_recv = findViewById(R.id.like_recv);
         like_back = findViewById(R.id.like_back);
 
@@ -50,7 +54,6 @@ public class LikeHistoryActivity extends AppCompatActivity {
                 Log.d("TAG", "onResut: " + data);
                 //list = new Gson().fromJson(data, new TypeToken<ArrayList<AndSearchVO>>(){}.getType());
                 ArrayList<AndBookmarkVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<AndBookmarkVO>>(){}.getType());
-
 
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(LikeHistoryActivity.this, RecyclerView.VERTICAL, false);
                 LikeAdapter adapter = new LikeAdapter(getLayoutInflater(), list);

@@ -1,6 +1,7 @@
 package com.example.team_project01.myinfo;
 
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,10 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         holder.bind(holder, position);
+
+
     }
 
     @Override
@@ -54,9 +58,6 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ViewHolder> {
         public void bind(@NonNull ViewHolder h, int i) {
             //h.imgv_like_store.setImageResource(list.get(i).getStore_logo());
             h.like_tv_name.setText(list.get(i).getStore_name());
-            Log.d("TAG", "bind: " + list.get(i).getStore_name());
-            Log.d("TAG", "bind: " + list.get(i).getStore_code());
-            Log.d("TAG", "bind: " + list.get(i).getBookmark());
         }
     }
 }

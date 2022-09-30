@@ -14,7 +14,13 @@ public class AndMemberDAO {
 	@Autowired @Qualifier("cteam") private SqlSession sql;
 	@Autowired private Common common;
 
+
+	//회원탈퇴 - jk 2022/09/29
+	public int delete(String email) {
+		return sql.delete("andmember.delete", email);
+	}
 	
+
 	//내정보 수정 - jk 2022/09/28
 	public int modify(MemberVO vo) {
 		return sql.update("andmember.modify", vo );

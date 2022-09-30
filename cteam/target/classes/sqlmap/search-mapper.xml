@@ -14,5 +14,7 @@
 	FROM store_location l LEFT OUTER JOIN store_info s
 	ON l.store_code = s.store_code
 	WHERE l.store_code = #{store_code}
+
+
 </select>
 </mapper>

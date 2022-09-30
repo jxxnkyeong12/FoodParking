@@ -33,11 +33,13 @@ public interface ApiInterface {
     @Multipart
     Call<String> sendFile(@Part MultipartBody.Part file );
 
-
-
     @POST("andInsert")
     @Multipart
     Call<String> sendTest(@Part("vo") RequestBody data , @Part MultipartBody.Part file); //@FieldMap 접속 되고 추가  파일만 보낼때
+
+    @POST("andModify")
+    @Multipart
+    Call<String> sendModify(@Part("vo") RequestBody data , @Part MultipartBody.Part file); //@FieldMap 접속 되고 추가  파일만 보낼때
 
 
 }

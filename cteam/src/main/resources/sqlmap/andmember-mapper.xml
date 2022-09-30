@@ -2,7 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="andmember">
 
-
+<!-- 회원탈퇴 jk 2022/09/29 -->
+<delete id="delete">
+delete from member where email = #{email} 
+</delete>
 
 
 
@@ -51,8 +54,8 @@ select salt from member where email= #{email}
 
 <!-- 소셜회원가입 -->
 <insert id="social_join">
-	insert into member (email, name, phone, social)
-	values (#{email}, #{name}, #{phone}, #{social})	
+	insert into member (email, name, phone, social, manager)
+	values (#{email}, #{name}, #{phone}, #{social}, 'N')	
 </insert>
 
 

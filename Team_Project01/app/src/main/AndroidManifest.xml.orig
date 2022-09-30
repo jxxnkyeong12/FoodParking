@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.team_project01">
+
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-feature android:name="android.hardware.camera2"
+        android:required="true"/>
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
+    <!--갤러리 카메라, 앨범 저장 jk 2022/09/26-->
+    <queries>
+        <!-- WebView -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <!-- Camera -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <!-- Gallery -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+        <!-- Youtube -->
+        <intent>
+            <action android:name="android.media.browse.MediaBrowserService" />
+        </intent>
+    </queries>
+
+
+    <!--네이버맵 지도 API 내 위치 설정 jk 2022/9/22-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
+    <application
+
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="푸드파킹"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+
+        android:theme="@style/Theme.Team_Project01"
+        android:usesCleartextTraffic="true">
+
+        <!--네이버 API 키 jk 2022/09/27-->
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="7jbtb9ge0p" />
+
+        <activity
+            android:name=".login.SocialJoinActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.AddressActivity"
+            android:exported="true" />
+        <activity
+            android:name=".order.OrderDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".order.ReserveActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.JoinActivity"
+            android:exported="true" />
+        <activity
+            android:name=".myinfo.ModifyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.LoginSocialActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.PwEmailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.PwSendEmailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".myinfo.LikeHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".common.BasketActivity"
+            android:exported="true" />
+        <activity
+            android:name=".common.MapActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".order.BillActivity"
+            android:exported="true" />
+        <activity
+            android:name=".list.ListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".myinfo.OrderHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".common.ReviewListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".store.StoreActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao1c40100fd84e7b943cf17cb4ec9b7413" />
+            </intent-filter>
+
+
+
+        </activity>
+
+        <!--파일경로 jk 2022/09/26-->
+        <provider
+<<<<<<< HEAD
+
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+
+=======
+            android:authorities="${applicationId}.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path"
+                />
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
+
+
+        </provider>
+
+<<<<<<< HEAD
+        <!--네이버 지도 API jk 2022/9/22-->
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="7jbtb9ge0p" />
+        <!--  <meta-data
+              android:name="com.naver.maps.map.CLIENT_TYPE"
+              android:value="gov" />-->
+
+
+=======
+
+            <!--네이버 지도 API jk 2022/9/22-->
+            <meta-data
+                android:name="com.naver.maps.map.CLIENT_ID"
+                android:value="7jbtb9ge0p" />
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
+
+    </application>
+
+</manifest>

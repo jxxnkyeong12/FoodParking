@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_margin="10dp"
         android:orientation="vertical">
 
@@ -23,6 +24,7 @@
             android:text="황남비빔밥"
             android:textColor="@color/black"
             android:textSize="18dp"
+
             android:textStyle="bold" />
 
         <TextView
@@ -32,12 +34,14 @@
             android:text="예약일시: 2022.09.09 PM 07:20"
             android:textSize="13dp" />
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="주문번호: B123456"
             android:textSize="13dp"
+
             />
         <Button
             android:layout_width="50dp"
@@ -47,6 +51,7 @@
             android:text="영수증"
             android:padding="1dp"
             android:textSize="10dp"
+
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,6 +86,7 @@
             android:text="냉면 + 숯불돼지갈비 1개 "
             android:textColor="@color/black"
             android:textSize="14dp"
+
             android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
@@ -88,6 +94,7 @@
             android:layout_margin="5dp"
             android:text="기본:냉면1 + 돼지고기(300g) (12,000원)"
             android:textSize="12dp"
+
             />
         <TextView
             android:layout_width="wrap_content"
@@ -95,6 +102,7 @@
             android:text="냉면 선택 : 물냉면"
             android:layout_marginLeft="5dp"
             android:textSize="12dp"
+
             />
 
         <TextView
@@ -104,6 +112,7 @@
             android:layout_marginTop="5dp"
             android:text="추가 주문 : 만두(8,000원)"
             android:textSize="12dp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,6 +134,7 @@
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="14dp"
+
                 android:textStyle="bold" />
 
             <TextView
@@ -135,6 +145,7 @@
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="14dp"
+
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
@@ -149,6 +160,7 @@
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="14dp"
+
                 android:textStyle="bold" />
 
             <TextView
@@ -159,13 +171,13 @@
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="14dp"
+
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="8dp"
             android:layout_marginTop="10dp"
-
             android:background="#EEEEEEEE" />
         <TextView
             android:layout_width="wrap_content"
@@ -182,6 +194,7 @@
             android:text="새우 뺴주세요"
             android:textSize="12dp"
             />
+
     </LinearLayout>
 
 </LinearLayout>

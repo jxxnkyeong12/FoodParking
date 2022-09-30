@@ -23,6 +23,8 @@ import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.conn.CommonConn;
 import com.example.team_project01.list.Store_infoDTO;
+import com.example.team_project01.order.Order_infoVO;
+
 
 import java.util.ArrayList;
 
@@ -33,13 +35,16 @@ public class StoreMenuAdapter extends RecyclerView.Adapter<StoreMenuAdapter.View
     Activity activity;
     Context context;
     ArrayList<StoreMenuDTO> basketlist = new ArrayList<>();
+    Order_infoVO vo;
 
+    public StoreMenuAdapter(ArrayList<StoreMenuDTO> list, LayoutInflater inflater, Activity activity, Context context, Order_infoVO vo) {
 
-    public StoreMenuAdapter(ArrayList<StoreMenuDTO> list, LayoutInflater inflater, Activity activity, Context context) {
         this.list = list;
         this.inflater = inflater;
         this.activity = activity;
         this.context = context;
+        this.vo = vo;
+
     }
 
     @NonNull
@@ -91,6 +96,7 @@ public class StoreMenuAdapter extends RecyclerView.Adapter<StoreMenuAdapter.View
                     DialogInterface.OnClickListener confirm = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+
                             if (basketlist.size() != 0){
 
                             }
@@ -98,6 +104,7 @@ public class StoreMenuAdapter extends RecyclerView.Adapter<StoreMenuAdapter.View
                                 basketlist.add(list.get(pod));
                                 Toast.makeText(context, basketlist.get(pod).getMenu_name() + " 장바구니에 담겼습니다", Toast.LENGTH_SHORT).show();
                                 Log.d("TAG", "onClick: " + basketlist.size());
+
                         }
                     };
 

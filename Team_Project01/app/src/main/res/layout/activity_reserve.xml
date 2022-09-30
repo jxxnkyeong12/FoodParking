@@ -160,6 +160,7 @@
                     android:orientation="horizontal">
 
                     <android.widget.Button
+                        android:id="@+id/order1000"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
@@ -168,32 +169,29 @@
                         android:layout_height="wrap_content"
                         android:text="10:00"/>
 
-                    <TextView
-
+                    <android.widget.Button
+                        android:id="@+id/order1030"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="10:30"/>
-                    <TextView
-
+                    <android.widget.Button
+                        android:id="@+id/order1100"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="11:00"/>
-                    <TextView
-
+                    <android.widget.Button
+                        android:id="@+id/order1130"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -215,47 +213,43 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
-
+                    <android.widget.Button
+                        android:id="@+id/order1200"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="12:00"/>
 
-                    <TextView
-
+                    <android.widget.Button
+                        android:id="@+id/order1230"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1:00"/>
-                    <TextView
-
+                        android:text="12:30"/>
+                    <android.widget.Button
+                        android:id="@+id/order0100"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1:30"/>
-                    <TextView
-
+                        android:text="01:00"/>
+                    <android.widget.Button
+                        android:id="@+id/order0130"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2:00"/>
+                        android:text="01:30"/>
                 </LinearLayout>
 
 
@@ -265,46 +259,43 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <android.widget.Button
+                        android:id="@+id/order0200"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2:30"/>
+                        android:text="02:00"/>
 
-                    <TextView
-
+                    <android.widget.Button
+                        android:id="@+id/order0230"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="3:00"/>
-                    <TextView
-
+                        android:text="02:30"/>
+                    <android.widget.Button
+                        android:id="@+id/order0300"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="4:30"/>
-                    <TextView
-
+                        android:text="03:00"/>
+                    <android.widget.Button
+                        android:id="@+id/order0330"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="5:00"/>
+                        android:text="03:30"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -313,46 +304,43 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <android.widget.Button
+                        android:id="@+id/order0400"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="5:30"/>
+                        android:text="04:00"/>
 
-                    <TextView
-
+                    <android.widget.Button
+                        android:id="@+id/order0430"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="6:00"/>
-                    <TextView
-
+                        android:text="04:30"/>
+                    <android.widget.Button
+                        android:id="@+id/order0500"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="7:30"/>
-                    <TextView
-
+                        android:text="05:00"/>
+                    <android.widget.Button
+                        android:id="@+id/order0530"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="5dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="8:00"/>
+                        android:text="05:30"/>
                 </LinearLayout>
             </LinearLayout>
             <View
@@ -372,6 +360,7 @@
                     android:layout_height="20dp"
                     android:src="@drawable/member"/>
                 <TextView
+                    android:id="@+id/order_human"
                     android:textStyle="bold"
                     android:textSize="16dp"
                     android:textColor="#000"
@@ -411,55 +400,29 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <TextView
-
-                        android:id="@+id/res_two"
+                    <android.widget.Button
+                        android:id="@+id/pe2"
+                        android:textSize="18dp"
+                        android:text="2인"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="10dp"
                         android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2인"/>
-                    <TextView
-                        android:id="@+id/res_two2"
-                        android:visibility="gone"
-                        android:textColor="#fff"
+                        />
+
+                    <android.widget.Button
+                        android:id="@+id/pe4"
+                        android:textSize="18dp"
+                        android:text="4인"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="10dp"
-                        android:background="@drawable/select_time_shpae"
+                        android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2인"/>
-
-
-                    <TextView
-                        android:id="@+id/res_five"
-                        android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:padding="10dp"
-                        android:background="@drawable/non_time_shape"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="5인"/>
-
-
-                    <TextView
-                        android:id="@+id/res_five2"
-                        android:visibility="gone"
-                        android:textColor="#fff"
-                        android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:padding="10dp"
-                        android:background="@drawable/select_time_shpae"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="5인"/>
+                        />
 
                 </LinearLayout>
 
@@ -469,55 +432,31 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/res_three"
+                    <android.widget.Button
+                        android:id="@+id/pe3"
+                        android:textSize="18dp"
+                        android:text="3인"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="10dp"
-                        android:background="@drawable/non_time_shape"
+                        android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="3인"/>
-                    <TextView
-                        android:id="@+id/res_three2"
-                        android:visibility="gone"
-                        android:textColor="#fff"
-                        android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:padding="10dp"
-                        android:background="@drawable/select_time_shpae"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="3인"/>
+                        />
 
-
-                    <TextView
-                        android:id="@+id/res_six"
+                    <android.widget.Button
+                        android:id="@+id/pe5"
+                        android:textSize="18dp"
+                        android:text="5인"
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="10dp"
-                        android:background="@drawable/non_time_shape"
+                        android:background="@drawable/click_time_shape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="6인"/>
+                        />
                 </LinearLayout>
 
-
-                <TextView
-                    android:id="@+id/res_six2"
-                    android:visibility="gone"
-                    android:textColor="#fff"
-                    android:layout_margin="5dp"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:background="@drawable/select_time_shpae"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="6인"/>
 
             </LinearLayout>
             <LinearLayout

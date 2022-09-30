@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import storeinfo.StoreInfoVO;
 
+
 @Repository
 public class AndSearchDAO {
 	@Autowired @Qualifier("cteam") private SqlSession sql;
+
 
 	public List<AndSearchVO> search_list() {
 		return sql.selectList("andSearch.search_list");
@@ -20,5 +22,7 @@ public class AndSearchDAO {
 	public AndMapVO store_map(int store_code) {
 		return sql.selectOne("andSearch.store_map", store_code);
 	}
+
+
 
 }

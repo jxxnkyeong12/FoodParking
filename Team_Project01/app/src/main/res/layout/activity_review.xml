@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginmainActivity"
+    tools:context=".common.ReviewActivity"
     android:orientation="vertical"
     >
 
@@ -55,7 +55,7 @@
                 android:progressBackgroundTint="@color/gray"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
                 android:stepSize="0.5"/>
-        </LinearLayout>//평점 영역1
+        </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -75,7 +75,7 @@
                 android:progressBackgroundTint="@color/gray"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
                 android:stepSize="0.5"/>
-        </LinearLayout>//평점 영역2
+        </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -95,7 +95,7 @@
                 android:progressBackgroundTint="@color/gray"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
                 android:stepSize="0.5"/>
-        </LinearLayout>//평점 영역3
+        </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -115,9 +115,9 @@
                 android:progressBackgroundTint="@color/gray"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
                 android:stepSize="0.5"/>
-        </LinearLayout>//평점 영역4
+        </LinearLayout>
 
-    </LinearLayout>//전체 평점 영역
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="8dp"
@@ -125,30 +125,24 @@
         android:background="#EEEEEEEE"/>
 
     <LinearLayout
+        android:background="@drawable/shape_gray"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="15dp"
         android:orientation="vertical">
+
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="제목을 입력해주세요"
-            android:background="@null" />
-        <LinearLayout
+            android:padding="10dp"
+            android:id="@+id/review_write"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="#EEEEEEEE"/>
-        <EditText
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="상품평을 입력해주세요(최소10자 이상)"
             android:background="@null"/>
 
-    </LinearLayout>//글작성 영역
+    </LinearLayout>
 
     <ImageView
+        android:id="@+id/review_imv"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="15dp"
@@ -168,7 +162,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/orange"
             android:text="취소하기"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <Button
             android:layout_width="wrap_content"
@@ -176,7 +170,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/orange"
             android:text="평가하기"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 </LinearLayout>
