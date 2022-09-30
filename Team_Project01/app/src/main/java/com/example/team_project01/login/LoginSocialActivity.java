@@ -79,6 +79,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
             public void onSuccess() {
                 Log.d("네이버", "onSuccess: " + NaverIdLoginSDK.INSTANCE.getAccessToken());
                 naver_profile();
+
             }
 
             @Override
@@ -93,6 +94,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
         });
 
         KakaoSdk.init(this, "1c40100fd84e7b943cf17cb4ec9b7413");
+
 
         btn_kakao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +114,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                     }
                 };
 
+
                 UserApiClient apiClient = new UserApiClient();
                 if (apiClient.isKakaoTalkLoginAvailable(LoginSocialActivity.this)){
                     apiClient.loginWithKakaoAccount(LoginSocialActivity.this, callback);
@@ -122,6 +125,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
             }
         });
     }
+
 
 
     //네이버 로그인
@@ -193,6 +197,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 Log.d("카카오", "kakao_profile: "+ user.getKakaoAccount().getProfile().getNickname());
                 Log.d("카카오", "kakao_profile: "+ user.getKakaoAccount().getPhoneNumber());
 
+
                 //카카오로 회원가입시 전화번호를 가져 올수 없으므로 전화번호를 따로 입력할수 있는 화면으로 이동 후 회원가입 진행
                 Intent intent = new Intent(LoginSocialActivity.this, SocialJoinActivity.class);
                 intent.putExtra("email", user.getKakaoAccount().getEmail());
@@ -204,6 +209,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
             return null;
         });
     }
+
 
     @Override
     public void onClick(View v) {
@@ -236,4 +242,5 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
             }
         }
     }
+
 }

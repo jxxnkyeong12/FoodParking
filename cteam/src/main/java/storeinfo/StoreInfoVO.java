@@ -1,11 +1,49 @@
 package storeinfo;
 
+import java.sql.Date;
+
 public class StoreInfoVO {
-	 private int store_code, id, store_category;
-	    private String  store_name, store_tel, open_close, store_addr, store_comment, store_image, store_logo;
+	 private int store_code, id, store_category, star_rating;
+	    private String  store_name, store_tel, open_close, store_addr, store_comment
+	    						, store_image, store_logo, nickname, content;
+
+	    private String writedate;
+	    
 
 
-	    public int getStore_code() {
+		public String getWritedate() {
+			return writedate;
+		}
+
+		public void setWritedate(String writedate) {
+			this.writedate = writedate;
+		}
+
+		public int getStar_rating() {
+			return star_rating;
+		}
+
+		public void setStar_rating(int star_rating) {
+			this.star_rating = star_rating;
+		}
+
+		public String getNickname() {
+			return nickname;
+		}
+
+		public void setNickname(String nickname) {
+			this.nickname = nickname;
+		}
+
+		public String getContent() {
+			return content;
+		}
+
+		public void setContent(String content) {
+			this.content = content;
+		}
+
+		public int getStore_code() {
 	        return store_code;
 	    }
 

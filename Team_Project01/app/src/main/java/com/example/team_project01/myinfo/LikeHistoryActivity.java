@@ -29,6 +29,7 @@ public class LikeHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_history);
 
+
         like_recv = findViewById(R.id.like_recv);
         like_back = findViewById(R.id.like_back);
 

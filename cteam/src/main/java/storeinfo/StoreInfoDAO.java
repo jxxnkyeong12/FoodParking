@@ -27,4 +27,9 @@ public class StoreInfoDAO {
 	}
 
 
+
+	public List<StoreInfoVO> store_Review(int store_code) {
+		return sql.selectList("store.review", store_code);
+	}
+
 }

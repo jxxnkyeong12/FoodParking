@@ -18,6 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.team_project01.common.MapActivity;
+
+import android.widget.FrameLayout;
+import android.widget.Toast;
+
 import com.example.team_project01.home.HomeFragment;
 import com.example.team_project01.more.MoreFragment;
 import com.example.team_project01.myinfo.MyinfoFragment;
@@ -30,10 +34,12 @@ import com.luseen.spacenavigation.SpaceOnClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
+
     LinearLayout home_map;
     FrameLayout container;
     SpaceNavigationView bottom_nav;
     TextView tv_home_address;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         bottom_nav = (SpaceNavigationView) findViewById(R.id.bottom_nav);
         home_map = findViewById(R.id.home_map);
         tv_home_address = findViewById(R.id.tv_home_address);
+
 
         //하단 네비게이션 버튼 아이디 찾아주기
         bottom_nav.initWithSaveInstanceState(savedInstanceState);
@@ -57,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         //어플 메인화면
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+
 
         //상단 지도 눌렀을 때
         home_map.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int itemIndex, String itemName) {
                 if(itemIndex == 0) {
+
                     home_map.setVisibility(View.VISIBLE);
+
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
                 }else if(itemIndex == 1) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new SearchFragment()).commit();
@@ -102,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     @Override

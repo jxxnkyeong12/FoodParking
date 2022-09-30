@@ -32,6 +32,7 @@ public class ListActivity extends AppCompatActivity {
 
         recv_select();
 
+
     }
 
 
@@ -55,5 +56,7 @@ public class ListActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
+
 }

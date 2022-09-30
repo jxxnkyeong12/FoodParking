@@ -27,19 +27,30 @@ public class AndMemberController {
 	Gson gson = new Gson();
 	
 	
+	
+	
+	//회원탈퇴  jk - 2022/09/29
+	@RequestMapping(value = "/andDelete", produces = "text/html;charset=utf-8")
+	public String delete(String email) {
+		System.out.println(email);
+	    int delete = dao.delete(email);
+		return "";
+	}
+
+	
 	//내 정보 수정 - jk 2022/09/28
 	@RequestMapping(value = "/andModify", produces = "text/html;charset=utf-8")
-	public String modify (String vo, String filename,  HttpServletRequest request) {
-		
+	public String modify (String vo,  HttpServletRequest request) {
 		MemberVO modify = new Gson().fromJson(vo, MemberVO.class);
-		//String imgpath = "";
 		
-       MemberVO profile = dao.profile_image_detail(modify.getEmail());
+		
+        MemberVO profile = dao.profile_image_detail(modify.getEmail());
         String imgpath =profile.getProfile_image();
         
 		MultipartRequest mReq = (MultipartRequest) request;
 		System.out.println(mReq);
 		MultipartFile file = mReq.getFile("file");
+
 		
 		if(file != null) {
 			imgpath = common.fileUpload("profile_image", file, request);
@@ -52,6 +63,11 @@ public class AndMemberController {
 			
 				if( modify.getProfile_image() != null ) {
 					File f = new File( imgpath ); 
+					String path = "";
+					path = f.getParentFile().toString();
+					System.out.println(path);
+			
+
 					if( f.exists() ) f.delete();
 				}else {
 				//원래첨부파일을 그대로 쓰는 경우
@@ -60,20 +76,17 @@ public class AndMemberController {
 			
 		}else {
 		//파일첨부한 경우
-			profile.setProfile_image(common.fileUpload("profile_image", file, request));
-			
+
+			common.fileUpload("profile_image", file, request);
+			//profile.setProfile_image(common.fileUpload("profile_image", file, request));
+		
 			//원래첨부파일이 있던 경우 물리적 파일도 삭제
 			if( profile.getProfile_image() != null ) {
-				File f = new File(imgpath);
-				if( f.exists() ) {
-					f.delete();
-					System.out.println(imgpath);
+			      
+				 common.removed_image(profile, request);
 				}
 			}
-		}
-		
 		modify.setProfile_image(imgpath);
-		
 		dao.modify(modify);
 		return gson.toJson(modify);
 	}
@@ -85,13 +98,13 @@ public class AndMemberController {
 		public String insert(String vo, HttpServletRequest request) {
 			MemberVO myinfo = gson.fromJson(vo, MemberVO.class);	
 			String imgpath = "";
-				
-		
+
+			
 			MultipartRequest mReq = (MultipartRequest) request;
-			System.out.println(mReq);
 			MultipartFile file = mReq.getFile("file");
 			
-			if(file != null) {
+			if(file != null) { 
+
 				imgpath = common.fileUpload("profile_image", file, request);
 				System.out.println(imgpath);	
 
@@ -103,12 +116,7 @@ public class AndMemberController {
 		}
 	
 		
-	
-		
-		
-		
-		
-		
+
 		
 		
 	//로그인 (salt찾아서 로그인 하는 기능) - jk 2022/09/22

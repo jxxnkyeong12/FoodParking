@@ -2,13 +2,16 @@ package com.example.team_project01.search;
 
 import android.content.Context;
 import android.content.Intent;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ import com.example.team_project01.store.StoreActivity;
 import com.example.team_project01.store.StoreMenuDTO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 
 import java.util.ArrayList;
 
@@ -40,6 +44,7 @@ public class SearchAdapter extends BaseAdapter {
         this.newText = newText;
         this.context = context;
         this.basketDTO = basketDTO;
+
     }
 
     @Override
@@ -64,7 +69,10 @@ public class SearchAdapter extends BaseAdapter {
         TextView tv_search = convertView.findViewById(R.id.tv_search);
 
         //검색어와 일치한 문자열만 색 바꾸기
+
         String content = list.get(i).getStore_name();
+
+
         SpannableString spannableString = new SpannableString(content);
 
         int begin = content.indexOf(newText);
@@ -95,6 +103,7 @@ public class SearchAdapter extends BaseAdapter {
                 });
             }
         });
+
         return convertView;
     }
 }

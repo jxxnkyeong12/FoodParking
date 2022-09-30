@@ -3,31 +3,43 @@ package review;
 import java.util.Date;
 
 public class ReviewVO {
+
 	
-	//star_code, id, store_code, writedate, content
-  private int star_code, id, store_code;
   private Date writedate;
-  private String content;
+  private String content, store_name, store_imgae;
+  private int star_rating, celan, taste, mood, kind;
   
   
   
-public int getStar_code() {
-	return star_code;
+public int getStar_rating() {
+	return star_rating;
 }
-public void setStar_code(int star_code) {
-	this.star_code = star_code;
+public void setStar_rating(int star_rating) {
+	this.star_rating = star_rating;
 }
-public int getId() {
-	return id;
+public int getCelan() {
+	return celan;
 }
-public void setId(int id) {
-	this.id = id;
+public void setCelan(int celan) {
+	this.celan = celan;
 }
-public int getStore_code() {
-	return store_code;
+public int getTaste() {
+	return taste;
 }
-public void setStore_code(int store_code) {
-	this.store_code = store_code;
+public void setTaste(int taste) {
+	this.taste = taste;
+}
+public int getMood() {
+	return mood;
+}
+public void setMood(int mood) {
+	this.mood = mood;
+}
+public int getKind() {
+	return kind;
+}
+public void setKind(int kind) {
+	this.kind = kind;
 }
 public Date getWritedate() {
 	return writedate;
@@ -41,7 +53,21 @@ public String getContent() {
 public void setContent(String content) {
 	this.content = content;
 }
+public String getStore_name() {
+	return store_name;
+}
+public void setStore_name(String store_name) {
+	this.store_name = store_name;
+}
+public String getStore_imgae() {
+	return store_imgae;
+}
+public void setStore_imgae(String store_imgae) {
+	this.store_imgae = store_imgae;
+}
   
+  
+ 
   
   
 }

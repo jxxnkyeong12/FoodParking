@@ -55,6 +55,7 @@ public class SocialJoinActivity extends AppCompatActivity {
                 vo.setManager("N");
 
 
+
                 CommonAskTask askTask = new CommonAskTask(SocialJoinActivity.this, "andJoin");
                 askTask.addParams("vo", new Gson().toJson(vo));
                 askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {

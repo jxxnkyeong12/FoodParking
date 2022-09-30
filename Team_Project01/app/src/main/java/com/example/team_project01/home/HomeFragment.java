@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import com.example.team_project01.MainActivity;
 import com.example.team_project01.R;
@@ -37,13 +39,19 @@ import java.util.Collections;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
+
     ImageView imgv_test;
     TextView tv_home_address, home_tv_name;
     ViewPager2 pager2;
     SpringDotsIndicator indicator;
+
     RecyclerView home_recv1;
 
     MainActivity mainActivity = new MainActivity();
+
+    LinearLayout home_map;
+
+
     ArrayList<Integer> img_list = new ArrayList<>();
 
     @Override
@@ -55,7 +63,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         home_tv_name = v.findViewById(R.id.home_tv_name);
         pager2 = v.findViewById(R.id.pager2);
         indicator = v.findViewById(R.id.indicator);
+
         home_recv1 = v.findViewById(R.id.home_recv1);
+
+        home_map = v.findViewById(R.id.home_map);
+
+
 
         img_list.add(R.drawable.banner1);
         img_list.add(R.drawable.banner2);
@@ -63,10 +76,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         img_list.add(R.drawable.banner4);
         img_list.add(R.drawable.banner5);
 
-        Pager2Adapter pager2Adapter = new Pager2Adapter(inflater, img_list);
-        pager2.setAdapter(pager2Adapter);
+        img_list.add(R.drawable.banner5);
+
+        Pager2Adapter adapter = new Pager2Adapter(inflater, img_list);
+        pager2.setAdapter(adapter);
+        //pager2.setPageTransformer(new ZoomOutPageTransformer());
 
         indicator.setViewPager2(pager2);
+
+
 
         if (CommonVal.loginInfo == null) {  //로그인 안 했을 경우
             home_tv_name.setText("로그인 필요");
@@ -101,8 +119,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         tv_home_address.setOnClickListener(this);
         home_tv_name.setOnClickListener(this);
 
+
         return v;
     }
+
 
     @Override
     public void onClick(View v) {
@@ -116,6 +136,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     //가게 홍보 배너 자동 넘기기
+
+
     public void autoSlide() {
         //new Handler : SplashActivity 페이지 전환할 때 사용
         //runOnUiThread : 페이지 내부에서 디자인이 바뀌는 용으로, 쓰레드 사용 시 활용, Activity에서만 접근 가능
@@ -125,10 +147,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 while (true) {
                     for (int i = 0; i < img_list.size(); i++) {
                         final int value = i;
+
                         mainActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 pager2.setCurrentItem(value);
+
                             }
                         });
 

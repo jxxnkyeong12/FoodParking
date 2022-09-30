@@ -35,10 +35,12 @@ public class BasketActivity extends AppCompatActivity {
         basket_total_cnt = findViewById(R.id.basket_total_cnt);
         basket_total_price = findViewById(R.id.basket_total_price);
 
+
         Intent intent = getIntent();
         ArrayList<StoreMenuDTO> list = (ArrayList<StoreMenuDTO>) intent.getSerializableExtra("basketlist");
         basket_total_cnt.setText(list.size()+ "");
         basket_total_price.setText(total_price(list) + "");
+
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getLayoutInflater().getContext(), RecyclerView.VERTICAL, false);
         BasketAdapter adapter = new BasketAdapter(getLayoutInflater(), list, basket_total_price);

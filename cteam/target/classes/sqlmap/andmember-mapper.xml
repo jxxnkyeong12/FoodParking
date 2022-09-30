@@ -3,6 +3,10 @@
 <mapper namespace="andmember">
 
 
+<!-- 회원탈퇴 jk 2022/09/29 -->
+<delete id="delete">
+delete from member where email = #{email} 
+</delete>
 
 
 

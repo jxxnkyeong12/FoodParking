@@ -2,18 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.team_project01">
 
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature
-        android:name="android.hardware.camera2"
-        android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-feature android:name="android.hardware.camera2"
+        android:required="true"/>
+
 
     <!--갤러리 카메라, 앨범 저장 jk 2022/09/26-->
     <queries>
@@ -46,6 +48,7 @@
     <!--네이버맵 지도 API 내 위치 설정 jk 2022/9/22-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
 
@@ -146,10 +149,12 @@
             </intent-filter>
 
 
+
         </activity>
 
         <!--파일경로 jk 2022/09/26-->
         <provider
+
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
@@ -159,8 +164,8 @@
                 android:resource="@xml/file_path" />
 
 
-        </provider>
 
+        </provider>
 
         <!--네이버 지도 API jk 2022/9/22-->
         <meta-data
@@ -169,6 +174,7 @@
         <!--  <meta-data
               android:name="com.naver.maps.map.CLIENT_TYPE"
               android:value="gov" />-->
+
 
 
     </application>
