@@ -15,5 +15,6 @@
 	ON l.store_code = s.store_code
 	WHERE l.store_code = #{store_code}
 
+
 </select>
 </mapper>

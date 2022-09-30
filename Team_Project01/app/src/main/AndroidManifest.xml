@@ -3,11 +3,18 @@
     package="com.example.team_project01">
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
@@ -16,7 +23,10 @@
     <uses-feature android:name="android.hardware.camera2"
         android:required="true"/>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
     <!--갤러리 카메라, 앨범 저장 jk 2022/09/26-->
     <queries>
         <!-- WebView -->
@@ -50,6 +60,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
     <application
 
         android:allowBackup="true"
@@ -154,7 +169,6 @@
 
         <!--파일경로 jk 2022/09/26-->
         <provider
-
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
@@ -164,18 +178,12 @@
                 android:resource="@xml/file_path" />
 
 
-
         </provider>
 
-        <!--네이버 지도 API jk 2022/9/22-->
-        <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="7jbtb9ge0p" />
-        <!--  <meta-data
-              android:name="com.naver.maps.map.CLIENT_TYPE"
-              android:value="gov" />-->
-
-
+            <!--네이버 지도 API jk 2022/9/22-->
+            <meta-data
+                android:name="com.naver.maps.map.CLIENT_ID"
+                android:value="7jbtb9ge0p" />
 
     </application>
 

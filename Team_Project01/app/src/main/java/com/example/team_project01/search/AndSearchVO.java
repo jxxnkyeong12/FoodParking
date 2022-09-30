@@ -20,4 +20,5 @@ public class AndSearchVO {
         this.store_name = store_name;
     }
 
+
 }

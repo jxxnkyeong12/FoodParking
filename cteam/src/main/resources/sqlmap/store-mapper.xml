@@ -25,7 +25,6 @@ where r.store_code = #{store_code}
 
 </select>
 
-
 </mapper>
 
 

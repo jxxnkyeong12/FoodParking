@@ -1,4 +1,4 @@
-package andmember;
+package com.example.team_project01.login;
 
 public class MemberVO {
 

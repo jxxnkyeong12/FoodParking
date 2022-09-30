@@ -27,7 +27,7 @@ public class AndMemberController {
 	Gson gson = new Gson();
 	
 	
-	
+
 	
 	//회원탈퇴  jk - 2022/09/29
 	@RequestMapping(value = "/andDelete", produces = "text/html;charset=utf-8")
@@ -45,6 +45,7 @@ public class AndMemberController {
 		
 		
         MemberVO profile = dao.profile_image_detail(modify.getEmail());
+
         String imgpath =profile.getProfile_image();
         
 		MultipartRequest mReq = (MultipartRequest) request;
@@ -68,6 +69,7 @@ public class AndMemberController {
 					System.out.println(path);
 			
 
+
 					if( f.exists() ) f.delete();
 				}else {
 				//원래첨부파일을 그대로 쓰는 경우
@@ -87,6 +89,7 @@ public class AndMemberController {
 				}
 			}
 		modify.setProfile_image(imgpath);
+
 		dao.modify(modify);
 		return gson.toJson(modify);
 	}
@@ -98,6 +101,7 @@ public class AndMemberController {
 		public String insert(String vo, HttpServletRequest request) {
 			MemberVO myinfo = gson.fromJson(vo, MemberVO.class);	
 			String imgpath = "";
+
 
 			
 			MultipartRequest mReq = (MultipartRequest) request;
@@ -117,7 +121,6 @@ public class AndMemberController {
 	
 		
 
-		
 		
 	//로그인 (salt찾아서 로그인 하는 기능) - jk 2022/09/22
 	@RequestMapping(value = "/andLogin", produces = "text/html;charset=utf-8")

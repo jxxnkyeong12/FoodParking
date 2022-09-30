@@ -1,6 +1,7 @@
 package com.example.team_project01.store;
 
 public class AndBookmarkVO {
+
    private int store_code, id, bookmark;
    private String store_logo, store_name;
 
@@ -43,5 +44,6 @@ public class AndBookmarkVO {
    public void setStore_name(String store_name) {
       this.store_name = store_name;
    }
+
 
 }

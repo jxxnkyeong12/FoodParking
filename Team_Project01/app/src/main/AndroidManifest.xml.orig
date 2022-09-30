@@ -3,11 +3,18 @@
     package="com.example.team_project01">
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
@@ -16,6 +23,10 @@
     <uses-feature android:name="android.hardware.camera2"
         android:required="true"/>
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
     <!--갤러리 카메라, 앨범 저장 jk 2022/09/26-->
     <queries>
         <!-- WebView -->
@@ -49,15 +60,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
+<<<<<<< HEAD
+=======
 
 
-    <!--네이버맵 지도 API 내 위치 설정 jk 2022/9/22-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-
-
-
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
     <application
 
         android:allowBackup="true"
@@ -90,7 +97,7 @@
             android:name=".login.JoinActivity"
             android:exported="true" />
         <activity
-            android:name=".myinfo.modify.ModifyActivity"
+            android:name=".myinfo.ModifyActivity"
             android:exported="true" />
         <activity
             android:name=".login.LoginSocialActivity"
@@ -156,13 +163,23 @@
                     android:scheme="kakao1c40100fd84e7b943cf17cb4ec9b7413" />
             </intent-filter>
 
-<<<<<<< HEAD
 
 
         </activity>
 
         <!--파일경로 jk 2022/09/26-->
         <provider
+<<<<<<< HEAD
+
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+
+=======
             android:authorities="${applicationId}.fileprovider"
             android:name="androidx.core.content.FileProvider"
             android:exported="false"
@@ -172,22 +189,29 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_path"
                 />
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
 
 
         </provider>
 
+<<<<<<< HEAD
+        <!--네이버 지도 API jk 2022/9/22-->
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="7jbtb9ge0p" />
+        <!--  <meta-data
+              android:name="com.naver.maps.map.CLIENT_TYPE"
+              android:value="gov" />-->
+
+
 =======
+
             <!--네이버 지도 API jk 2022/9/22-->
             <meta-data
                 android:name="com.naver.maps.map.CLIENT_ID"
                 android:value="7jbtb9ge0p" />
-          <!--  <meta-data
-                android:name="com.naver.maps.map.CLIENT_TYPE"
-                android:value="gov" />-->
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
 
-        </activity>
-
->>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
     </application>
 
 </manifest>

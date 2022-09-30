@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.team_project01.R;
 import com.example.team_project01.store.StoreMenuDTO;
@@ -18,13 +19,13 @@ import java.util.ArrayList;
 public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder>{
     LayoutInflater inflater;
     ArrayList<StoreMenuDTO> list;
-    TextView basket_total_price,  tv_menu_cnt;
-    int menu_cnt = 1;
-    public BasketAdapter(LayoutInflater inflater, ArrayList<StoreMenuDTO> list, TextView basket_total_price) {
+    TextView basket_total_price, basket_total_cnt;
+
+    public BasketAdapter(LayoutInflater inflater, ArrayList<StoreMenuDTO> list, TextView basket_total_price, TextView basket_total_cnt) {
         this.inflater = inflater;
         this.list = list;
         this.basket_total_price = basket_total_price;
-
+        this.basket_total_cnt = basket_total_cnt;
     }
 
     @NonNull
@@ -45,47 +46,47 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView imag_plus, imag_min;
+        ImageView imag_close;
         TextView basket_menu_name, basket_menu_price;
 
         public ViewHolder(@NonNull View v) {
             super(v);
-            imag_min = v.findViewById(R.id.imag_min);
-            imag_plus = v.findViewById(R.id.imag_plus);
-            tv_menu_cnt = v.findViewById(R.id.tv_menu_cnt);
             basket_menu_name = v.findViewById(R.id.basket_menu_name);
             basket_menu_price = v.findViewById(R.id.basket_menu_price);
+            imag_close = v.findViewById(R.id.imag_close);
 
         }
         public void bind(@NonNull ViewHolder holder, int i){
-                basket_menu_name.setText(list.get(i).getMenu_name());
-                basket_menu_price.setText(list.get(i).getPrice() + "원");
+            basket_menu_name.setText(list.get(i).getMenu_name());
+            basket_menu_price.setText(list.get(i).getPrice() + "원");
 
-            //메뉴 갯수 플러스
-            imag_plus.setOnClickListener(new View.OnClickListener() {
+            imag_close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    menu_cnt++;
-                    tv_menu_cnt.setText(menu_cnt+"");
-                    int total_price = Integer.parseInt((String) basket_total_price.getText());
-                    basket_total_price.setText((total_price + list.get(i).getPrice()) + "");
-                }
-            });
-
-
-            //메뉴갯수 빼기
-            imag_min.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (menu_cnt > 1) {
-                        menu_cnt--;
-                        tv_menu_cnt.setText(menu_cnt+"");
-                        int total_price = Integer.parseInt((String) basket_total_price.getText());
-                        basket_total_price.setText((total_price - list.get(i).getPrice()) + "");
+                    if (list.size() > 0) {
+                        list.remove(i);
+                        notifyDataSetChanged();
+                        basket_total_cnt.setText(list.size()+ "");
+                        basket_total_price.setText(total_price(list) + "");
                     }
                 }
             });
+
+
+
         }
     }
+    public int total_price(ArrayList<StoreMenuDTO> list){
+        int total_price = 0;
 
+        for (int i = 0; i < list.size(); i++) {
+            total_price += list.get(i).getPrice();
+        }
+
+        return total_price;
+    }
+
+    public ArrayList<StoreMenuDTO> getlist() {
+        return list;
+    }
 }

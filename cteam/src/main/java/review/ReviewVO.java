@@ -40,6 +40,7 @@ public int getKind() {
 }
 public void setKind(int kind) {
 	this.kind = kind;
+
 }
 public Date getWritedate() {
 	return writedate;
@@ -53,6 +54,7 @@ public String getContent() {
 public void setContent(String content) {
 	this.content = content;
 }
+
 public String getStore_name() {
 	return store_name;
 }

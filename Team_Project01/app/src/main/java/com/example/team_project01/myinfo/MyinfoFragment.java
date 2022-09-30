@@ -122,7 +122,6 @@ public class MyinfoFragment extends Fragment implements View.OnClickListener{
                 public void onClick(DialogInterface dialogInterface, int i) {
                             CommonVal.loginInfo = null;
                             Toast.makeText(getContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-                            
 
                 }
             };

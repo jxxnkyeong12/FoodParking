@@ -45,6 +45,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
 
      CommonAskTask askTask;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -198,6 +199,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 Log.d("카카오", "kakao_profile: "+ user.getKakaoAccount().getPhoneNumber());
 
 
+
                 //카카오로 회원가입시 전화번호를 가져 올수 없으므로 전화번호를 따로 입력할수 있는 화면으로 이동 후 회원가입 진행
                 Intent intent = new Intent(LoginSocialActivity.this, SocialJoinActivity.class);
                 intent.putExtra("email", user.getKakaoAccount().getEmail());
@@ -211,6 +213,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
     }
 
 
+
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btn_login){
@@ -221,6 +224,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
             startActivity(e_intent);
         }
     }
+
 
     private void getHashKey(){
         PackageInfo packageInfo = null;

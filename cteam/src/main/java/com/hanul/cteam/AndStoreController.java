@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-
-
 import andstore.AndMapVO;
 import andstore.AndSearchDAO;
 import andstore.AndSearchVO;
 import storeinfo.StoreInfoVO;
+import andstore.AndSearchDAO;
+import andstore.AndSearchVO;
+
 import andstore.AndSearchDAO;
 import andstore.AndSearchVO;
 
@@ -24,7 +25,6 @@ public class AndStoreController {
 	
 	//검색어가 포함된 리스트 출력
 	@RequestMapping(value = "andSearchList", produces = "test/html; charset=utf-8")
-
 	public String search_list() {
 		List<AndSearchVO> list = dao.search_list();
 		return gson.toJson(list);
@@ -35,6 +35,7 @@ public class AndStoreController {
 	@RequestMapping(value = "andStoreMap", produces = "test/html; charset=utf-8")
 	public String store_map(int store_code) {
 		AndMapVO list = dao.store_map(store_code);
+
 		return gson.toJson(list);
 	}
 }

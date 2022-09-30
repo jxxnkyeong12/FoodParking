@@ -8,8 +8,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
 
-
     private static final String BASE_URL =  "http://192.168.0.113/cteam/";
+
 
 
 
@@ -28,6 +28,7 @@ public class ApiClient {
         }
         return retrofit;
     }
+
 
     public static Retrofit getApiclient(String base_url){ //파라메터로 받아온거
         //if( retrofit == null) {

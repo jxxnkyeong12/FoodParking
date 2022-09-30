@@ -14,7 +14,6 @@ public class AndMemberDAO {
 	@Autowired @Qualifier("cteam") private SqlSession sql;
 	@Autowired private Common common;
 
-	
 
 	//회원탈퇴 - jk 2022/09/29
 	public int delete(String email) {

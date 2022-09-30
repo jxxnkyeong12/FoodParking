@@ -17,6 +17,7 @@ import com.example.team_project01.R;
 import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.conn.CommonConn;
+import com.example.team_project01.order.Order_infoVO;
 import com.example.team_project01.store.StoreActivity;
 import com.example.team_project01.store.StoreMenuDTO;
 import com.google.gson.Gson;
@@ -88,9 +89,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
                                 Log.d("가게별 메뉴리스트", "onResult: " + data);
                                 ArrayList<StoreMenuDTO> list1 = new Gson().fromJson(data,
                                         new TypeToken<ArrayList<StoreMenuDTO>>(){}.getType());
+
+                                Order_infoVO vo = new Order_infoVO();
+                                vo.setStore_code(list.get(i).getStore_code());
+
                                 Intent intent = new Intent(context, StoreActivity.class);
                                 intent.putExtra("basketDTO", basketDTO);
                                 intent.putExtra("list1", list1);
+                                intent.putExtra("order_info", vo);
                                 intent.putExtra("vo", list.get(i));
                                 context.startActivity(intent);
 

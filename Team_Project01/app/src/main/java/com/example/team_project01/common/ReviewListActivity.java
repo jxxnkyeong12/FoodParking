@@ -2,10 +2,10 @@ package com.example.team_project01.common;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import android.os.Bundle;
 
 import com.example.team_project01.R;
+
 
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,12 +25,10 @@ public class ReviewListActivity extends AppCompatActivity {
 
     RecyclerView recv_reviewlist;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_list);
-
         recv_reviewlist = findViewById(R.id.recv_reviewlist);
         recv_reviewlist();
 
@@ -55,5 +53,6 @@ public class ReviewListActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

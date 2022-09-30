@@ -7,8 +7,7 @@ public class MemberVO {
 
 	
 	
-	
-	
+
 	public String getAddr_more() {
 		return addr_more;
 	}

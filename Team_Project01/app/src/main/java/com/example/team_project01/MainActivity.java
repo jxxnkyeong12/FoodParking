@@ -11,12 +11,12 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.team_project01.common.MapActivity;
 
 import android.widget.FrameLayout;
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_home_address;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         container = findViewById(R.id.container);
         bottom_nav = (SpaceNavigationView) findViewById(R.id.bottom_nav);
+
         home_map = findViewById(R.id.home_map);
         tv_home_address = findViewById(R.id.tv_home_address);
+
 
 
         //하단 네비게이션 버튼 아이디 찾아주기
@@ -64,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
         //어플 메인화면
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
-
 
         //상단 지도 눌렀을 때
         home_map.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 if(itemIndex == 0) {
 
                     home_map.setVisibility(View.VISIBLE);
+
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
                 }else if(itemIndex == 1) {

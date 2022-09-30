@@ -2,6 +2,7 @@ package andstore;
 
 public class AndSearchVO {
 
+
 	 private String store_name, store_code;
 
 	    public String getStore_code() {
@@ -19,6 +20,7 @@ public class AndSearchVO {
 	    public void setStore_name(String store_name) {
 	        this.store_name = store_name;
 	    }
+
 
 
 }

@@ -24,12 +24,16 @@ import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.conn.CommonConn;
 
+import com.example.team_project01.conn.CommonAskTask;
+
 import com.example.team_project01.login.MemberVO;
 import com.example.team_project01.myinfo.LikeAdapter;
 import com.example.team_project01.myinfo.LikeHistoryActivity;
 import com.example.team_project01.common.BasketActivity;
 import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.list.Store_infoDTO;
+import com.example.team_project01.order.Order_infoVO;
+
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -48,6 +52,9 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
     ImageView store_imgv_back, store_imgv_favEmp, store_imgv_favFill, store_basket;
 
     String[] items = {"최신순", "평점 높은 순", "평점 낮은 순"};
+
+
+    Order_infoVO vo;
 
 
     //이전 페이지(가게리스트)와 데이터 연동
@@ -75,7 +82,6 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
 
         recv_store_review = findViewById(R.id.recv_store_review);
 
-
         //onClickListner
         store_imgv_back.setOnClickListener(this);
         store_imgv_favEmp.setOnClickListener(this);
@@ -93,21 +99,26 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = getIntent();
         BasketVO basketDTO = (BasketVO) intent.getSerializableExtra("basketDTO");
         ArrayList<StoreMenuDTO> list = (ArrayList<StoreMenuDTO>) intent.getSerializableExtra("list1");
+        vo = (Order_infoVO) intent.getSerializableExtra("order_info");
+
 
         //가게정보
         Store_infoDTO dto = (Store_infoDTO) intent.getSerializableExtra("vo");
+
 
         Log.d("getId", "onCreate: " + dto.getId());
         for (int i = 0; i < list.size(); i++) {
             Log.d("getMenu_name", "onCreate: " + list.get(i).getMenu_name());
         }
+
         store_name1.setText(dto.getStore_name());
         store_name2.setText(dto.getStore_name());
 
 
         //기본화면
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(StoreActivity.this, RecyclerView.VERTICAL, false);
-        StoreMenuAdapter adapter = new StoreMenuAdapter(list, getLayoutInflater(), StoreActivity.this, StoreActivity.this);
+        StoreMenuAdapter adapter = new StoreMenuAdapter(list, getLayoutInflater(), StoreActivity.this, StoreActivity.this, vo);
+
 
         recv_store_menu.setLayoutManager(layoutManager);
         recv_store_menu.setAdapter(adapter);
@@ -145,6 +156,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                 }
             });
 
+
         }
 
         store_basket.setOnClickListener(new View.OnClickListener() {
@@ -153,9 +165,11 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                 ArrayList<StoreMenuDTO> basketlist = adapter.getBasketlist();
                 Intent intent1 = new Intent(StoreActivity.this, BasketActivity.class);
                 intent1.putExtra("basketlist", basketlist);
+                intent1.putExtra("order_info", vo);
                 startActivity(intent1);
             }
         });
+
 
 
 
@@ -166,7 +180,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                 int position =  tab.getPosition();
                 if(position == 0) {
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(StoreActivity.this, RecyclerView.VERTICAL, false);
-                    StoreMenuAdapter adapter = new StoreMenuAdapter(list, getLayoutInflater(), StoreActivity.this, StoreActivity.this);
+                    StoreMenuAdapter adapter = new StoreMenuAdapter(list, getLayoutInflater(), StoreActivity.this, StoreActivity.this, vo);
                     recv_store_menu.setLayoutManager(layoutManager);
                     recv_store_menu.setAdapter(adapter);
 
@@ -204,7 +218,8 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                 int position =  tab.getPosition();
                 if(position == 0) {
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(StoreActivity.this, RecyclerView.VERTICAL, false);
-                    StoreMenuAdapter adapter = new StoreMenuAdapter(list, getLayoutInflater(), StoreActivity.this, StoreActivity.this);
+
+                    StoreMenuAdapter adapter = new StoreMenuAdapter(list, getLayoutInflater(), StoreActivity.this, StoreActivity.this, vo);
                     recv_store_menu.setLayoutManager(layoutManager);
                     recv_store_menu.setAdapter(adapter);
 
@@ -220,7 +235,6 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                 }else {
 
                     spinner(dto.getStore_code());
-
                     recv_store_menu.setVisibility(View.GONE);
                     layout_store_tab_info.setVisibility(View.GONE);
 
@@ -232,12 +246,14 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         });
 
 
+
     }
 
     @Override
     public void onClick(View v) {
         Intent intent = getIntent();
         Store_infoDTO dto = (Store_infoDTO) intent.getSerializableExtra("vo");
+
 
 
         //뒤로가기
@@ -266,6 +282,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
             });
 
 
+
             //찜 해제
 
         }else if(v.getId() == R.id.store_imgv_favFill) {
@@ -278,6 +295,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
             vo.setStore_name(dto.getStore_name());
 
 
+
             CommonAskTask askTask = new CommonAskTask(StoreActivity.this, "andBMDelete");
             askTask.addParams("vo", new Gson().toJson(vo));
             askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
@@ -286,6 +304,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
 
                 }
             });
+
 
 
         //지도보기 눌렀을 때
@@ -301,6 +320,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
     //스피너
     public void spinner(int store_code) {
 
+
         ArrayAdapter<String> sp_adapter = new ArrayAdapter<String>(
                 StoreActivity.this, R.layout.support_simple_spinner_dropdown_item, items
         );
@@ -311,6 +331,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 store_tv_spinner.setText(items[position]);
+
 
 
                 if(position == 0) {
@@ -334,6 +355,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                         }
                     });
                 }
+
 
             }
 

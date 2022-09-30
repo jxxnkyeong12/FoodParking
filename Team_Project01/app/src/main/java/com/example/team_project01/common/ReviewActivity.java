@@ -2,6 +2,7 @@ package com.example.team_project01.common;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
@@ -17,10 +18,12 @@ public class ReviewActivity extends AppCompatActivity {
     //FrameLayout review_container;
     RatingBar rating_bar1, rating_bar2, rating_bar3, rating_bar4;
     EditText review_write;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+
 
         review_write = findViewById(R.id.review_write);
         rating_bar1 = findViewById(R.id.rating_bar1);
