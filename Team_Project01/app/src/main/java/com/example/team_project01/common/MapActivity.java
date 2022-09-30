@@ -1,124 +1,196 @@
-package com.example.team_project01;
+package com.example.team_project01.common;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
 
-import android.content.Context;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+
+import android.location.Geocoder;
+import android.location.Location;
+import android.os.Bundle;
+
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.Button;
+import android.widget.ImageView;
+
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.team_project01.common.MapActivity;
-
-import android.widget.FrameLayout;
-import android.widget.Toast;
-
+import com.example.team_project01.MainActivity;
+import com.example.team_project01.R;
+import com.example.team_project01.conn.CommonConn;
 import com.example.team_project01.home.HomeFragment;
-import com.example.team_project01.more.MoreFragment;
-import com.example.team_project01.myinfo.MyinfoFragment;
-import com.example.team_project01.order.OrderFragment;
-import com.example.team_project01.search.SearchFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.luseen.spacenavigation.SpaceItem;
-import com.luseen.spacenavigation.SpaceNavigationView;
-import com.luseen.spacenavigation.SpaceOnClickListener;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+
+import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraAnimation;
+import com.naver.maps.map.CameraUpdate;
+import com.naver.maps.map.LocationSource;
+import com.naver.maps.map.LocationTrackingMode;
+import com.naver.maps.map.MapView;
+import com.naver.maps.map.NaverMap;
+import com.naver.maps.map.NaverMapOptions;
+import com.naver.maps.map.NaverMapSdk;
+import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.UiSettings;
+import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.util.FusedLocationSource;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.List;
+
+import retrofit2.http.HEAD;
+
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
 
-    LinearLayout home_map;
-    FrameLayout container;
-    SpaceNavigationView bottom_nav;
-    TextView tv_home_address;
+    MapView map_View;
+    NaverMap naverMap;
+    TextView map_text, map_btn;
+    Marker marker = new Marker();
+    LinearLayout layout_map_search;
 
+    private double lat, lon;
+    String con;
+
+    private FusedLocationSource locationSource;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
+    private static final String[] PERMISSIONS = {
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_map);
 
-        container = findViewById(R.id.container);
-        bottom_nav = (SpaceNavigationView) findViewById(R.id.bottom_nav);
-        home_map = findViewById(R.id.home_map);
-        tv_home_address = findViewById(R.id.tv_home_address);
+        layout_map_search = findViewById(R.id.layout_map_search);
+        map_btn = findViewById(R.id.map_btn);
+        map_btn.setOnClickListener(this);
 
+        map_View = findViewById(R.id.map_view);
+        map_text = findViewById(R.id.map_text);
 
-        //하단 네비게이션 버튼 아이디 찾아주기
-        bottom_nav.initWithSaveInstanceState(savedInstanceState);
-        bottom_nav.addSpaceItem(new SpaceItem("홈", R.drawable.ic_nav_home));
-        bottom_nav.addSpaceItem(new SpaceItem("검색", R.drawable.ic_nav_search));
-        bottom_nav.addSpaceItem(new SpaceItem("내 정보", R.drawable.ic_nav_myinfo));
-        bottom_nav.addSpaceItem(new SpaceItem("더보기", R.drawable.ic_nav_more));
-        bottom_nav.showIconOnly();
+        //임시로 키를 넣음! jk 2022/9/17
+        NaverMapSdk.getInstance(this).setClient(
+                new NaverMapSdk.NaverCloudPlatformClient("7jbtb9ge0p"));
 
-        bottom_nav.requestLayout();
-
-        //어플 메인화면
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
-
-
-        //상단 지도 눌렀을 때
-        home_map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MapActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //하단네비바 클릭시
-        bottom_nav.setSpaceOnClickListener(new SpaceOnClickListener() {
-            @Override
-            public void onCentreButtonClick() {
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, new OrderFragment()).commit();
-            }
-
-            @Override
-            public void onItemClick(int itemIndex, String itemName) {
-                if(itemIndex == 0) {
-
-                    home_map.setVisibility(View.VISIBLE);
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
-                }else if(itemIndex == 1) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new SearchFragment()).commit();
-                }else if(itemIndex == 2) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new MyinfoFragment()).commit();
-                }else {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new MoreFragment()).commit();
-                }
-            }
-
-            @Override
-            public void onItemReselected(int itemIndex, String itemName) {
-                if(itemIndex == 0) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
-                }else if(itemIndex == 1) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new SearchFragment()).commit();
-                }else if(itemIndex == 2) {
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new MyinfoFragment()).commit();
-                }else {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new MoreFragment()).commit();
-                }
-            }
-        });
+        // 내 위치 jk - 2022/09/22
+        map_View.getMapAsync(this);
+        locationSource = new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
 
     }
 
     @Override
-    protected  void onSaveInstanceState( Bundle outState) {
-        super . onSaveInstanceState(outState);
-        bottom_nav . onSaveInstanceState(outState);
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (locationSource.onRequestPermissionsResult(
+                requestCode, permissions, grantResults)) {
+
+            return;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+
+    //네이버 지도 API -jk 2022/09/19
+    @Override
+    public void onMapReady(@NonNull NaverMap naverMap) {
+        this.naverMap = naverMap;
+        //가게 위치 잡기 - hs
+        Intent mapintent = getIntent();
+        int store_code = mapintent.getIntExtra("store_code", -1);
+
+        if(store_code > 0) {
+            CommonConn conn = new CommonConn(MapActivity.this, "andStoreMap");
+            conn.addParams("store_code", store_code);
+            conn.excuteConn(new CommonConn.ConnCallback() {
+                @Override
+                public void onResult(boolean isResult, String data) {
+                    Log.d("TAG", "onResult: " + data);
+                    map_btn.setVisibility(View.GONE);
+                    map_text.setVisibility(View.GONE);
+                    layout_map_search.setVisibility(View.GONE);
+
+                    AndMapVO vo = new Gson().fromJson(data, AndMapVO.class);
+                    lat = vo.getStore_lat();
+                    lon = vo.getStore_lon();
+
+                    con = lat + "," + lon;
+                    marker.setPosition(new LatLng(lat, lon));
+                    marker.setMap(naverMap);
+
+                    CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(lat, lon)).animate(CameraAnimation.Easing);
+                    naverMap.moveCamera(cameraUpdate);
+
+                    Log.d("TAG", "onResult: " + con);
+
+                }
+            });
+        }else {
+            naverMap.setLocationSource(locationSource);  //현재 위치
+            ActivityCompat.requestPermissions(this, PERMISSIONS, LOCATION_PERMISSION_REQUEST_CODE);  //현재위치 표시할때 권한 확인
+            naverMap.setLocationSource(locationSource);
+            naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+
+            //내 위치 잡아내는
+            naverMap.addOnLocationChangeListener(new NaverMap.OnLocationChangeListener() {
+                @Override
+                public void onLocationChange(@NonNull Location location) {
+
+                    lat = location.getLatitude();
+                    lon = location.getLongitude();
+
+                    con = lat + "," + lon;
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    }).start();
+
+                    Log.d("TAG", "onLocationChange: " + lat + lon);
+                    marker.setPosition(new LatLng(lat, lon));
+                    marker.setMap(naverMap);
+                    //  Toast.makeText(getApplicationContext(),  lat+" , "+lon, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.map_btn) {
+            onBackPressed();
+            //Intent intent = new Intent(MapActivity.this, MainActivity.class);
+            //intent.putExtra("my_location", "map_text");
+            //startActivity(intent);
+        }
     }
 
 }
