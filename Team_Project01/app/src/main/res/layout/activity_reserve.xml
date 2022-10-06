@@ -88,7 +88,7 @@
                 android:maxDate="11/18/2022"
                 android:layout_gravity="center"
                 android:id="@+id/calendarView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
@@ -521,6 +521,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"/>
         </LinearLayout> <!-- 스크롤 안쪽 큰 리니어!-->
+
+
+
+
 
 
     </ScrollView>

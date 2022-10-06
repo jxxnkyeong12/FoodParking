@@ -22,6 +22,7 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,18 +32,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.airbnb.lottie.L;
 import com.bumptech.glide.Glide;
+import com.example.team_project01.MainActivity;
 import com.example.team_project01.R;
+import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.conn.ApiClient;
 import com.example.team_project01.conn.ApiInterface;
 import com.example.team_project01.conn.CommonAskTask;
+import com.example.team_project01.conn.CommonConn;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
@@ -161,11 +169,11 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
             MemberVO vo = new MemberVO();
             vo.setEmail(edtv_join_email.getText().toString());
 
-            CommonAskTask askTask = new CommonAskTask(JoinActivity.this, "andEmailChk");
-            askTask.addParams("email", vo.getEmail());
-            askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+            CommonConn conn = new CommonConn(JoinActivity.this, "andEmailChk");
+            conn.addParams("email", vo.getEmail());
+            conn.excuteConn(new CommonConn.ConnCallback() {
                 @Override
-                public void onResult(String data, boolean isResult) {
+                public void onResult(boolean isResult, String data) {
                     if(data.equals("있음")) {
                         tv_email_chk.setText("❌ 존재하는 이메일입니다.");
                         tv_email_chk.setTextColor(Color.parseColor("#FF0000"));
@@ -181,8 +189,6 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
                     }
                 }
-
-
             });
 
         }if(v.getId() == R.id.join_btn_emailUse){
@@ -237,17 +243,21 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
                 }else {
 
-                    CommonAskTask askTask = new CommonAskTask(JoinActivity.this, "andJoin");
+                    CommonAskTask task = new CommonAskTask(JoinActivity.this, "andJoin");
 
-                    askTask.addParams("vo", new Gson().toJson(vo));
-                    askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+                    task.addParams("vo", new Gson().toJson(vo));
+                    task.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                         @Override
                         public void onResult(String data, boolean isResult) {
 
-                        }
+                            Log.d("회원가입", "onResult: " + data);
 
+
+                        }
                     });
                 }
+
+
 
                 emptyChk();
             }

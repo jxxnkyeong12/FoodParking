@@ -1,5 +1,6 @@
 package com.example.team_project01.search;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -20,7 +21,10 @@ import com.example.team_project01.R;
 import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.list.Store_infoDTO;
+import com.example.team_project01.conn.CommonAskTask;
+import com.google.android.gms.common.internal.service.Common;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;

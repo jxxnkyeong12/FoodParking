@@ -10,8 +10,13 @@ import android.util.Log;
 
 import com.example.team_project01.R;
 
-import com.example.team_project01.common.BasketVO;
+import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.conn.CommonAskTask;
+import com.example.team_project01.store.AndBookmarkVO;
+import com.example.team_project01.store.StoreActivity;
+
+import com.example.team_project01.common.BasketVO;
+import com.example.team_project01.conn.CommonConn;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
@@ -33,10 +38,10 @@ public class ListActivity extends AppCompatActivity {
 
 
     public void recv_select(){
-        CommonAskTask askTask = new CommonAskTask(ListActivity.this, "andStoreList");
-        askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+        CommonConn conn = new CommonConn(ListActivity.this, "andStoreList");
+        conn.excuteConn(new CommonConn.ConnCallback() {
             @Override
-            public void onResult(String data, boolean isResult) {
+            public void onResult(boolean isResult, String data) {
                 if(isResult) { //서버와 통신이 성공적으로 끝났을때.
                     Log.d("가게리스트", "onResult: " + data);
                     ArrayList<Store_infoDTO> list = new Gson().fromJson(data,
@@ -51,10 +56,7 @@ public class ListActivity extends AppCompatActivity {
 
                 }
             }
-
         });
-
-
 
 
     }

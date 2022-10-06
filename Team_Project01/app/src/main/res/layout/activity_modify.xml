@@ -34,7 +34,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="wrap_content"
+=======
+        android:layout_height="match_parent"
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="15dp">
 
@@ -75,8 +79,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+<<<<<<< HEAD
             android:text="푸드파킹"
             android:textColor="#000000"
+=======
+            android:hint="푸드파킹"
+            android:textColor="#A8B3BD"
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
             android:background="@drawable/shape_gray"/>
     </LinearLayout>
 
@@ -100,8 +109,13 @@
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_gravity="center"
+<<<<<<< HEAD
             android:text="010-1111-3333"
             android:textColor="#000000"
+=======
+            android:hint="010-1111-3333"
+            android:textColor="#A8B3BD"
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
             android:background="@drawable/shape_gray"/>
     </LinearLayout>
 
@@ -127,9 +141,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+<<<<<<< HEAD
             android:text="비밀번호입력"
             android:inputType="textPassword"
             android:textColor="#000000"
+=======
+            android:hint="비밀번호입력"
+            android:textColor="#A8B3BD"
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
             android:background="@drawable/shape_gray"/>
     </LinearLayout>
 
@@ -153,9 +172,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+<<<<<<< HEAD
             android:text="비밀번호확인"
             android:textColor="#000000"
             android:inputType="textPassword"
+=======
+            android:hint="비밀번호확인"
+            android:textColor="#A8B3BD"
+>>>>>>> efab4e47308223039276a61cec914492a54e4e85
             android:background="@drawable/shape_gray"/>
     </LinearLayout>
 
@@ -185,8 +209,8 @@
                 android:id="@+id/edtv_modify_zipcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity=""
-                android:text="우편번호 검색"
+                android:layout_gravity="center"
+                android:hint="우편번호 검색"
                 android:textColor="@color/black"
                 android:padding="10dp"
                 android:layout_marginBottom="5dp"
@@ -219,25 +243,27 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/shape_gray"
-            android:text="추가 주소 입력"
+
+            android:hint="추가 주소 입력"
             android:textColor="@color/black"
             android:padding="10dp"/>
 
-      </LinearLayout>
+    </LinearLayout>
 
-            <Button
-                android:layout_marginTop="10dp"
-                android:id="@+id/btn_modify"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:textSize="18dp"
-                android:backgroundTint="#F25C05"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="수정"/>
-   </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
+
+    <Button
+        android:id="@+id/btn_modify"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="200dp"
+        android:textSize="18dp"
+        android:backgroundTint="#F25C05"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="수정"/>
 
 
 </LinearLayout>

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.team_project01.R;
 import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.conn.CommonAskTask;
+import com.example.team_project01.conn.CommonConn;
 import com.example.team_project01.order.Order_infoVO;
 import com.example.team_project01.store.StoreActivity;
 import com.example.team_project01.store.StoreMenuDTO;
@@ -79,11 +80,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
                 @Override
                 public void onClick(View v) {
 
-                    CommonAskTask askTask = new CommonAskTask(context, "storeMenuList");
-                    askTask.addParams("store_code", list.get(i).getStore_code());
-                    askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+                    CommonConn conn = new CommonConn(context, "storeMenuList");
+                    conn.addParams("store_code", list.get(i).getStore_code());
+                    conn.excuteConn(new CommonConn.ConnCallback() {
                         @Override
-                        public void onResult(String data, boolean isResult) {
+                        public void onResult(boolean isResult, String data) {
                             if (isResult){
                                 Log.d("가게별 메뉴리스트", "onResult: " + data);
                                 ArrayList<StoreMenuDTO> list1 = new Gson().fromJson(data,
@@ -101,7 +102,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
                             }
                         }
-
                     });
 
 
