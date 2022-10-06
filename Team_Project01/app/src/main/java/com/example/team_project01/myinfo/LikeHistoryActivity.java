@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.airbnb.lottie.L;
 import com.example.team_project01.R;
 import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.conn.CommonAskTask;
@@ -28,10 +27,8 @@ public class LikeHistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like_history);
-
         
         //item_like_history recv 붙일 예정
-
 
         like_recv = findViewById(R.id.like_recv);
         like_back = findViewById(R.id.like_back);
@@ -60,6 +57,8 @@ public class LikeHistoryActivity extends AppCompatActivity {
                 like_recv.setLayoutManager(layoutManager);
                 like_recv.setAdapter(adapter);
             }
+
+
         });
     }
 }

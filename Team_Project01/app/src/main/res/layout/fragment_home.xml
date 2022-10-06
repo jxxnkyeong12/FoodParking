@@ -12,40 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- 주소 설정 고정바, 주소 설정가능하게 인텐트 추가 필요 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="17dp">
 
-            <LinearLayout
-                android:id="@+id/home_map"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_location" />
-
-                <TextView
-                    android:id="@+id/tv_home_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="서울특별시 강남구 강남대로 396"
-                    android:textSize="15dp"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="5dp"/>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
 
         <!-- 스크롤뷰 -->
         <ScrollView
@@ -63,7 +30,7 @@
                     android:layout_height="400dp"
                     android:orientation="horizontal"
                     android:layout_marginBottom="10dp"
-                     />
+                    />
 
                 <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
                     android:id="@+id/indicator"
@@ -137,38 +104,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="후기가 좋은 가게들"
+                        android:text="리뷰가 많은 가게들"
                         android:textSize="20dp"
                         android:textColor="@color/black" />
 
-                    <TextView
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/home_recv2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="별점 높은순으로 추천"
-                        android:textSize="13dp"
-                        android:textColor="@color/gray"
-                        android:layout_marginTop="5dp"/>
-
-                    <!-- 리사이클러뷰 -->
-                    <ImageView
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:src="@color/black"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="10dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="치킨"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="바삭바삭 치킨"
-                        android:textSize="13dp" />
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 

@@ -64,30 +64,8 @@
             android:background="#F25C05"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/myinfo_login"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/myinfo_back"
-                    android:layout_gravity="center"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/left"/>
-
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="17dp"
-                    android:textColor="#000"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="로그인을 해주세요"/>
 
 
-            </LinearLayout>
         </LinearLayout>
 
 
@@ -231,6 +209,7 @@
         android:layout_height="1dp"
         android:background="#E4E4E4" />
     <LinearLayout
+        android:id="@+id/myinfo_reserve"
         android:gravity="center"
         android:layout_margin="15dp"
         android:layout_width="wrap_content"
@@ -268,11 +247,11 @@
     <View
 
         android:layout_width="wrap_content"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:background="#E4E4E4" />
 
     <View
-
+        android:id="@+id/myinfo_view"
         android:layout_width="wrap_content"
         android:layout_height="10dp"
         android:background="#E4E4E4" />

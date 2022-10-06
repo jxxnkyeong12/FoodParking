@@ -1,69 +1,33 @@
 package com.example.team_project01.common;
 
+
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Intent;
-
-import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-
-import android.location.Geocoder;
-import android.location.Location;
-import android.os.Bundle;
-
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.team_project01.MainActivity;
 import com.example.team_project01.R;
-import com.example.team_project01.conn.CommonConn;
-import com.example.team_project01.home.HomeFragment;
-
+import com.example.team_project01.conn.CommonAskTask;
 import com.google.gson.Gson;
-import com.google.gson.JsonParser;
-
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraUpdate;
-import com.naver.maps.map.LocationSource;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
-import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.NaverMapSdk;
 import com.naver.maps.map.OnMapReadyCallback;
-import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.List;
-
-import retrofit2.http.HEAD;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
@@ -118,6 +82,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
+
     //네이버 지도 API -jk 2022/09/19
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
@@ -127,11 +92,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         int store_code = mapintent.getIntExtra("store_code", -1);
 
         if(store_code > 0) {
-            CommonConn conn = new CommonConn(MapActivity.this, "andStoreMap");
-            conn.addParams("store_code", store_code);
-            conn.excuteConn(new CommonConn.ConnCallback() {
+            CommonAskTask askTask = new CommonAskTask(MapActivity.this, "andStoreMap");
+            askTask.addParams("store_code", store_code);
+            askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                 @Override
-                public void onResult(boolean isResult, String data) {
+                public void onResult(String data, boolean isResult) {
                     Log.d("TAG", "onResult: " + data);
                     map_btn.setVisibility(View.GONE);
                     map_text.setVisibility(View.GONE);
@@ -149,8 +114,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     naverMap.moveCamera(cameraUpdate);
 
                     Log.d("TAG", "onResult: " + con);
-
                 }
+
             });
         }else {
             naverMap.setLocationSource(locationSource);  //현재 위치
@@ -193,4 +158,5 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+ 
 }

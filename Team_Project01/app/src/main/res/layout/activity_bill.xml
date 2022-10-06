@@ -93,23 +93,23 @@
             android:layout_margin="5dp"
             android:orientation="horizontal"
             >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="30dp"
-            android:text="할인금액"
-            android:textColor="#F25C05"
-            android:textSize="18dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="25dp"
-            android:gravity="right"
-            android:text="- 0원"
-            android:textColor="@color/orange"
-            android:textSize="18dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:text="할인금액"
+                android:textColor="#F25C05"
+                android:textSize="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="25dp"
+                android:gravity="right"
+                android:text="- 0원"
+                android:textColor="@color/orange"
+                android:textSize="18dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -144,21 +144,21 @@
                 android:textColor="@color/black"
                 android:textSize="18dp"/>
         </LinearLayout>
-            <TextView
-                android:id="@+id/bill_payment"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_margin="10dp"
-                android:backgroundTint="#F25C05"
-                android:background="@drawable/shape_orange"
-                android:text="결제하기"
-                android:textColor="@color/white"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+        <TextView
+            android:id="@+id/bill_payment"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="10dp"
+            android:backgroundTint="#F25C05"
+            android:background="@drawable/shape_orange"
+            android:text="결제하기"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:gravity="center"/>
 
 
-        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

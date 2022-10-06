@@ -9,145 +9,167 @@
     android:orientation="vertical"
     >
 
-    <com.google.android.material.appbar.AppBarLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.AppCompat.Light" >
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/store_toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:menu="@menu/menu_store">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/rv_store_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="황남비빔밥"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="황남비빔밥"
-                android:textSize="17dp"
-                android:textColor="@color/black" />
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-        </androidx.appcompat.widget.Toolbar>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-    </com.google.android.material.appbar.AppBarLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="음식맛"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_margin="10dp"/>
-            <RatingBar
-                android:id="@+id/rating_bar1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:progressTint="#FFC107"
-                android:progressBackgroundTint="@color/gray"
-                style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:stepSize="0.5"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="음식맛"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <RatingBar
+                        android:id="@+id/rating_bar1"
+                        style="@style/Widget.AppCompat.RatingBar.Indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:progressBackgroundTint="@color/gray"
+                        android:progressTint="#FFC107"
+                        android:stepSize="0.5" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="분위기"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <RatingBar
+                        android:id="@+id/rating_bar2"
+                        style="@style/Widget.AppCompat.RatingBar.Indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:progressBackgroundTint="@color/gray"
+                        android:progressTint="#FFC107"
+                        android:stepSize="0.5" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="친절도"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <RatingBar
+                        android:id="@+id/rating_bar3"
+                        style="@style/Widget.AppCompat.RatingBar.Indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:progressBackgroundTint="@color/gray"
+                        android:progressTint="#FFC107"
+                        android:stepSize="0.5" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="청결도"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <RatingBar
+                        android:id="@+id/rating_bar4"
+                        style="@style/Widget.AppCompat.RatingBar.Indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:progressBackgroundTint="@color/gray"
+                        android:progressTint="#FFC107"
+                        android:stepSize="0.5" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="10dp"
+                android:background="#EEEEEEEE" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/shape_gray"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/review_write"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="상품평을 입력해주세요(최소10자 이상)"
+                    android:padding="10dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/review_imv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/camera" />
+
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="분위기"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_margin="10dp"/>
-            <RatingBar
-                android:id="@+id/rating_bar2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:progressTint="#FFC107"
-                android:progressBackgroundTint="@color/gray"
-                style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:stepSize="0.5"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="친절도"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_margin="10dp"/>
-            <RatingBar
-                android:id="@+id/rating_bar3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:progressTint="#FFC107"
-                android:progressBackgroundTint="@color/gray"
-                style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:stepSize="0.5"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="청결도"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_margin="10dp"/>
-            <RatingBar
-                android:id="@+id/rating_bar4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:progressTint="#FFC107"
-                android:progressBackgroundTint="@color/gray"
-                style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:stepSize="0.5"/>
-        </LinearLayout>
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_marginTop="10dp"
-        android:background="#EEEEEEEE"/>
+    </ScrollView>
 
-    <LinearLayout
-        android:background="@drawable/shape_gray"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="15dp"
-        android:orientation="vertical">
-
-        <EditText
-            android:padding="10dp"
-            android:id="@+id/review_write"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="상품평을 입력해주세요(최소10자 이상)"
-            android:background="@null"/>
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/review_imv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="15dp"
-        android:layout_gravity="bottom"
-        android:src="@drawable/camera"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -156,6 +178,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/rv_btn_cancle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
@@ -165,6 +188,7 @@
             android:textColor="@color/white" />
 
         <Button
+            android:id="@+id/rv_btn_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -173,4 +197,5 @@
             android:textColor="@color/white" />
 
     </LinearLayout>
+
 </LinearLayout>

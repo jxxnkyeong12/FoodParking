@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.team_project01.R;
 import com.example.team_project01.conn.CommonAskTask;
-import com.example.team_project01.conn.CommonConn;
 import com.example.team_project01.home.HomeFragment;
 import com.example.team_project01.store.StoreActivity;
 import com.google.gson.Gson;
@@ -34,7 +33,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 
 public class LoginSocialActivity extends AppCompatActivity implements View.OnClickListener {
@@ -97,6 +95,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
         KakaoSdk.init(this, "1c40100fd84e7b943cf17cb4ec9b7413");
 
 
+
         btn_kakao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,6 +115,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 };
 
 
+
                 UserApiClient apiClient = new UserApiClient();
                 if (apiClient.isKakaoTalkLoginAvailable(LoginSocialActivity.this)){
                     apiClient.loginWithKakaoAccount(LoginSocialActivity.this, callback);
@@ -126,6 +126,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
             }
         });
     }
+
 
 
 
@@ -141,6 +142,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 Log.d("프로필", "onSuccess: " + res.getProfile().getMobile());
                 Log.d("프로필", "onSuccess: " + res.getProfile().getName());
 
+
                 MemberVO vo = new MemberVO();
                 vo.setEmail(res.getProfile().getEmail());
                 vo.setName(res.getProfile().getName());
@@ -153,28 +155,26 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                     @Override
                     public void onResult(String data, boolean isResult) {
-                        if(data.trim().equals("있음")) {
+                        if (data.trim().equals("있음")) {
                             Intent intent = new Intent(LoginSocialActivity.this, HomeFragment.class);
                             startActivity(intent);
 
-                        }else{
+                        } else {
                             //네이버로 회원가입시 필요한 정보를 가져올 수 있으므로 바로 회원가입 진행
                             askTask = new CommonAskTask(LoginSocialActivity.this, "andJoin");
                             askTask.addParams("vo", new Gson().toJson(vo));
                             askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                                 @Override
                                 public void onResult(String data, boolean isResult) {
-                                    if (isResult){
 
-                                    }
                                 }
                             });
                         }
-
                     }
-                });
-            }
 
+                });
+
+            }
             @Override
             public void onFailure(int i, @NonNull String s) {
                 Log.d("프로필", "onFailure: " + s);
@@ -208,12 +208,13 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 startActivity(intent);
             }
 
+
             return null;
         });
+
+
+
     }
-
-
-
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btn_login){
@@ -224,6 +225,7 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
             startActivity(e_intent);
         }
     }
+
 
 
     private void getHashKey(){

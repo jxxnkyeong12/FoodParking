@@ -1,16 +1,17 @@
 package com.example.team_project01.common;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -18,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.team_project01.R;
-import com.example.team_project01.conn.CommonConn;
-import com.example.team_project01.myinfo.ModifyActivity;
+import com.example.team_project01.conn.CommonAskTask;
+import com.example.team_project01.myinfo.MyinfoFragment;
 
 import java.util.ArrayList;
 
@@ -55,8 +56,10 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView review_text,review_store,  review_modify,review_delete ;
+        TextView review_text,review_store, review_modify,review_delete, review_total ;
         ImageView review_imgae;
+        RatingBar rev_listrating;
+        LinearLayout review_liner;
 
         public ViewHolder(@NonNull View v) {
             super(v);
@@ -66,19 +69,41 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Vi
             review_store = v.findViewById(R.id.review_store);
             review_modify = v.findViewById(R.id.review_modify);
             review_delete = v.findViewById(R.id.review_delete);
+            rev_listrating = v.findViewById(R.id.rev_listrating);
+            review_total = v.findViewById(R.id.review_total);
+            review_liner = v.findViewById(R.id.review_liner);
+
+
+
 
 
         }
 
         public void bind(@NonNull ViewHolder h, int i){
-            h.review_store.setText(list.get(i).getStore_name());
-            h.review_text.setText(list.get(i).getContent());
+
+
+                Log.d("리뷰있어", "bind: ");
+                h.review_store.setText(list.get(i).getStore_name());
+                h.review_text.setText(list.get(i).getReview_content());
+                h.review_total.setText(list.get(i).getStar_rating()+"");
+                if(list.get(i).getReview_image() != null){
+                    review_liner.setVisibility(View.VISIBLE);
+                    Glide.with(context).load(list.get(i).getReview_image()).into(review_imgae);
+                }
+
+                float rating = list.get(i).getStar_rating();
+                h.rev_listrating.setRating(rating);
 
 
             review_modify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
+                     Intent intent = new Intent(context, ReviewDetailActivity.class);
+
+                     intent.putExtra("star_code", list.get(i).getStar_code());
+
+                     context.startActivity(intent);
                 }
             });
 
@@ -90,13 +115,14 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Vi
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Log.d("TAG", "onClick: 네");
-                            CommonConn conn = new CommonConn(context, "andReviewDelete");
-                            conn.addParams("email", CommonVal.loginInfo.getEmail());
-                            conn.excuteConn(new CommonConn.ConnCallback() {
+                            CommonAskTask askTask = new CommonAskTask(context, "andReviewDelete");
+                            askTask.addParams("email", CommonVal.loginInfo.getEmail());
+                            askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                                 @Override
-                                public void onResult(boolean isResult, String data) {
-                                    Log.d("삭제", "onResult: 삭제완 " );
+                                public void onResult(String data, boolean isResult) {
+
                                 }
+
                             });
                         }
                     };

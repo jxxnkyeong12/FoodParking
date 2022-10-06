@@ -4,8 +4,16 @@ import java.io.Serializable;
 
 public class Order_infoVO implements Serializable {
     private int order_num, category_code, store_code, id, menu_cnt, price, order_state;
-    private String order_date, phone, order_time, order_peple;
+    private String order_date, phone, order_time, order_peple, total_info;
 
+
+    public String getTotal_info() {
+        return total_info;
+    }
+
+    public void setTotal_info(String total_info) {
+        this.total_info = total_info;
+    }
 
     public String getOrder_peple() {
         return order_peple;

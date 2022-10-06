@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
     <!-- 주소 설정 고정바, 주소 설정가능하게 인텐트 추가 필요 -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +41,6 @@
 
 
     </LinearLayout>
-
 
 
     <FrameLayout

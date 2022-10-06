@@ -18,9 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.team_project01.R;
+import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.common.CommonVal;
-import com.example.team_project01.conn.CommonConn;
-import com.example.team_project01.store.StoreMenuDTO;
+import com.example.team_project01.conn.CommonAskTask;
 import com.google.gson.Gson;
 
 import java.text.DateFormat;
@@ -37,9 +37,9 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
     Button order1000, order1030, order1100, order1130, order1200, order1230, order0100, order0130, order0200, order0230
             , order0300, order0330, order0400, order0430, order0500, order0530, pe2, pe3, pe4, pe5, btn_modify;
 
-   // FrameLayout res_container;
+    // FrameLayout res_container;
     LinearLayout res_time;
-    Order_infoVO vo;
+
 
     boolean arrow = true;
     int arr = 0 ;
@@ -266,8 +266,11 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
                 }else {
                     Intent intent = getIntent();
                     //장바구니 리스트
-                    ArrayList<StoreMenuDTO> list = (ArrayList<StoreMenuDTO>) intent.getSerializableExtra("basketlist");
-                    vo = (Order_infoVO) intent.getSerializableExtra("order_info");
+                    ArrayList<BasketVO> list = (ArrayList<BasketVO>) intent.getSerializableExtra("list");
+                    //전체 가격
+                    String total_price = intent.getStringExtra("total_price");
+                    //가게 이름 가져온거
+                    String store_name = intent.getStringExtra("store_name");
                     //주문날짜
                     String year = res_datetxt.getText().toString().substring(0, 4);
                     String month = res_datetxt.getText().toString().substring(5, 7);
@@ -283,31 +286,38 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
                     String peple = order_human.getText().toString().substring(0, 1);
                     Log.d("TAG", "onClick: " + peple);
 
+                    Order_infoVO vo = new Order_infoVO();
                     vo.setId(CommonVal.loginInfo.getId());
-                    vo.setOrder_date(year + month + day);
+                    vo.setOrder_date(year + month + day + "");
                     vo.setPhone(CommonVal.loginInfo.getPhone());
                     vo.setMenu_cnt(list.size());
                     vo.setOrder_state(1);
                     vo.setOrder_time(hour + minit + "");
                     vo.setOrder_peple(peple);
+                    vo.setPrice(Integer.parseInt(total_price));
+                    vo.setStore_code(list.get(0).getStore_code());
+                    vo.setTotal_info(new Gson().toJson(list));
+
 
                     Intent intent1 = new Intent(ReserveActivity.this, BillActivity.class);
                     intent1.putExtra("vo", vo);
-                    startActivity(intent1);
+                    intent1.putExtra("store_name", store_name);
+                    intent1.putExtra("list", list);
 
                     //디비에 주문정보 넣음
-                    CommonConn conn = new CommonConn(ReserveActivity.this, "reserve_store");
-                    conn.addParams("vo", new Gson().toJson(vo));
-                    conn.excuteConn(new CommonConn.ConnCallback() {
+                    CommonAskTask askTask = new CommonAskTask(ReserveActivity.this, "reserve_store");
+                    askTask.addParams("vo", new Gson().toJson(vo));
+                    askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                         @Override
-                        public void onResult(boolean isResult, String data) {
-                            if (isResult){
+                        public void onResult(String data, boolean isResult) {
+                            if (isResult) {
                                 Log.d("TAG", "onResult: 성공");
 
                             }
                         }
                     });
 
+                    startActivity(intent1);
                 }
 
 
