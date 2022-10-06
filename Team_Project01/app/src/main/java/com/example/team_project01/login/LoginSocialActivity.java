@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.team_project01.R;
 import com.example.team_project01.conn.CommonAskTask;
-import com.example.team_project01.conn.CommonConn;
 import com.example.team_project01.home.HomeFragment;
 import com.example.team_project01.store.StoreActivity;
 import com.google.gson.Gson;
@@ -34,7 +33,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 
 public class LoginSocialActivity extends AppCompatActivity implements View.OnClickListener {
@@ -157,28 +155,26 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                     @Override
                     public void onResult(String data, boolean isResult) {
-                        if(data.trim().equals("있음")) {
+                        if (data.trim().equals("있음")) {
                             Intent intent = new Intent(LoginSocialActivity.this, HomeFragment.class);
                             startActivity(intent);
 
-                        }else{
+                        } else {
                             //네이버로 회원가입시 필요한 정보를 가져올 수 있으므로 바로 회원가입 진행
                             askTask = new CommonAskTask(LoginSocialActivity.this, "andJoin");
                             askTask.addParams("vo", new Gson().toJson(vo));
                             askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                                 @Override
                                 public void onResult(String data, boolean isResult) {
-                                    if (isResult){
 
-                                    }
                                 }
                             });
                         }
-
                     }
-                });
-            }
 
+                });
+
+            }
             @Override
             public void onFailure(int i, @NonNull String s) {
                 Log.d("프로필", "onFailure: " + s);
@@ -199,7 +195,6 @@ public class LoginSocialActivity extends AppCompatActivity implements View.OnCli
                 //오류가 났을때 어떤 오류인지 코드로 줌 KOE + 숫자 ( 단무지가 있음 )
             }else{
                 Log.d("카카오", "kakao_profile: " + user.getKakaoAccount().getEmail());
-
                 Log.d("카카오", "kakao_profile: "+ user.getKakaoAccount().getProfile().getNickname());
                 Log.d("카카오", "kakao_profile: "+ user.getKakaoAccount().getPhoneNumber());
 

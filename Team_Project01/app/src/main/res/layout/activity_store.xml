@@ -131,13 +131,6 @@
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="지도보기  >"
-                        android:textSize="12dp" />
-
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
@@ -158,7 +151,6 @@
                         android:background="@drawable/ic_favorite_empty"
                         android:backgroundTint="@color/gray"
                         android:clickable="true"/>
-
                     <ImageView
                         android:id="@+id/store_imgv_favFill"
                         android:layout_width="wrap_content"
@@ -174,7 +166,6 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -187,24 +178,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2.5"
+                        android:layout_gravity="center"
+                        android:id="@+id/store_total_tv1"
                         android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="(300+)"
+                        android:layout_gravity="center"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tv_store_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="200.44km" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="(황남동)" />
+                        android:layout_gravity="center"
+                        android:text="지도보기  >"/>
 
                 </LinearLayout>
 
@@ -365,6 +356,7 @@
                                     android:textColor="@color/black"/>
 
                                 <TextView
+                                    android:id="@+id/store_total"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="4.4"
@@ -374,6 +366,8 @@
                                     android:layout_gravity="center"/>
 
                                 <RatingBar
+                                    android:id="@+id/store_rattotal"
+                                    android:progressTint="#FFC107"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     style="@style/Widget.AppCompat.RatingBar.Small"
@@ -404,7 +398,7 @@
                                         android:layout_weight="1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="음식맛"
+                                        android:text="분위기"
                                         android:textSize="13dp"
                                         android:layout_marginVertical="5dp"/>
 
@@ -412,7 +406,7 @@
                                         android:layout_weight="1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="음식맛"
+                                        android:text="친절도"
                                         android:textSize="13dp"
                                         android:layout_marginBottom="5dp"/>
 
@@ -432,40 +426,48 @@
                                     android:layout_gravity="center">
 
                                     <ProgressBar
+                                        android:id="@+id/progressbar1"
                                         android:layout_weight="8"
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
                                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                         android:progress="78"
+                                        android:max="5"
                                         android:progressTint="@color/orange"
                                         android:layout_marginHorizontal="15dp"/>
 
                                     <ProgressBar
+                                        android:id="@+id/progressbar2"
                                         android:layout_weight="8"
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
                                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                         android:progress="78"
+                                        android:max="5"
                                         android:progressTint="@color/orange"
                                         android:layout_marginHorizontal="15dp"
                                         android:layout_marginVertical="8dp"/>
 
                                     <ProgressBar
+                                        android:id="@+id/progressbar3"
                                         android:layout_weight="8"
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
                                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                         android:progress="78"
+                                        android:max="5"
                                         android:progressTint="@color/orange"
                                         android:layout_marginHorizontal="15dp"
                                         android:layout_marginBottom="8dp"/>
 
                                     <ProgressBar
+                                        android:id="@+id/progressbar4"
                                         android:layout_weight="8"
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
                                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                         android:progress="78"
+                                        android:max="5"
                                         android:progressTint="@color/orange"
                                         android:layout_marginHorizontal="15dp"/>
 
@@ -477,6 +479,7 @@
                                     android:orientation="vertical">
 
                                     <TextView
+                                        android:id="@+id/store_score1"
                                         android:layout_weight="1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -485,6 +488,7 @@
                                         android:textStyle="bold"/>
 
                                     <TextView
+                                        android:id="@+id/store_score2"
                                         android:layout_weight="1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -494,6 +498,7 @@
                                         android:layout_marginVertical="5dp"/>
 
                                     <TextView
+                                        android:id="@+id/store_score3"
                                         android:layout_weight="1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -503,6 +508,7 @@
                                         android:layout_marginBottom="5dp"/>
 
                                     <TextView
+                                        android:id="@+id/store_score4"
                                         android:layout_weight="1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -513,6 +519,7 @@
                                 </LinearLayout>
 
                             </LinearLayout>
+
 
                         </LinearLayout>
 
@@ -526,9 +533,10 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/store_cnt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="리뷰 100건"
+                            android:text="리뷰 1건"
                             android:textStyle="bold"
                             android:textSize="15dp"
                             android:textColor="@color/black" />
@@ -556,7 +564,16 @@
                             app:layout_constraintStart_toStartOf="parent"
                             android:layout_weight="2"/>
 
+
+
                     </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recv_store_review"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        />
+
 
                 </LinearLayout>
 

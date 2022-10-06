@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.team_project01.R;
-import com.example.team_project01.common.BasketActivity;
 import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.common.CommonVal;
-import com.example.team_project01.conn.CommonConn;
-import com.example.team_project01.list.Store_infoDTO;
+import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.order.Order_infoVO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
@@ -33,15 +32,18 @@ public class StoreMenuAdapter extends RecyclerView.Adapter<StoreMenuAdapter.View
     LayoutInflater inflater;
     Activity activity;
     Context context;
-    ArrayList<StoreMenuDTO> basketlist = new ArrayList<>();
     Order_infoVO vo;
+    ArrayList<BasketVO> list1;
+
 
     public StoreMenuAdapter(ArrayList<StoreMenuDTO> list, LayoutInflater inflater, Activity activity, Context context, Order_infoVO vo) {
+
         this.list = list;
         this.inflater = inflater;
         this.activity = activity;
         this.context = context;
         this.vo = vo;
+
     }
 
     @NonNull
@@ -93,13 +95,36 @@ public class StoreMenuAdapter extends RecyclerView.Adapter<StoreMenuAdapter.View
                     DialogInterface.OnClickListener confirm = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                                    Log.d("TAG", "onClick: 네");
-                                    basketlist.add(list.get(pod));
-                                    Toast.makeText(context, basketlist.get(pod).getMenu_name() + " 장바구니에 담겼습니다", Toast.LENGTH_SHORT).show();
-                                    Log.d("TAG", "onClick: " + basketlist.size());
-                        }
-                    };
 
+                            CommonAskTask askTask = new CommonAskTask(context, "andBasket");
+                            askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+                                @Override
+                                public void onResult(String data, boolean isResult) {
+                                    list1 = new Gson().fromJson(data,
+                                            new TypeToken<ArrayList<BasketVO>>() {
+                                            }.getType());
+
+                                    if (qu(h, pod)) {
+                                        Toast.makeText(context, "이미 장바구니에 있습니다", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        CommonAskTask commonAskTask = new CommonAskTask(context, "andBasketInsert");
+                                        commonAskTask.addParams("menu", new Gson().toJson(list.get(pod)));
+                                        commonAskTask.addParams("id", CommonVal.loginInfo.getId());
+                                        commonAskTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+                                            @Override
+                                            public void onResult(String data, boolean isResult) {
+
+                                            }
+                                        });
+                                    }
+
+
+                                }
+                            });
+
+                        }
+
+                    };
 
                     DialogInterface.OnClickListener cancle = new DialogInterface.OnClickListener() {
                         @Override
@@ -122,7 +147,19 @@ public class StoreMenuAdapter extends RecyclerView.Adapter<StoreMenuAdapter.View
 
     }
 
-    public ArrayList<StoreMenuDTO> getBasketlist() {
-        return basketlist;
+    public boolean qu(@NonNull ViewHolder h, int pod){
+        boolean qu = false;
+        for (int j = 0; j < list1.size(); j++) {
+            if (list1.get(j).getMenu_code() == list.get(pod).getMenu_id()) {
+                qu = true;
+                return qu;
+            }
+
+        }
+
+        return qu;
     }
+
+
+
 }

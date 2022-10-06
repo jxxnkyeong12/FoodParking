@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,6 +18,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -26,21 +28,25 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.team_project01.MainActivity;
 import com.example.team_project01.R;
 import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.conn.ApiClient;
 import com.example.team_project01.conn.ApiInterface;
-import com.example.team_project01.conn.CommonConn;
+
+import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.login.AddressActivity;
+
 import com.example.team_project01.login.MemberVO;
+
 
 import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Member;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
@@ -57,8 +63,8 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
     EditText modify_nick, modify_phone, modify_pw, modify_pwck,
             edtv_modify_zipcode, edtv_modify_address, edtv_modify_address_more;
     CircleImageView modify_image;
-  //  ActivityResultLauncher<Intent> launcher;
     AlertDialog dialog;
+
     private final int SEARCH_ADDR_CODE = 1002;
 
     @Override
@@ -71,6 +77,7 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
 
         modfiy_back = findViewById(R.id.modfiy_back);
         btn_modify = findViewById(R.id.btn_modify);
+        btn_modify_address = findViewById(R.id.btn_modify_address);
         modify_nick = findViewById(R.id.modify_nick);
         modify_image = findViewById(R.id.modify_image);
         modify_phone = findViewById(R.id.modify_phone);
@@ -82,6 +89,22 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
 
 
         modify_image.setOnClickListener(this);
+
+        //내정보 그대로 가져오기
+        modify_nick.setText(CommonVal.loginInfo.getNickname());
+        modify_pw.setText(CommonVal.loginInfo.getPw());
+        modify_pwck.setText(CommonVal.loginInfo.getPw());
+        modify_phone.setText(CommonVal.loginInfo.getPhone());
+        edtv_modify_zipcode.setText(CommonVal.loginInfo.getPost());
+        edtv_modify_address.setText(CommonVal.loginInfo.getAddr());
+        edtv_modify_address_more.setText(CommonVal.loginInfo.getAddr_more());
+
+        if(CommonVal.loginInfo.getProfile_image() !=null){
+            Glide.with(ModifyActivity.this).load(CommonVal.loginInfo.getProfile_image()).into(modify_image);
+        }else {
+            Glide.with(ModifyActivity.this).load(R.drawable.profile_image).into(modify_image);
+        }
+
 
 
         //우편번호 서비스
@@ -108,70 +131,56 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
             public void onClick(View v) {
                 MemberVO vo = new MemberVO();
 
-                vo.setNickname(modify_nick.getText()+"");
-                vo.setPhone(modify_phone.getText()+"");
-                vo.setPw(modify_pw.getText()+"");
+                String test = CommonVal.loginInfo.getProfile_image();
+
+
+                vo.setEmail(CommonVal.loginInfo.getEmail());
+                vo.setNickname(modify_nick.getText() + "");
+                vo.setPhone(modify_phone.getText() + "");
+                vo.setPw(modify_pw.getText() + "");
+                vo.setAddr(edtv_modify_address.getText().toString());
+                vo.setPost(edtv_modify_zipcode.getText().toString());
+                vo.setAddr_more(edtv_modify_address_more.getText().toString());
+                vo.setProfile_image(CommonVal.loginInfo.getProfile_image());
+
                 Glide.with(ModifyActivity.this).load(CommonVal.loginInfo.getProfile_image()).into(modify_image);
 
 
-              if(!Pattern.matches(modify_pw.getText().toString(), modify_pwck.getText().toString())){
-                  Toast.makeText(ModifyActivity.this, "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
+                //이미지 그대로 두고, 다른정보만 변경했을때
+                Log.d("담겨", "onClick: "+ CommonVal.loginInfo.getProfile_image());
+                if(vo.getProfile_image() != null){
+                    vo.setEmail(CommonVal.loginInfo.getEmail());
+                    vo.setNickname(modify_nick.getText()+"");
+                    vo.setPhone(modify_phone.getText()+"");
+                    vo.setPw(modify_pw.getText()+"");
+                    vo.setAddr(edtv_modify_address.getText().toString());
+                    vo.setPost(edtv_modify_zipcode.getText().toString());
+                    vo.setAddr_more(edtv_modify_address_more.getText().toString());
 
-              }else {
-                /*  Intent intent = new Intent(ModifyActivity.this, MyinfoFragment.class);
-                  intent.putExtra("vo", vo);
-                  startActivity(intent);*/
-                 Bundle bundle = new Bundle();
-                 bundle.putString("nickname", vo.getNickname().toString());
-                 bundle.putString("pw", vo.getPw().toString());
-                 bundle.putString("phone", vo.getPhone().toString());
+                }else {
+                    //이미지가 있었는데, 없어졌을때....
+                    imgFilePath = null;
+                    Glide.with(ModifyActivity.this).load(CommonVal.loginInfo.getProfile_image()).into(modify_image);
+                    vo.setEmail(CommonVal.loginInfo.getEmail());
+                    vo.setNickname(modify_nick.getText()+"");
+                    vo.setPhone(modify_phone.getText()+"");
+                    vo.setPw(modify_pw.getText()+"");
+                    vo.setAddr(edtv_modify_address.getText().toString());
+                    vo.setPost(edtv_modify_zipcode.getText().toString());
+                    vo.setAddr_more(edtv_modify_address_more.getText().toString());
 
-                 MyinfoFragment myinfoFragment= new MyinfoFragment();
-                 myinfoFragment.setArguments(bundle);
-
-
-              }
+                }
 
 
                 //데이터 파일받은
-                RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), new File(imgFilePath)); //MediaType은 무슨타입인지 지정, 스트링형태의 파일패스
-                MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "modify.png", fileBody);
-
-                //데이터를 보내는거
-                RequestBody dataTest =
-                        RequestBody.create(
-                                MediaType.parse("multipart/form-data"), new Gson().toJson(vo));
-                ApiInterface apiInterface = ApiClient.getApiclient().create(ApiInterface.class);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        apiInterface.sendTest( dataTest , filePart ).enqueue(new Callback<String>() {
-                            @Override
-                            public void onResponse(Call<String> call, Response<String> response) {
-                                Log.d("반응", "onResponse: " + response);
-                            }
-
-                            @Override
-                            public void onFailure(Call<String> call, Throwable t) {
-
-                            }
-                        });
-                    }
-                }).start();
-
-
-                CommonConn conn = new CommonConn(ModifyActivity.this, "andModify");
-                conn.addParams("vo", new Gson().toJson(vo));
-                conn.excuteConn(new CommonConn.ConnCallback() {
-                    @Override
-                    public void onResult(boolean isResult, String data) {
-
-                        Toast.makeText(ModifyActivity.this, "정보 수정완료", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                onBackPressed();
-
+              if(imgFilePath != null ) {
+                    //파일 올려주는 메소드
+                    filesubmit(vo);
+                    
+                }else if(imgFilePath == null) {
+                    //파일없이, 그대로 파일 하던가 메소드
+                    nofilesubmit(vo);
+                }
 
 
 
@@ -180,21 +189,87 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    
+    //파일없이 다른 정보 변경만 보내는 메소드
+    public void nofilesubmit(MemberVO vo){
+        CommonAskTask task = new CommonAskTask(ModifyActivity.this, "andModifyNofile");
+        task.addParams("vo", new Gson().toJson(vo));
+        task.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+            @Override
+            public void onResult(String data, boolean isResult) {
+                Log.d("수정성공", "onResult: " + data);
+
+                CommonVal.loginInfo =  new Gson().fromJson(data, MemberVO.class);
+
+                // mainActivity.test(0);
+
+                Intent intent = new Intent(ModifyActivity.this, MainActivity.class);
+                intent.putExtra("modify", 1);
+                startActivity(intent);
+            }
+
+
+        });
+    }
+
+
+    //파일과 함께 보내는 메소드
+    public void filesubmit(MemberVO vo) {
+        RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), new File(imgFilePath)); //MediaType은 무슨타입인지 지정, 스트링형태의 파일패스
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "profile.png", fileBody);
+
+        //데이터를 보내는거
+        RequestBody data = RequestBody.create( MediaType.parse("multipart/form-data"), new Gson().toJson(vo));
+        ApiInterface apiInterface = ApiClient.getApiclient().create(ApiInterface.class);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                apiInterface.sendModify( data , filePart ).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                        Log.d("반응", "onResponse: " + response);
+                        Intent intent = new Intent(ModifyActivity.this, MainActivity.class);
+                        intent.putExtra("modify", 1);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                    }
+                });
+            }
+        }).start();
+    }
+
+
+    public void newfile(MemberVO vo) {
+
+    }
+
+
+
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.modify_image){
-
             showDialog();
+           // dialog.dismiss();
         }
     }
+
+
 
     //jk가 한거
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        dialog.dismiss();
+        /*if(dialog_item != null){
+           dialog.dismiss();
+
+        }*/
+
         if(requestCode == LOAD_IMG && resultCode == RESULT_OK) {
 
             Log.d("갤러리", "onActivityResult: "+ data.getData());
@@ -203,27 +278,12 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
             imgFilePath = getRealPath(data.getData());
             Glide.with(ModifyActivity.this).load(imgFilePath).into(modify_image);
 
-            //MultiPart 형태로 전송 ~ File ~
-            RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), new File(imgFilePath));
-            MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "modify.png", fileBody);
-            ApiInterface apiInterface = ApiClient.getApiclient().create(ApiInterface.class);
-            apiInterface.sendFile(filePart).enqueue(new Callback<String>() {
-                @Override
-                public void onResponse(Call<String> call, Response<String> response) {
 
-                }
-
-                @Override
-                public void onFailure(Call<String> call, Throwable t) {
-
-                }
-            });
-
-        }else if (requestCode == CAMERA_CODE && resultCode == RESULT_OK) {
+        }else if (requestCode == CAMERA_CODE && resultCode == RESULT_OK){
 
             Glide.with(ModifyActivity.this).load(imgFilePath).into(modify_image); //붙여주는 처리
             RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), new File(imgFilePath));
-            MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "modify.png", fileBody);
+            MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
             ApiInterface apiInterface = ApiClient.getApiclient().create(ApiInterface.class);
             apiInterface.sendFile(filePart).enqueue(new Callback<String>() {
                 @Override
@@ -252,9 +312,7 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-
-
-    String[] dialog_item = {"카메라", "갤러리"};
+    String[] dialog_item = {"카메라", "갤러리", "기본이미지"};
     public final int LOAD_IMG = 1000;
     public final int CAMERA_CODE = 1001;
 
@@ -284,9 +342,7 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
                                 startActivityForResult(pickIntent, CAMERA_CODE );
                             }
 
-
-
-                        }else {
+                        }else if(dialog_item[i].equals("갤러리")) {
                             Log.d("다이얼로그", "onClick: 갤러리 " + i);
                             Intent intent = new Intent();
                             intent.setType("image/*");
@@ -294,6 +350,10 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
                             startActivityForResult(
                                     Intent.createChooser(intent, "Select Picture"), LOAD_IMG
                             );
+                        }else if (dialog_item[i].equals("기본이미지")){
+                           Glide.with(ModifyActivity.this).load(R.drawable.profile_image).into(modify_image);
+
+
                         }
                     }
                 });
@@ -302,7 +362,6 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
         dialog.show();
 
     }//showDialog
-
 
     public String imgFilePath;
 
@@ -321,10 +380,6 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
         imgFilePath = rtnFile.getAbsolutePath();
         return  rtnFile;
     }
-
-
-
-
 
     public String getRealPath(Uri contentUri) {
         String res = null;
@@ -384,5 +439,4 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
         }
 
     }
-
 }

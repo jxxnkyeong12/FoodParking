@@ -1,49 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".list.ListActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".list.ListActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/list_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가게 목록"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchview"
-            android:layout_weight="9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:queryHint="검색어를 입력하세요"
-            android:background="#D1D1D1" />
-
-
-        <TextView
-            android:id="@+id/tv_search_cancel"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:visibility="gone"
-            android:text="취소" />
-
-
-
-    </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,40 +45,37 @@
             <Button
                 android:layout_width="60dp"
                 android:layout_height="35dp"
+                android:layout_marginRight="8dp"
+                android:backgroundTint="#d9d9d9"
+                android:padding="0dp"
+                android:paddingHorizontal="10dp"
                 android:text="전체"
-                android:padding="0dp"
                 android:textColor="@color/black"
-                android:textSize="11dp"
-                android:paddingHorizontal="10dp"
-                android:backgroundTint="#d9d9d9"
-                android:layout_marginRight="8dp"
-                />
+                android:textSize="11dp" />
 
             <Button
                 android:layout_width="70dp"
                 android:layout_height="35dp"
+                android:layout_marginRight="8dp"
+                android:backgroundTint="#d9d9d9"
+                android:padding="0dp"
+                android:paddingHorizontal="10dp"
                 android:text="포장하기"
-                android:padding="0dp"
                 android:textColor="@color/black"
-                android:textSize="11dp"
-                android:paddingHorizontal="10dp"
-                android:backgroundTint="#d9d9d9"
-                android:layout_marginRight="8dp"
-                />
+                android:textSize="11dp" />
 
 
             <Button
                 android:layout_width="70dp"
                 android:layout_height="35dp"
-                android:text="즉시예약"
+                android:backgroundTint="#d9d9d9"
                 android:padding="0dp"
+                android:paddingHorizontal="10dp"
+                android:text="즉시예약"
                 android:textColor="@color/black"
                 android:textSize="11dp"
-                android:paddingHorizontal="10dp"
-                android:backgroundTint="#d9d9d9"
 
                 />
-
 
 
         </LinearLayout>
@@ -97,8 +85,8 @@
             android:id="@+id/layout_category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recv_list"

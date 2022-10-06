@@ -7,6 +7,10 @@ public class StoreMenuDTO implements Serializable {
     private String menu_image, menu_name;
 
 
+
+
+
+
     public int getMenu_id() {
         return menu_id;
     }

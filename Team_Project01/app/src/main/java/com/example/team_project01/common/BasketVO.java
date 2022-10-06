@@ -3,16 +3,33 @@ package com.example.team_project01.common;
 import java.io.Serializable;
 
 public class BasketVO implements Serializable {
-    private int category_code, store_code, id, menu_cnt, menu_code, menu_price;
+    private int category_code, store_code, id, menu_cnt, menu_code, menu_price, menu_id, total_price;
+    private String menu_name, menu_image;
 
 
 
-    public int getMenu_price() {
-        return menu_price;
+    public int getTotal_price() {
+        return total_price;
     }
 
-    public void setMenu_price(int menu_price) {
-        this.menu_price = menu_price;
+    public void setTotal_price(int total_price) {
+        this.total_price = total_price;
+    }
+
+    public String getMenu_name() {
+        return menu_name;
+    }
+
+    public void setMenu_name(String menu_name) {
+        this.menu_name = menu_name;
+    }
+
+    public String getMenu_image() {
+        return menu_image;
+    }
+
+    public void setMenu_image(String menu_image) {
+        this.menu_image = menu_image;
     }
 
     public int getCategory_code() {
@@ -53,5 +70,21 @@ public class BasketVO implements Serializable {
 
     public void setMenu_code(int menu_code) {
         this.menu_code = menu_code;
+    }
+
+    public int getMenu_price() {
+        return menu_price;
+    }
+
+    public void setMenu_price(int menu_price) {
+        this.menu_price = menu_price;
+    }
+
+    public int getMenu_id() {
+        return menu_id;
+    }
+
+    public void setMenu_id(int menu_id) {
+        this.menu_id = menu_id;
     }
 }

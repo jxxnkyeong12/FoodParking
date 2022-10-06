@@ -23,36 +23,36 @@ public class OrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-            View v =  inflater.inflate(R.layout.fragment_order, container, false);
-            order = v.findViewById(R.id.order);
+        View v =  inflater.inflate(R.layout.fragment_order, container, false);
+        order = v.findViewById(R.id.order);
         order_pack = v.findViewById(R.id.order_pack);
 
 
 
 
-            order.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(inflater.getContext(), ListActivity.class);
-                    //예약인지 포장인지 구분 1이면 예약
-                    basketDTO.setCategory_code(1);
-                    intent.putExtra("basketDTO", basketDTO);
-                    startActivity(intent);
+        order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(inflater.getContext(), ListActivity.class);
+                //예약인지 포장인지 구분 1이면 예약
+                basketDTO.setCategory_code(1);
+                intent.putExtra("basketDTO", basketDTO);
+                startActivity(intent);
 
-                }
-            });
+            }
+        });
 
 
-            order_pack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(inflater.getContext(), MapActivity.class);
-                    //예약인지 포장인지 구분 2이면 포장
-                    basketDTO.setCategory_code(2);
-                    intent.putExtra("basketDTO", basketDTO);
-                    startActivity(intent);
-                }
-            });
+        order_pack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(inflater.getContext(), MapActivity.class);
+                //예약인지 포장인지 구분 2이면 포장
+                basketDTO.setCategory_code(2);
+                intent.putExtra("basketDTO", basketDTO);
+                startActivity(intent);
+            }
+        });
         return v;
     }
 }

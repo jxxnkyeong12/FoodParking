@@ -1,6 +1,5 @@
 package com.example.team_project01.search;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,10 +17,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.team_project01.R;
+import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.conn.CommonAskTask;
-import com.google.android.gms.common.internal.service.Common;
+import com.example.team_project01.list.Store_infoDTO;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -34,8 +33,9 @@ public class SearchFragment extends Fragment {
     LinearLayout layout_category;
     RecyclerView recv_search;
 
-    public ArrayList<SearchDTO> searchList = new ArrayList<>();
-    public ArrayList<AndSearchVO> list = new ArrayList<>();
+
+    public ArrayList<Store_infoDTO> list = new ArrayList<>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,16 +47,6 @@ public class SearchFragment extends Fragment {
         search_listview = v.findViewById(R.id.search_listview);
         layout_category = v.findViewById(R.id.layout_category);
         recv_search = v.findViewById(R.id.recv_search);
-
-        CommonAskTask askTask = new CommonAskTask(getContext(), "andSearchList");
-        askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
-            @Override
-            public void onResult(String data, boolean isResult) {
-                list = new Gson().fromJson(data, new TypeToken<ArrayList<AndSearchVO>>(){}.getType());
-                Log.d("리스트 출력", "onResult: " + list.size());
-                //list.add(data.get)
-            }
-        });
 
         search();
         searching();
@@ -81,6 +71,15 @@ public class SearchFragment extends Fragment {
 
     //검색어 입력중
     public void searching() {
+
+        CommonAskTask askTask = new CommonAskTask(getContext(), "andSearchList");
+        askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+            @Override
+            public void onResult(String data, boolean isResult) {
+                list = new Gson().fromJson(data, new TypeToken<ArrayList<Store_infoDTO>>(){}.getType());
+            }
+        });
+
 
         searchview.setOnSearchClickListener(new View.OnClickListener() {
             @Override
@@ -107,10 +106,13 @@ public class SearchFragment extends Fragment {
 
                     @Override
                     public boolean onQueryTextChange(String newText) {
-                        ArrayList<AndSearchVO> filter = new ArrayList<>();
+
+                        ArrayList<Store_infoDTO> filter = new ArrayList<>();
                         for (int i = 0; i < list.size(); i++) {
-                            AndSearchVO vo = list.get(i);
-                            if(vo.getMenu_name().toLowerCase().contains(newText.toLowerCase())) {
+                            Store_infoDTO vo = list.get(i);
+                            vo.setStore_code(list.get(i).getStore_code());
+                            if(vo.getStore_name().toLowerCase().contains(newText.toLowerCase())) {
+
                                 filter.add(vo);
                             }
                         }
@@ -118,8 +120,11 @@ public class SearchFragment extends Fragment {
                         layout_category.setVisibility(View.GONE);
                         search_listview.setVisibility(View.VISIBLE);
 
-                        SearchAdapter adapter = new SearchAdapter(filter, getLayoutInflater(), newText);
+                        BasketVO basketDTO = (BasketVO) new Intent().getSerializableExtra("basketDTO");
+                        SearchAdapter adapter = new SearchAdapter(filter, getLayoutInflater(), newText, getContext(), basketDTO);
                         search_listview.setAdapter(adapter);
+
+
                         return false;
                     }
                 });

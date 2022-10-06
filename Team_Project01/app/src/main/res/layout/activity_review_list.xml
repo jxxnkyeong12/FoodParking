@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginSocialActivity"
+    tools:context=".common.ReviewActivity"
     android:orientation="vertical"
     >
 
@@ -16,7 +16,7 @@
         android:layout_marginTop="10dp">
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="9"
             android:layout_height="wrap_content">
             <ImageView
                 android:layout_width="20dp"
@@ -33,16 +33,9 @@
                 android:textStyle="bold"/>
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="29dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/shopping" />
 
-        <Space
-            android:layout_width="16dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.01" />
+
+
 
     </LinearLayout>
     <LinearLayout
@@ -51,13 +44,14 @@
         android:layout_marginTop="10dp"
         android:background="#EEEEEEEE"/>
 
-    <FrameLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recv_reviewlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="15dp"
         android:orientation="vertical">
 
-    </FrameLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </LinearLayout>

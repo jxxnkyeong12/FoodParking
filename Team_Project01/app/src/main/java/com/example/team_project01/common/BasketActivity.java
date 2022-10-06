@@ -6,26 +6,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.team_project01.R;
+import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.order.Order_infoVO;
 import com.example.team_project01.order.ReserveActivity;
 import com.example.team_project01.store.StoreMenuDTO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
 public class BasketActivity extends AppCompatActivity {
     RecyclerView recv_basket;
-    ImageView  bask_back;
-    TextView tv_store_name, basket_total_cnt, basket_total_price;
+    ImageView imag_plus, imag_min, bask_back;
+    TextView tv_menu_cnt, tv_store_name, basket_total_cnt, basket_total_price;
     BasketAdapter adapter;
     Button reservation;
     Order_infoVO vo;
+    ArrayList<BasketVO> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,26 +36,45 @@ public class BasketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_basket);
 
         recv_basket = findViewById(R.id.recv_basket);
+        imag_min = findViewById(R.id.imag_min);
+        imag_plus = findViewById(R.id.imag_plus);
+        tv_menu_cnt = findViewById(R.id.tv_menu_cnt);
+        reservation = findViewById(R.id.reservation);
+
         bask_back = findViewById(R.id.bask_back);
         tv_store_name = findViewById(R.id.tv_store_name);
         basket_total_cnt = findViewById(R.id.basket_total_cnt);
         basket_total_price = findViewById(R.id.basket_total_price);
-        reservation = findViewById(R.id.reservation);
-
 
         Intent intent = getIntent();
-        ArrayList<StoreMenuDTO> list = (ArrayList<StoreMenuDTO>) intent.getSerializableExtra("basketlist");
-        vo = (Order_infoVO) intent.getSerializableExtra("order_info");
-        basket_total_cnt.setText(list.size()+ "");
-        basket_total_price.setText(total_price(list) + "");
+        String store_name = intent.getStringExtra("store_name");
+
+        tv_store_name.setText(store_name);
 
 
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getLayoutInflater().getContext(), RecyclerView.VERTICAL, false);
-        adapter = new BasketAdapter(getLayoutInflater(), list, basket_total_price, basket_total_cnt);
+        CommonAskTask commonAskTask = new CommonAskTask(BasketActivity.this, "andBasketList");
+        commonAskTask.addParams("id", CommonVal.loginInfo.getId());
+        commonAskTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+            @Override
+            public void onResult(String data, boolean isResult) {
+                list = new Gson().fromJson(data,
+                        new TypeToken<ArrayList<BasketVO>>(){}.getType());
 
-        recv_basket.setLayoutManager(layoutManager);
-        recv_basket.setAdapter(adapter);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getLayoutInflater().getContext(), RecyclerView.VERTICAL, false);
+                adapter = new BasketAdapter(getLayoutInflater(),list, basket_total_price, basket_total_cnt, BasketActivity.this);
+
+
+                recv_basket.setLayoutManager(layoutManager);
+                recv_basket.setAdapter(adapter);
+            }
+        });
+
+
+
+
+
+
 
         //뒤로가기
         bask_back.setOnClickListener(new View.OnClickListener() {
@@ -67,20 +89,16 @@ public class BasketActivity extends AppCompatActivity {
         reservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<StoreMenuDTO> list1 = adapter.getlist();
-                vo.setCategory_code(2);
-                vo.setPrice(Integer.parseInt((String) basket_total_price.getText()));
-                Log.d("TAG", "onClick: " + list1.size());
+                ArrayList<BasketVO> list = adapter.getlist();
+                String total_price = adapter.getprice();
                 Intent intent1 = new Intent(BasketActivity.this, ReserveActivity.class);
-                intent1.putExtra("basketlist", list1);
-                intent1.putExtra("order_info", vo);
+                intent1.putExtra("list", list);
+                intent1.putExtra("total_price", total_price);
+                intent1.putExtra("store_name", store_name);
                 startActivity(intent1);
-                //클릭시 예약인지 포장인지 구별 1은 포장, 2는 예약
-
             }
         });
     }
-
 
 
     public int total_price(ArrayList<StoreMenuDTO> list){
@@ -92,5 +110,4 @@ public class BasketActivity extends AppCompatActivity {
 
         return total_price;
     }
-
 }

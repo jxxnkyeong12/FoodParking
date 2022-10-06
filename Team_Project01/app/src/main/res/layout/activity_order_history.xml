@@ -55,14 +55,13 @@
         android:layout_marginTop="10dp"
         android:background="#EEEEEEEE" />
 
-    <FrameLayout
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recv_order_hitory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="15dp"
-        android:orientation="vertical">
+        android:orientation="vertical"/>
 
-    </FrameLayout>
 
 
 </LinearLayout>

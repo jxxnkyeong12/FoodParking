@@ -79,7 +79,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/login_email"
+                    android:id="@+id/edt_login_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -106,7 +106,7 @@
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/login_pw"
+                    android:id="@+id/edt_login_pw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />

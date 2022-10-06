@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.airbnb.lottie.L;
 import com.example.team_project01.R;
 import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.conn.CommonAskTask;
@@ -58,6 +57,8 @@ public class LikeHistoryActivity extends AppCompatActivity {
                 like_recv.setLayoutManager(layoutManager);
                 like_recv.setAdapter(adapter);
             }
+
+
         });
     }
 }

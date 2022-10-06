@@ -22,7 +22,6 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,23 +31,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.airbnb.lottie.L;
 import com.bumptech.glide.Glide;
 import com.example.team_project01.R;
 import com.example.team_project01.conn.ApiClient;
 import com.example.team_project01.conn.ApiInterface;
 import com.example.team_project01.conn.CommonAskTask;
-import com.example.team_project01.conn.CommonConn;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
@@ -65,7 +59,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     EditText edtv_join_email, edtv_join_pw, edtv_join_pwchk, edtv_join_name, edtv_join_nickname, edtv_join_phone, edtv_join_zipcode, edtv_join_address, edtv_join_address_more;
     TextView tv_email_chk, tv_pw_chk, tv_pw_chk_chk, tv_name_chk, tv_nickname_chk, tv_phone_chk;
     AlertDialog dialog;
-    private final int SEARCH_ADDR_CODE = 1001;
+    private final int SEARCH_ADDR_CODE = 1002;
     int emailChk = 0;
 
     //비밀번호 ** 처리 --> 완료
@@ -108,6 +102,17 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
         edtv_join_zipcode.setEnabled(false);
         edtv_join_address.setEnabled(false);
+
+        //테스트중 jk
+        edtv_join_email.setText("noprofile@naver.com");
+        edtv_join_pw.setText("Wlsrud12");
+        edtv_join_pwchk.setText("Wlsrud12");
+        edtv_join_name.setText("프로필");
+        edtv_join_nickname.setText("없을거야");
+        edtv_join_phone.setText("010-1111-2222");
+        edtv_join_zipcode.setText("0000");
+        edtv_join_address.setText("서울어딘가");
+        edtv_join_address_more.setText("서울어딘가");
 
 
 
@@ -156,26 +161,28 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
             MemberVO vo = new MemberVO();
             vo.setEmail(edtv_join_email.getText().toString());
 
-            CommonConn conn = new CommonConn(JoinActivity.this, "andEmailChk");
-            conn.addParams("email", vo.getEmail());
-            conn.excuteConn(new CommonConn.ConnCallback() {
+            CommonAskTask askTask = new CommonAskTask(JoinActivity.this, "andEmailChk");
+            askTask.addParams("email", vo.getEmail());
+            askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
                 @Override
-                public void onResult(boolean isResult, String data) {
+                public void onResult(String data, boolean isResult) {
                     if(data.equals("있음")) {
                         tv_email_chk.setText("❌ 존재하는 이메일입니다.");
                         tv_email_chk.setTextColor(Color.parseColor("#FF0000"));
                         join_btn_emailUse.setEnabled(false);
                         join_btn_emailUse.setBackgroundColor(Color.parseColor("#898989"));
-                        emailChk = 1;
+                        emailChk = 0;
 
                     }else if(data.equals("없음")) {
                         join_btn_emailUse.setBackgroundColor(Color.parseColor("#F25C05"));
                         tv_email_chk.setText("✔ 사용 가능한 이메일입니다.");
                         join_btn_emailUse.setEnabled(true);
-                        emailChk = 0;
+                        emailChk =1;
 
                     }
                 }
+
+
             });
 
         }if(v.getId() == R.id.join_btn_emailUse){
@@ -192,10 +199,9 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
                 vo.setPw(edtv_join_pw.getText().toString());
                 vo.setName(edtv_join_name.getText().toString());
                 vo.setNickname(edtv_join_nickname.getText().toString());
-                //주소 추가 입력
-                vo.setAddr(edtv_join_address.getText().toString() + " " + edtv_join_address_more.getText().toString());
+                vo.setAddr(edtv_join_address.getText().toString() );
+                vo.setAddr_more(edtv_join_address_more.getText().toString());
                 vo.setPhone(edtv_join_phone.getText().toString());
-                // 우편 저장되게 추가 수정 가넝한! jk -2022/09/21
                 vo.setPost(edtv_join_zipcode.getText().toString());
                 vo.setManager("N");
                 vo.setSocial("N");
@@ -203,44 +209,56 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 //데이터 파일받은
-                RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), new File(imgFilePath)); //MediaType은 무슨타입인지 지정, 스트링형태의 파일패스
-                MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "profile.png", fileBody);
+                if(imgFilePath !=null){
+                    RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), new File(imgFilePath)); //MediaType은 무슨타입인지 지정, 스트링형태의 파일패스
+                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "profile.png", fileBody);
 
-                //데이터를 보내는거
-                RequestBody dataTest =
-                        RequestBody.create(
-                                MediaType.parse("multipart/form-data"), new Gson().toJson(vo));
-                ApiInterface apiInterface = ApiClient.getApiclient().create(ApiInterface.class);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        apiInterface.sendTest( dataTest , filePart ).enqueue(new Callback<String>() {
-                            @Override
-                            public void onResponse(Call<String> call, Response<String> response) {
-                                Log.d("반응", "onResponse: " + response);
-                            }
-
-                            @Override
-                            public void onFailure(Call<String> call, Throwable t) {
-
-                            }
-                        });
-                    }
-                }).start();
+                    //데이터를 보내는거
+                    RequestBody dataTest = RequestBody.create( MediaType.parse("multipart/form-data"), new Gson().toJson(vo));
+                    ApiInterface apiInterface = ApiClient.getApiclient().create(ApiInterface.class);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            apiInterface.sendTest( dataTest , filePart ).enqueue(new Callback<String>() {
+                                @Override
+                                public void onResponse(Call<String> call, Response<String> response) {
+                                    Log.d("반응", "onResponse: " + response);
 
 
-                CommonConn conn = new CommonConn(JoinActivity.this, "andJoin");
-                conn.addParams("vo", new Gson().toJson(vo));
-                conn.excuteConn(new CommonConn.ConnCallback() {
-                    @Override
-                    public void onResult(boolean isResult, String data) {
-                    }
-                });
+                                }
+
+                                @Override
+                                public void onFailure(Call<String> call, Throwable t) {
+
+                                }
+                            });
+                        }
+                    }).start();
+
+                }else {
+
+                    CommonAskTask askTask = new CommonAskTask(JoinActivity.this, "andJoin");
+
+                    askTask.addParams("vo", new Gson().toJson(vo));
+                    askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+                        @Override
+                        public void onResult(String data, boolean isResult) {
+
+                        }
+
+                    });
+                }
+
                 emptyChk();
             }
         }
     }
 
+    
+    
+    
+    
+    
     //09.22 hs 추가
     public void emptyChk() {
         if (edtv_join_email.getText().length() == 0) {
@@ -355,7 +373,9 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        dialog.dismiss();
+
+
+
         if(requestCode == LOAD_IMG && resultCode == RESULT_OK) {
 
             Log.d("갤러리", "onActivityResult: "+ data.getData());
@@ -395,7 +415,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-
+        dialog.dismiss();
     }
 
 

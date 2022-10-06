@@ -10,7 +10,11 @@ public class ApiClient {
 
 
 
-    private static final String BASE_URL =  "http://192.168.0.27/cteam/";
+    //집private static final String BASE_URL =  "http://192.168.35.188/cteam/";
+    //집 private static final String BASE_URL =  "http://192.168.35.60/cteam/";
+    //학원 놋북
+    private static final String BASE_URL = "http://192.168.0.27/cteam/";
+    //학원 private static final String BASE_URL =  "http://192.168.35.176/cteam/";
 
 
 

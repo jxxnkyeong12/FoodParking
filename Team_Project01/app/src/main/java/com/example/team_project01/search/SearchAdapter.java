@@ -1,5 +1,7 @@
 package com.example.team_project01.search;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Spannable;
@@ -13,20 +15,31 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.team_project01.R;
+import com.example.team_project01.common.BasketVO;
+import com.example.team_project01.conn.CommonAskTask;
+import com.example.team_project01.list.Store_infoDTO;
+import com.example.team_project01.store.StoreActivity;
+import com.example.team_project01.store.StoreMenuDTO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
 public class SearchAdapter extends BaseAdapter {
 
-    ArrayList<AndSearchVO> list;
+    ArrayList<Store_infoDTO> list;
     LayoutInflater inflater;
     String newText;
+    Context context;
+    BasketVO basketDTO;
 
-
-    public SearchAdapter(ArrayList<AndSearchVO> list, LayoutInflater inflater, String newText) {
+    public SearchAdapter(ArrayList<Store_infoDTO> list, LayoutInflater inflater, String newText, Context context, BasketVO basketDTO) {
         this.list = list;
         this.inflater = inflater;
         this.newText = newText;
+        this.context = context;
+        this.basketDTO = basketDTO;
+
     }
 
     @Override
@@ -51,7 +64,10 @@ public class SearchAdapter extends BaseAdapter {
         TextView tv_search = convertView.findViewById(R.id.tv_search);
 
         //검색어와 일치한 문자열만 색 바꾸기
-        String content = list.get(i).getMenu_name();
+
+        String content = list.get(i).getStore_name();
+
+
         SpannableString spannableString = new SpannableString(content);
 
         int begin = content.indexOf(newText);
@@ -61,6 +77,28 @@ public class SearchAdapter extends BaseAdapter {
         spannableString.setSpan(new StyleSpan(Typeface.BOLD), begin, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         tv_search.setText(spannableString);
+
+        tv_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonAskTask askTask = new CommonAskTask(context, "storeMenuList");
+                askTask.addParams("store_code", list.get(i).getStore_code());
+                askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+                    @Override
+                    public void onResult(String data, boolean isResult) {
+                        if (isResult) {
+                            ArrayList<StoreMenuDTO> list1 = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMenuDTO>>() {
+                            }.getType());
+                            Intent intent = new Intent(context, StoreActivity.class);
+                            intent.putExtra("basketDTO", basketDTO);
+                            intent.putExtra("list1", list1);
+                            intent.putExtra("vo", list.get(i));
+                            context.startActivity(intent);
+                        }
+                    }
+                });
+            }
+        });
 
         return convertView;
     }
