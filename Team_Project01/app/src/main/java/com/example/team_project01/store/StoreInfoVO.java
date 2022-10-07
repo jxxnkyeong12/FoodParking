@@ -1,15 +1,41 @@
 package com.example.team_project01.store;
 
+import java.util.List;
 
 public class StoreInfoVO {
 	 private int store_code, id, store_category, cnt;
 	 private float  star_rating, clean, taste, mood, kind;
 	 private String  store_name, store_tel, open_close, store_addr, store_comment
-			       , store_image, store_logo, nickname, content, review_content, writedate;
+			       , store_image, store_logo, nickname, content, review_content, writedate
+			       , store_logo_path;
+	 			     
+	 			     
 
 
+	public String getStore_logo_path() {
+		return store_logo_path;
+	}
 
-	public float getClean() {
+
+	public void setStore_logo_path(String store_logo_path) {
+		this.store_logo_path = store_logo_path;
+	}
+
+	//첨부파일 정보 담기
+	 private List<AndStoreInfoFileVO> logo_fileInfo;
+
+	 
+
+		public List<AndStoreInfoFileVO> getLogo_fileInfo() {
+		return logo_fileInfo;
+	}
+
+		
+	public void setLogo_fileInfo(List<AndStoreInfoFileVO> logo_fileInfo) {
+		this.logo_fileInfo = logo_fileInfo;
+	}
+
+		public float getClean() {
 		return clean;
 	}
 

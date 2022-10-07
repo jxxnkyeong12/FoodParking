@@ -142,6 +142,9 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
                 vo.setPost(edtv_modify_zipcode.getText().toString());
                 vo.setAddr_more(edtv_modify_address_more.getText().toString());
                 vo.setProfile_image(CommonVal.loginInfo.getProfile_image());
+                if( imgFilePath == null) {
+                    vo.setProfile_image("");
+                }
 
                 Glide.with(ModifyActivity.this).load(CommonVal.loginInfo.getProfile_image()).into(modify_image);
 
@@ -159,7 +162,7 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
 
                 }else {
                     //이미지가 있었는데, 없어졌을때....
-                    imgFilePath = null;
+                    //imgFilePath = null;
                     Glide.with(ModifyActivity.this).load(CommonVal.loginInfo.getProfile_image()).into(modify_image);
                     vo.setEmail(CommonVal.loginInfo.getEmail());
                     vo.setNickname(modify_nick.getText()+"");
@@ -244,17 +247,11 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    public void newfile(MemberVO vo) {
-
-    }
-
-
 
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.modify_image){
             showDialog();
-           // dialog.dismiss();
         }
     }
 
@@ -341,7 +338,7 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
                                 }
                                 startActivityForResult(pickIntent, CAMERA_CODE );
                             }
-
+                            CommonVal.loginInfo.setProfile_image(imgFilePath);
                         }else if(dialog_item[i].equals("갤러리")) {
                             Log.d("다이얼로그", "onClick: 갤러리 " + i);
                             Intent intent = new Intent();
@@ -352,7 +349,7 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
                             );
                         }else if (dialog_item[i].equals("기본이미지")){
                            Glide.with(ModifyActivity.this).load(R.drawable.profile_image).into(modify_image);
-
+                            imgFilePath = null;
 
                         }
                     }

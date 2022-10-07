@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <View
@@ -79,20 +79,17 @@
 
     <View
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:background="#EEEEEEEE"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         />
 
-<LinearLayout
-    android:layout_marginBottom="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+
     <LinearLayout
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
+        android:id="@+id/oh_review"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
@@ -108,7 +105,7 @@
             android:layout_height="wrap_content"
             android:text="리뷰쓰기"/>
     </LinearLayout>
-    </LinearLayout>
+
 
     <View
         android:background="#EEA1A1A1"

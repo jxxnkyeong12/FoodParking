@@ -299,6 +299,7 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
                     vo.setTotal_info(new Gson().toJson(list));
 
 
+
                     Intent intent1 = new Intent(ReserveActivity.this, BillActivity.class);
                     intent1.putExtra("vo", vo);
                     intent1.putExtra("store_name", store_name);

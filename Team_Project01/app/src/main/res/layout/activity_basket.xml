@@ -63,7 +63,11 @@
             android:id="@+id/basket_total_cnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:text="0"
+=======
+            android:text="2"
+>>>>>>> f1756a8478f17f15f20afb5db2e088c6ca3258e5
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -86,7 +90,11 @@
             android:id="@+id/basket_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:text="0"
+=======
+            android:text="17,000"
+>>>>>>> f1756a8478f17f15f20afb5db2e088c6ca3258e5
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -112,7 +120,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="horizontal">
-
 
 
         <Button

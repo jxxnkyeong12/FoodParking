@@ -15,6 +15,7 @@ public class Order_infoVO implements Serializable {
         this.total_info = total_info;
     }
 
+
     public String getOrder_peple() {
         return order_peple;
     }

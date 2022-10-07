@@ -48,9 +48,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/foodparking"
         android:label="푸드파킹"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/foodparking_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Team_Project01"
         android:usesCleartextTraffic="true">
@@ -63,6 +63,7 @@
         <activity
             android:name=".common.NoReviewActivity"
             android:exported="true" /> <!-- 네이버 API 키 jk 2022/09/27 -->
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="7jbtb9ge0p" />

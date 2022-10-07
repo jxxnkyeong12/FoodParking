@@ -2,6 +2,9 @@ package com.example.team_project01.home;
 
 import android.content.Context;
 import android.content.Intent;
+
+import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.team_project01.R;
 import com.example.team_project01.common.BasketVO;
+
+import com.example.team_project01.common.ReviewDetailActivity;
 import com.example.team_project01.conn.CommonAskTask;
 
 import com.example.team_project01.list.Store_infoDTO;
@@ -24,6 +29,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+
+import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
@@ -53,18 +60,20 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return list.size();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imgv_test;
+
+        ImageView imgv_logo;
         TextView tv_item_storename, tv_item_addr;
         LinearLayout linear_home;
 
         public ViewHolder(@NonNull View v) {
             super(v);
 
-            imgv_test = v.findViewById(R.id.imgv_test);
+            imgv_logo = v.findViewById(R.id.imgv_logo);
             tv_item_storename = v.findViewById(R.id.tv_item_storename);
             tv_item_addr = v.findViewById(R.id.tv_item_addr);
             linear_home = v.findViewById(R.id.linear_home);
@@ -72,10 +81,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         }
 
         public void bind(@NonNull ViewHolder h, int i) {
-            //h.imgv_test.setImageResource(Glide.get(imgv_test.getContext()))
+
+
             h.tv_item_storename.setText(list.get(i).getStore_name());
             h.tv_item_addr.setText(list.get(i).getStore_addr());
-
+            Glide.with(context).load(list.get(i).getStore_logo()).into(imgv_logo);
             h.linear_home.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

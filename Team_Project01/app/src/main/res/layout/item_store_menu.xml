@@ -13,7 +13,11 @@
         android:orientation="horizontal" >
 
         <ImageView
+<<<<<<< HEAD
             android:id="@+id/imgv_menu_image"
+=======
+            android:id="@+id/menu_image"
+>>>>>>> f1756a8478f17f15f20afb5db2e088c6ca3258e5
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/black"

@@ -16,6 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.bumptech.glide.Glide;
+
 import com.example.team_project01.R;
 import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.common.CommonVal;
@@ -64,7 +67,8 @@ public class StoreMenuAdapter extends RecyclerView.Adapter<StoreMenuAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgv_menu_image;
+
+        ImageView menu_image;
         TextView tv_menu_name, tv_menu_price, store_name1, store_name2;
         LinearLayout menu_cho;
 
@@ -72,7 +76,7 @@ public class StoreMenuAdapter extends RecyclerView.Adapter<StoreMenuAdapter.View
         public ViewHolder(@NonNull View v) {
             super(v);
 
-            imgv_menu_image = v.findViewById(R.id.imgv_menu_image);
+            menu_image = v.findViewById(R.id.menu_image);
             tv_menu_name = v.findViewById(R.id.tv_menu_name);
             tv_menu_price = v.findViewById(R.id.tv_menu_price);
             menu_cho = v.findViewById(R.id.menu_cho);
@@ -84,6 +88,8 @@ public class StoreMenuAdapter extends RecyclerView.Adapter<StoreMenuAdapter.View
         public void bind(@NonNull ViewHolder h, int pod) {
             h.tv_menu_name.setText(list.get(pod).getMenu_name());
             h.tv_menu_price.setText(list.get(pod).getPrice() + "");
+            Glide.with(activity).load(list.get(pod).getMenu_image()).into(menu_image);
+
 
 
             //메뉴 클릭시 다이얼로그 뛰우기

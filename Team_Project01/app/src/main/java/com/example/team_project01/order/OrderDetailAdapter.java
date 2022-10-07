@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.team_project01.R;
+import com.example.team_project01.common.BasketAdapter;
+
 import com.example.team_project01.common.BasketVO;
 
 import java.util.ArrayList;
@@ -51,9 +53,11 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         }
         public void bind(@NonNull ViewHolder holder, int i){
             menu_name.setText(list.get(i).getMenu_name() + "");
+
             menu_cnt.setText(list.get(i).getMenu_cnt() + "개");
             menu_price.setText(list.get(i).getMenu_price() + "원");
         }
     }
+
 
 }

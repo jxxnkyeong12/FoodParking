@@ -37,9 +37,6 @@ public class MyinfoFragment extends Fragment implements View.OnClickListener {
     Intent intent;
     TextView myinfo_nickname, myinfo_email, btn_no, btn_cancel, di_title,di_content ;
     View myinfo_view;
-    MainActivity mainActivity;
-
-
 
 
     //로그아웃 처리하기.- 완 jk 다이얼로그도 띄워짐

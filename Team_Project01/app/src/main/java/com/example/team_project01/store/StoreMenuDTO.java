@@ -4,11 +4,16 @@ import java.io.Serializable;
 
 public class StoreMenuDTO implements Serializable {
     private int menu_id, store_code, menu_code, price;
-    private String menu_image, menu_name;
 
+    private String menu_image, menu_name, store_image;
 
+    public String getStore_image() {
+        return store_image;
+    }
 
-
+    public void setStore_image(String store_image) {
+        this.store_image = store_image;
+    }
 
 
     public int getMenu_id() {

@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.team_project01.common.BasketVO;
+
 import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.common.MapActivity;
 import com.example.team_project01.conn.CommonAskTask;
@@ -35,12 +37,12 @@ import com.luseen.spacenavigation.SpaceOnClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
-
     LinearLayout home_map;
     FrameLayout container;
     SpaceNavigationView bottom_nav;
     TextView tv_home_address;
     Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +67,22 @@ public class MainActivity extends AppCompatActivity {
         bottom_nav.requestLayout();
 
         //어플 메인화면
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment(MainActivity.this, MainActivity.this)).commit();
 
-        //상단 지도 눌렀을 때
+        home_map.setVisibility(View.VISIBLE);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+
+        //상단 지도 주소 설정
+        Intent intent = getIntent();
+        String address = (String) intent.getSerializableExtra("addr");
+
+        if(CommonVal.loginInfo != null)  {
+            tv_home_address.setText(CommonVal.loginInfo.getAddr());
+
+            if(address != null) {
+                tv_home_address.setText(address);
+            }
+        }
+
         home_map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         //하단네비바 클릭시
@@ -89,12 +103,16 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(int itemIndex, String itemName) {
                 if(itemIndex == 0) {
                     home_map.setVisibility(View.VISIBLE);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment(MainActivity.this, MainActivity.this)).commit();
+<
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
                 }else if(itemIndex == 1) {
+                    home_map.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new SearchFragment()).commit();
                 }else if(itemIndex == 2) {
+                    home_map.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new MyinfoFragment()).commit();
                 }else {
+                    home_map.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new MoreFragment()).commit();
                 }
             }
@@ -102,18 +120,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemReselected(int itemIndex, String itemName) {
                 if(itemIndex == 0) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment(MainActivity.this, MainActivity.this)).commit();
+                    home_map.setVisibility(View.VISIBLE);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
                 }else if(itemIndex == 1) {
+                    home_map.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new SearchFragment()).commit();
                 }else if(itemIndex == 2) {
-
+                    home_map.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new MyinfoFragment()).commit();
                 }else {
+                    home_map.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new MoreFragment()).commit();
                 }
             }
         });
-
 
 
         //내정보 modifyActivity에서 변경된 정보를 다시 로그인 정보에 담기 - jk 2022/10/01
@@ -130,16 +150,8 @@ public class MainActivity extends AppCompatActivity {
                     }
 
             });
-
         }
-
-
-
-
     }
-
-
-
 
     @Override
     protected  void onSaveInstanceState( Bundle outState) {

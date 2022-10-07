@@ -2,31 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.team_project01">
 
-
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-
-    <uses-feature android:name="android.hardware.camera2"
-        android:required="true"/>
-
-    <!--갤러리 카메라, 앨범 저장 jk 2022/09/26-->
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" /> <!-- 갤러리 카메라, 앨범 저장 jk 2022/09/26 -->
     <queries>
+
         <!-- WebView -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <category android:name="android.intent.category.BROWSABLE" />
+
             <data android:scheme="http" />
         </intent>
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <category android:name="android.intent.category.BROWSABLE" />
+
             <data android:scheme="https" />
         </intent>
         <!-- Camera -->
@@ -41,35 +42,39 @@
         <intent>
             <action android:name="android.media.browse.MediaBrowserService" />
         </intent>
-    </queries>
-
-
-    <!--네이버맵 지도 API 내 위치 설정 jk 2022/9/22-->
+    </queries> <!-- 네이버맵 지도 API 내 위치 설정 jk 2022/9/22 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-
-
-
-    <!--네이버맵 지도 API 내 위치 설정 jk 2022/9/22-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-
-
 
     <application
-
         android:allowBackup="true"
+<<<<<<< HEAD
         android:icon="@mipmap/ic_launcher"
         android:label="푸드파킹"
         android:roundIcon="@mipmap/ic_launcher_round"
+=======
+        android:icon="@mipmap/foodparking"
+        android:label="푸드파킹"
+        android:roundIcon="@mipmap/foodparking_round"
+>>>>>>> f1756a8478f17f15f20afb5db2e088c6ca3258e5
         android:supportsRtl="true"
-
         android:theme="@style/Theme.Team_Project01"
         android:usesCleartextTraffic="true">
-
-        <!--네이버 API 키 jk 2022/09/27-->
+        <activity
+<<<<<<< HEAD
+            android:name=".order.ManagerOrderDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".common.ReviewDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".common.NoReviewActivity"
+            android:exported="true" /> <!-- 네이버 API 키 jk 2022/09/27 -->
+=======
+            android:name=".common.ReviewDetailActivity"
+            android:exported="true" />
+        <!-- 네이버 API 키 jk 2022/09/27 -->
+>>>>>>> f1756a8478f17f15f20afb5db2e088c6ca3258e5
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="7jbtb9ge0p" />
@@ -90,7 +95,7 @@
             android:name=".login.JoinActivity"
             android:exported="true" />
         <activity
-            android:name=".myinfo.modify.ModifyActivity"
+            android:name=".myinfo.ModifyActivity"
             android:exported="true" />
         <activity
             android:name=".login.LoginSocialActivity"
@@ -113,7 +118,6 @@
         <activity
             android:name=".common.MapActivity"
             android:exported="true" />
-
         <activity
             android:name=".order.BillActivity"
             android:exported="true" />
@@ -155,39 +159,16 @@
                     android:host="oauth"
                     android:scheme="kakao1c40100fd84e7b943cf17cb4ec9b7413" />
             </intent-filter>
-
-<<<<<<< HEAD
-
-
-        </activity>
-
-        <!--파일경로 jk 2022/09/26-->
+        </activity> <!-- 파일경로 jk 2022/09/26 -->
         <provider
-            android:authorities="${applicationId}.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true"
-            >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path"
-                />
-
-
+                android:resource="@xml/file_path" />
         </provider>
-
-=======
-            <!--네이버 지도 API jk 2022/9/22-->
-            <meta-data
-                android:name="com.naver.maps.map.CLIENT_ID"
-                android:value="7jbtb9ge0p" />
-          <!--  <meta-data
-                android:name="com.naver.maps.map.CLIENT_TYPE"
-                android:value="gov" />-->
-
-        </activity>
-
->>>>>>> 1eb25d5da661d8ca699fff27629321ad92e042f7
     </application>
 
 </manifest>

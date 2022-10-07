@@ -3,10 +3,8 @@ package com.example.team_project01.myinfo;
 public class OrderHistoryVO {
 
 	private String menu_image, store_name, menu_name;
-	private int  price , total_price;
-	
-	
-	
+	private int   price, menu_cnt, order_state;
+
 	public String getMenu_image() {
 		return menu_image;
 	}
@@ -31,12 +29,21 @@ public class OrderHistoryVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getTotal_price() {
-		return total_price;
+
+	public int getMenu_cnt() {
+		return menu_cnt;
 	}
-	public void setTotal_price(int total_price) {
-		this.total_price = total_price;
+	public void setMenu_cnt(int menu_cnt) {
+		this.menu_cnt = menu_cnt;
 	}
+	public int getOrder_state() {
+		return order_state;
+	}
+	public void setOrder_state(int order_state) {
+		this.order_state = order_state;
+	}
+	
+
 	
 	
 	

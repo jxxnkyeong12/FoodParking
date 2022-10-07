@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 import com.example.team_project01.R;
 import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.common.BasketActivity;
@@ -25,6 +26,7 @@ import com.example.team_project01.common.MapActivity;
 import com.example.team_project01.common.ReviewDetailActivity;
 import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.list.Store_infoDTO;
+import com.example.team_project01.myinfo.MyinfoFragment;
 import com.example.team_project01.order.Order_infoVO;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -42,7 +44,8 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
     TextView store_tv_spinner, store_name1,store_name2,tv_store_location
             , store_score1, store_score2, store_score3,store_score4, store_total, store_cnt
             , store_total_tv1;
-    ImageView store_imgv_back, store_imgv_favEmp, store_imgv_favFill, store_basket;
+
+    ImageView imgv_menu_image, store_imgv_back, store_imgv_favEmp, store_imgv_favFill, store_basket;
     RatingBar store_rattotal;
     ProgressBar progressbar1, progressbar2, progressbar3, progressbar4;
 
@@ -55,6 +58,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_store);
 
         tab_store = findViewById(R.id.tab_store);
+        imgv_menu_image = findViewById(R.id.imgv_menu_image);
         recv_store_menu = findViewById(R.id.recv_store_menu);
         layout_store_info = findViewById(R.id.layout_store_info);
         layout_store_tab_info = findViewById(R.id.layout_store_tab_info);
@@ -91,9 +95,15 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         recv_store_review.setOnClickListener(this);
         tv_store_location.setOnClickListener(this);
 
+
+
+
+
         Intent intent = getIntent();
         BasketVO basketDTO = (BasketVO) intent.getSerializableExtra("basketDTO");
         ArrayList<StoreMenuDTO> list = (ArrayList<StoreMenuDTO>) intent.getSerializableExtra("list1");
+        Glide.with(StoreActivity.this).load(list.get(0).getStore_image()).into(imgv_menu_image);
+
 
         //가게정보
         Store_infoDTO dto = (Store_infoDTO) intent.getSerializableExtra("vo");

@@ -1,5 +1,6 @@
 package com.example.team_project01.home;
 
+
 import static android.content.Context.ALARM_SERVICE;
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -17,13 +18,20 @@ import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+
+import android.content.Intent;
+import android.location.Address;
+import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+
 import android.os.Handler;
 import android.provider.Settings;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,19 +41,25 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.team_project01.MainActivity;
+
 import com.example.team_project01.R;
 import com.example.team_project01.common.BasketActivity;
 import com.example.team_project01.common.BasketVO;
 import com.example.team_project01.common.CommonVal;
 import com.example.team_project01.common.MapActivity;
 
+
+import com.example.team_project01.common.ReviewVO;
+
 import com.example.team_project01.conn.CommonAskTask;
 import com.example.team_project01.list.Store_infoDTO;
 import com.example.team_project01.login.LoginActivity;
 import com.example.team_project01.login.LoginSocialActivity;
+
 import com.example.team_project01.order.ManagerOrderDetailActivity;
 import com.example.team_project01.order.OrderDetailActivity;
 import com.example.team_project01.order.Order_infoVO;
+
 import com.google.android.gms.common.internal.service.Common;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -70,6 +84,7 @@ public class HomeFragment extends Fragment {
     PendingIntent intent;
 
     TextView tv_home_address, home_tv_name;
+
     ViewPager2 pager2;
     SpringDotsIndicator indicator;
     LinearLayout home_map;
@@ -84,6 +99,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+
         tv_home_address = v.findViewById(R.id.tv_home_address);
         home_tv_name = v.findViewById(R.id.home_tv_name);
         pager2 = v.findViewById(R.id.pager2);
@@ -115,6 +131,7 @@ public class HomeFragment extends Fragment {
             });
 
         } else if (CommonVal.loginInfo != null) {  //로그인 했을 경우
+
             CommonAskTask askTask = new CommonAskTask(context, "andOrder_info_list");
             askTask.addParams("id", CommonVal.loginInfo.getId());
             askTask.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
@@ -133,6 +150,7 @@ public class HomeFragment extends Fragment {
             });
 
 
+
             if (CommonVal.loginInfo.getNickname().isEmpty()) {
                 home_tv_name.setText(CommonVal.loginInfo.getName().toString() + " 님 안녕하세요!");
             } else {
@@ -146,6 +164,7 @@ public class HomeFragment extends Fragment {
             public void onResult(String data, boolean isResult) {
                 ArrayList<Store_infoDTO> list = new Gson().fromJson(data, new TypeToken<ArrayList<Store_infoDTO>>() {
                 }.getType());
+
                 for (int i = 0; i < list.size(); i++) {
                     Collections.shuffle(list);
                     BasketVO basketDTO = (BasketVO) new Intent().getSerializableExtra("basketDTO");
@@ -156,6 +175,23 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+
+        CommonAskTask askTask_review = new CommonAskTask(getContext(), "andReviewAsc");
+        askTask_review.excuteAsk(new CommonAskTask.AsynckTaskCallBack() {
+            @Override
+            public void onResult(String data, boolean isResult) {
+                ArrayList<Store_infoDTO> list = new Gson().fromJson(data, new TypeToken<ArrayList<Store_infoDTO>>(){}.getType());
+                for (int i = 0; i < list.size(); i++) {
+                    BasketVO basketDTO = (BasketVO) new Intent().getSerializableExtra("basketDTO");
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+                    HomeAdapter adapter = new HomeAdapter(basketDTO, getContext(), list, inflater);
+                    home_recv2.setLayoutManager(layoutManager);
+                    home_recv2.setAdapter(adapter);
+                }
+            }
+        });
+
 
         autoSlide();
 
@@ -169,8 +205,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void run() {
                 for (int i = 0; i < img_list.size(); i++) {
+
                     if (auto) {
                         final int value = i;
+
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -179,13 +217,17 @@ public class HomeFragment extends Fragment {
                         });
                         try {
                             Thread.sleep(4000);
+
                             if (i == img_list.size() - 1) {
+
                                 i = -1; //0이 되면! for문 위쪽으로가서 증감식을 타고 1부터 동작함.
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+
                     } else {
+
                         break;
                     }
 
@@ -200,6 +242,7 @@ public class HomeFragment extends Fragment {
         super.onDestroy();
         auto = false;
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void getOrder(ArrayList<Order_infoVO> list, int i) {
@@ -230,6 +273,7 @@ public class HomeFragment extends Fragment {
             }
         }, 5000);
     }
+
 
 
 }

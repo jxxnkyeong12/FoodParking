@@ -224,7 +224,6 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
                                 public void onResponse(Call<String> call, Response<String> response) {
                                     Log.d("반응", "onResponse: " + response);
 
-
                                 }
 
                                 @Override
@@ -254,11 +253,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    
-    
-    
-    
-    
+
     //09.22 hs 추가
     public void emptyChk() {
         if (edtv_join_email.getText().length() == 0) {
@@ -347,7 +342,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
             if (!Pattern.matches(nickname, edtv_join_nickname.getText().toString())) {
                 tv_nickname_chk.setVisibility(View.VISIBLE);
                 tv_nickname_chk.setText("한글 초성과 모음은 허락하지 않습니다.");
-                tv_nickname_chk.setTextColor(Color.parseColor("#FF0000"));
+                tv_nickname_chk.setTextColor(Color.parseColor("#E5CD02"));
             } else if (Pattern.matches(nickname, edtv_join_nickname.getText().toString())) {
                 tv_nickname_chk.setText("사용 가능한 닉네임입니다.");
                 tv_nickname_chk.setTextColor(Color.parseColor("#008EFF"));

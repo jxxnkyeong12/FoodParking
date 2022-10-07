@@ -7,7 +7,6 @@ public class BasketVO implements Serializable {
     private String menu_name, menu_image;
 
 
-
     public int getTotal_price() {
         return total_price;
     }

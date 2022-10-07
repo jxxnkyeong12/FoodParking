@@ -37,9 +37,14 @@ public interface ApiInterface {
 
     @POST("andInsert")
     @Multipart
-    Call<String> sendTest(@Part("vo") RequestBody data , @Part MultipartBody.Part file); //@FieldMap 접속 되고 추가  파일만 보낼때
+    Call<String> sendTest(@Part("vo") RequestBody data , @Part MultipartBody.Part file);
 
     @POST("andModify")
     @Multipart
-    Call<String> sendModify(@Part("vo") RequestBody data , @Part MultipartBody.Part file); //@FieldMap 접속 되고 추가  파일만 보낼때
+    Call<String> sendModify(@Part("vo") RequestBody data , @Part MultipartBody.Part file);
+
+    @POST("andReviewUpdate")
+    @Multipart
+    Call<String> sendReviewDetailUpdate(@Part("vo") RequestBody data , @Part MultipartBody.Part file);
+
 }

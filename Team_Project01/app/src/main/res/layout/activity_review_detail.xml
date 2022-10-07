@@ -156,7 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="상품평을 입력해주세요(최소10자 이상)"
+                    android:text="상품평을 입력해주세요(최소10자 이상)"
                     android:padding="10dp" />
 
             </LinearLayout>
@@ -181,7 +181,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/rv_dt_cancle"
+            android:id="@+id/rview_dt_cancle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
@@ -191,7 +191,7 @@
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/rv_dt_update"
+            android:id="@+id/review_dt_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

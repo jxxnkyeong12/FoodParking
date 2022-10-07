@@ -19,6 +19,7 @@
             android:layout_weight="9"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/review_back"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_margin="10dp"
@@ -47,11 +48,30 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recv_reviewlist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:orientation="vertical">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:id="@+id/review_noreview"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="남기신 리뷰가 없습니다"
+            />
+
+    </LinearLayout>
 
 
 </LinearLayout>
