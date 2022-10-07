@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".store.StoreActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="17dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/store_imgv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/store_name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="황남비빔밥"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/store_basket"
+            android:layout_width="29dp"
+            android:layout_height="25dp"
+            android:src="@drawable/shopping"
+            android:gravity="right"/>
+
+    </LinearLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgv_menu_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/black" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/orange"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/black">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="메뉴" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="정보" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="리뷰" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:id="@+id/layout_store_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/store_name2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="황남비빔밥"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_share" />
+
+                    <ImageView
+                        android:id="@+id/store_imgv_favEmp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_favorite_empty"
+                        android:backgroundTint="@color/gray"
+                        android:clickable="true"/>
+                    <ImageView
+                        android:id="@+id/store_imgv_favFill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_favorite_fill"
+                        android:backgroundTint="@color/orange"
+                        android:visibility="gone"
+                        android:clickable="true"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_star" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2.5"
+                        android:layout_gravity="center"
+                        android:id="@+id/store_total_tv1"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(300+)"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_store_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:text="지도보기  >"/>
+
+                </LinearLayout>
+
+
+                <!-- 메뉴 탭 -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_weight="9"
+                    android:id="@+id/recv_store_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"/>
+
+                <!-- 정보 탭 -->
+                <LinearLayout
+                    android:id="@+id/layout_store_tab_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="기본 정보"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="3">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="영업시간"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="전화번호"
+                                android:textSize="15dp"
+                                android:layout_marginVertical="5dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="최소 예약금액"
+                                android:textSize="15dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="8"
+                            android:layout_marginLeft="15dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="10시 ~ 22시 (일요일 휴무)"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="062-123-1234"
+                                android:textSize="15dp"
+                                android:layout_marginVertical="5dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="3000원"
+                                android:textSize="15dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="편의시설"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="무료 와이파이"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="유아용 놀이터"
+                        android:textSize="15dp"
+                        android:layout_marginVertical="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="무선 인터넷"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <!-- 리뷰 탭 -->
+                <LinearLayout
+                    android:id="@+id/layout_store_tab_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone">
+
+                    <!-- 평균 카드뷰 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="5dp"
+                        app:cardCornerRadius="5dp"
+                        android:layout_margin="5dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="전체 평점"
+                                    android:textSize="18dp"
+                                    android:textColor="@color/black"/>
+
+                                <TextView
+                                    android:id="@+id/store_total"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="4.4"
+                                    android:textSize="40dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    android:layout_gravity="center"/>
+
+                                <RatingBar
+                                    android:id="@+id/store_rattotal"
+                                    android:progressTint="#FFC107"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    style="@style/Widget.AppCompat.RatingBar.Small"
+                                    android:layout_marginTop="5dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="20dp"
+                                android:layout_gravity="center">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="음식맛"
+                                        android:textSize="13dp" />
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="분위기"
+                                        android:textSize="13dp"
+                                        android:layout_marginVertical="5dp"/>
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="친절도"
+                                        android:textSize="13dp"
+                                        android:layout_marginBottom="5dp"/>
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="청결상태"
+                                        android:textSize="13dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_gravity="center">
+
+                                    <ProgressBar
+                                        android:id="@+id/progressbar1"
+                                        android:layout_weight="8"
+                                        android:layout_width="100dp"
+                                        android:layout_height="wrap_content"
+                                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                        android:progress="78"
+                                        android:max="5"
+                                        android:progressTint="@color/orange"
+                                        android:layout_marginHorizontal="15dp"/>
+
+                                    <ProgressBar
+                                        android:id="@+id/progressbar2"
+                                        android:layout_weight="8"
+                                        android:layout_width="100dp"
+                                        android:layout_height="wrap_content"
+                                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                        android:progress="78"
+                                        android:max="5"
+                                        android:progressTint="@color/orange"
+                                        android:layout_marginHorizontal="15dp"
+                                        android:layout_marginVertical="8dp"/>
+
+                                    <ProgressBar
+                                        android:id="@+id/progressbar3"
+                                        android:layout_weight="8"
+                                        android:layout_width="100dp"
+                                        android:layout_height="wrap_content"
+                                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                        android:progress="78"
+                                        android:max="5"
+                                        android:progressTint="@color/orange"
+                                        android:layout_marginHorizontal="15dp"
+                                        android:layout_marginBottom="8dp"/>
+
+                                    <ProgressBar
+                                        android:id="@+id/progressbar4"
+                                        android:layout_weight="8"
+                                        android:layout_width="100dp"
+                                        android:layout_height="wrap_content"
+                                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                        android:progress="78"
+                                        android:max="5"
+                                        android:progressTint="@color/orange"
+                                        android:layout_marginHorizontal="15dp"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/store_score1"
+                                        android:layout_weight="1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="4.3점"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"/>
+
+                                    <TextView
+                                        android:id="@+id/store_score2"
+                                        android:layout_weight="1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="4.3점"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"
+                                        android:layout_marginVertical="5dp"/>
+
+                                    <TextView
+                                        android:id="@+id/store_score3"
+                                        android:layout_weight="1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="4.3점"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"
+                                        android:layout_marginBottom="5dp"/>
+
+                                    <TextView
+                                        android:id="@+id/store_score4"
+                                        android:layout_weight="1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="4.3점"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/store_cnt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="리뷰 1건"
+                            android:textStyle="bold"
+                            android:textSize="15dp"
+                            android:textColor="@color/black" />
+
+                        <Spinner
+                            android:id="@+id/store_spinner"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="20dp"
+                            android:theme="@style/spinner"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:backgroundTint="@color/gray"/>
+
+                        <TextView
+                            android:id="@+id/store_tv_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="최신순"
+                            android:textSize="13dp"
+                            app:layout_constraintBottom_toTopOf="@id/store_spinner"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_weight="2"/>
+
+
+
+                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recv_store_review"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        />
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
