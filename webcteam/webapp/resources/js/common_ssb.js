@@ -101,7 +101,6 @@
       $('#preview').html(''); //보여지고 있는 이미지태그 없애기
    });
    
-   
 });
 
 function loading(is){
@@ -202,6 +201,7 @@ function emptyCheck(){
    });
    return ok;
 }
+
 
 
 

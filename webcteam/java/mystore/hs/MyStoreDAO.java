@@ -35,4 +35,5 @@ public class MyStoreDAO {
 	public int image_update(StoreFileInfoVO image) {
 		return sql.update("mystore.image_update", image);
 	}
+
 }

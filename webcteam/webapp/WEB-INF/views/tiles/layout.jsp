@@ -8,11 +8,13 @@
 	<c:when test="${category eq 'in'}"><c:set var='title' value='- 소개'/></c:when>
 	<c:when test="${category eq 'en'}"><c:set var='title' value='- 입점신청양식'/></c:when>
 
+
 	<c:when test="${category eq 'no'}"><c:set var='title' value='- 공지/이벤트'/></c:when>
 	<c:when test="${category eq 'bo'}"><c:set var='title' value='- 푸드 소식'/></c:when>
 	<c:when test="${category eq 'da'}"><c:set var='title' value='- 이건 뭐할까'/></c:when>
 	<c:when test="${category eq 'st'}"><c:set var='title' value='- 나의 가게'/></c:when>
 	<c:when test="${category eq 'ho'}"><c:set var='title' value='- 가게'/></c:when>
+
 
 
 </c:choose>
@@ -22,7 +24,6 @@
 <head>
 <meta charset="UTF-8">
 <title>푸드 파킹 ${title}</title>
-
 <!-- 우리꺼 아이콘 -->
 <link rel="icon" type = 'image/x-icon' href="images/icon.png">
 
