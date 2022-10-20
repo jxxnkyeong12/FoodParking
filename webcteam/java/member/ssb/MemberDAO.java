@@ -64,7 +64,7 @@ public class MemberDAO {
 	public String member_salt(String email) {
 		return sql.selectOne("member.salt", email);
 	}
-	
+
 
 	
 }

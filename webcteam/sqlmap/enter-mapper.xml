@@ -64,9 +64,10 @@ where enter_status = 1
 <!-- 입점신청서 insert jk -->
 <insert id="insert">
 insert into entering (b_num, store_addr, b_name, b_phone, b_enter_copy, b_enter_copy2
-					  ,	store_name, enter_status, id )
+					  ,	store_name, store_addr_more,post, enter_status, id )
 values (#{b_num}, #{store_addr},#{b_name}, #{b_phone}
-	     , #{b_enter_copy}, #{b_enter_copy2}, #{store_name}, '1', 1)
+	     , #{b_enter_copy}, #{b_enter_copy2}, #{store_name}, #{store_addr_more}, #{post}, '1', #{id})
+
 
 </insert>
 
@@ -74,8 +75,6 @@ values (#{b_num}, #{store_addr},#{b_name}, #{b_phone}
 <select id="b_num_check" resultType="integer">
 select count(*) from B_NUM_CHK where b_num = #{b_num}
 </select>
-
-
 
 
 </mapper>

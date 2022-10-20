@@ -2,6 +2,7 @@ package common;
 
 import java.io.BufferedReader;
 import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -19,6 +20,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.mail.HtmlEmail;
 import org.json.simple.JSONObject;
 import org.springframework.util.FileCopyUtils;
+
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
+import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -119,6 +128,7 @@ public class CommonService {
 			
 	}
 	
+
 	//첨부파일 다운로드
 		public void fileDownload(String filename, String filepath
 								, HttpServletResponse response
@@ -150,7 +160,7 @@ public class CommonService {
 			//BufferedReader ( new FileReader )
 		}
 	
-	
+
 	
 	//첨부파일 업로드 -jk
 	public String fileUpload(String category, MultipartFile file, HttpServletRequest request ) {
@@ -260,5 +270,32 @@ public class CommonService {
 			return pw;
 		}
 		
+
+	//첨부파일 업로드 -jk
+	public String fileUploadhw(String category, MultipartFile file, HttpServletRequest request ) {
+ 
+		String path = "////301-12" + request.getContextPath(); 
+		String upload = "/upload/" + category ;
+						
 	
+		path +=upload;
+		
+		//해당 경로 폴더가 없으면 만든다
+		File folder = new File(path);
+		if(!folder.exists()) folder.mkdirs(); 
+	    	String uuid	 = "_" + file.getOriginalFilename();
+		
+		try {
+			file.transferTo(new File(path, uuid ));
+		} catch (Exception e) {
+			
+			
+		}
+		return upload + "/" + uuid;
+	}
+	
+
+	
+	
+
 }

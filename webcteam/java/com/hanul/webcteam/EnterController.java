@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.web.multipart.MultipartRequest;
+
 import common.CommonService;
 import enter.jk.EnterDAO;
 import enter.jk.EnterVO;
@@ -38,13 +40,18 @@ public class EnterController {
 	
 	//입점신청 insert해주기- jk
 	@RequestMapping("/insert.en")
-	public String insert(EnterVO vo, MultipartFile file, MultipartFile file2, HttpServletRequest request) {
-			
-		if(! file.isEmpty() && ! file2.isEmpty()) {
-			vo.setB_enter_copy (common.fileUpload("entering", file, request));
-			vo.setB_enter_copy2(common.fileUpload("entering", file2, request));
-		}
+
+	public String insert(EnterVO vo, HttpServletRequest request) {
 		
+		MultipartRequest mReq = (MultipartRequest) request;
+		MultipartFile file = mReq.getFile("file");
+		MultipartFile file2 = mReq.getFile("file2");
+		
+		
+		if(!file.isEmpty() && !file2.isEmpty()) {
+			vo.setB_enter_copy(common.fileUploadhw("entering", file, request));
+			vo.setB_enter_copy2(common.fileUploadhw("entering", file2, request));
+		}
 		dao.enter_insert(vo);
 		return "redirect:/";
 	}

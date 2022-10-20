@@ -5,7 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="css/common.css?<%= new Date() %>>" type="text/css" >
+<%-- <link rel="stylesheet" href="css/common.css?<%= new Date() %>" type="text/css" > --%>
 
 
 <style type="text/css">
@@ -688,8 +688,8 @@ div.invalid {
           <p class="exTxt">사업자등록번호 인증을 반드시 진행하셔야 합니다.</p>
           <div class="enter_form">
             <form method="post" action="insert.en" enctype="multipart/form-data">
-<%--             <input type = 'hidden' name = 'id' value = '${loginInfo.id}'> --%>
- 			 <input type = 'hidden' name = 'id' value = '1'> 
+             <input type = 'hidden' name = 'id' value = '${loginInfo.id}'>
+ 			 
             <table>
               <colgroup>
                 <col width="30%"/>
@@ -719,22 +719,29 @@ div.invalid {
                 <tr>
                   <th><span>대표자 휴대폰 번호</span></th>
                   <td>
-                    <input type="text" id = 'phone' name = 'phone' class="phone chk" placeholder="전화번호를 입력후 인증버튼을 눌러주세요" style="margin-top: 3px;"  maxlength="13" >
+                    <input type="text" id ="b_phone"   name = 'b_phone' class="b_phone chk" placeholder="전화번호를 입력후 인증버튼을 눌러주세요" style="margin-top: 3px;"  maxlength="13" >
                   	  <a style="margin-top: 3px;" class = 'btn-fill doubleChk chk' id = 'phoneChk' > 인증 </a>
-<!--                   	 <input type="text" id = 'phone2' name = 'phone2' class="phone2" placeholder="인증번호 입력" class = 'chk' maxlength="4" style="margin-top: 3px;" disabled required>   -->
-                 	 <!-- <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주세요.</span>
-					 <input type="hidden" id="phoneDoubleChk"/> -->
+                  	 <!-- <input type="text" id = 'phone2' name = 'phone2' class="phone2" placeholder="인증번호 입력" class = 'chk' maxlength="4" style="margin-top: 3px;" disabled required>   -->
+                 	  <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주세요.</span>
+					 <input type="hidden" id="phoneDoubleChk"/>  -->
 
                   </td>
                 </tr>
+                   <tr>
+                  <th><span>가게명</span></th>
+                  <td><input type="text"  name = 'store_name' placeholder="가게명을 입력해주세요" class = 'chk'>
+                   <div class = 'valid' ></div>
+                  </td>
+                </tr>
+                
             <tr>
 				<th><span>가게 주소</span></th>
 					<td>
 					<div class = 'btn-fill' style="float: left; margin-top: 3px;"><a onclick="post()" >우편번호찾기</a></div>
-					<input type = 'text' style="margin-left: 5px;" name = 'post' class = 'w-px60'  readonly>
-					<input type = 'text' name = 'address' class = 'full chk' readonly>
-					<input type = 'text' name = 'address' class = 'full chk'>
-					<div class = 'chk'></div>
+					<input type = 'text' style="margin-left: 5px; margin-bottom: 3px;" name = 'post' class = 'w-px60'  readonly>
+					<input type = 'text' name = 'store_addr' class = 'full chk'  style="margin-bottom: 3px;" readonly>
+					<input type = 'text' name = 'store_addr_more' class = 'full chk'>
+					<div class = 'valid'></div>
 					</td>
 				</tr>
                  <tr>
@@ -752,7 +759,7 @@ div.invalid {
                   <th><span>영업신고증 사본</span></th>
                   <td>
                  <label>
-                    <input type="file"  name = 'file'   class ='attach-file2 chk'  accept="image/*">
+                    <input type="file"  name = 'file2'   class ='attach-file2 chk'  accept="image/*">
                   	<a><img src ='images/file.png'></a><a style="color: #404040;"></a>
                   	<span class = 'file-name2'>파일 업로드</span>
                   	</label>
@@ -783,7 +790,7 @@ div.invalid {
             </div>
           </div>
           <div class="btn_wrap">
-            <a  onclick="insert()" style="cursor: pointer;" >입점 신청하기</a>
+            <a onclick="insert()" style="cursor: pointer;" >입점 신청하기</a>
           </div>
         </div> <!-- form_txtInput E -->
       </div><!-- content E-->
@@ -798,14 +805,13 @@ div.invalid {
 
 
 
-
 $('.chk').keyup(function () {
 	var status =b_num_chk.tag_status( $(this) );
 	$(this).siblings('div').text( status.desc )
 	$(this).siblings('input').text( status.desc )
 		.removeClass().addClass(status.code);
 });
-
+ 
 
 //우편번호 
 function post() {
@@ -813,7 +819,7 @@ function post() {
         oncomplete: function(data) {
            var address = data.userSelectedType=='R' ? data.roadAddress : data.jibunAddress;
            if( data.buildingName !='' ) address += " ("+ data.buildingName +")"; // 빌딩 이름이 있다면 address에 담는다. 
-            $('[name = address]').eq(0).val( address );
+            $('[name = store_addr]').eq(0).val( address );
             $('[name = post]').val( data.zonecode );
         }
     }).open();
@@ -821,7 +827,6 @@ function post() {
 
 
 //이름 유효성 검사 
-
 function name_check() {
 	var $name = $('[name=b_name]');
 	if($name.hasClass('chked')) return; //중복확인이 되어 있다면 다시 중복확인 불필요!
@@ -837,7 +842,7 @@ function name_check() {
 
   //주소 체크되게
 function addr_check() {
-	var $name = $('[name=address]');
+	var $name = $('[name=store_addr]');
 	if($name.hasClass('chked')) return; //중복확인이 되어 있다면 다시 중복확인 불필요!
 	console.log('주소 확인'); 
 	
@@ -873,12 +878,12 @@ $('.chk').keyup(function (e) {
 
 //입점처리
 function insert() {
-	if($('[name = name]').val() =='') {
+	/* if($('[name = name]').val() =='') {
 		var title= $('[name = name]').closest('tr').children('th').text();
 		alert( title + '을 입력하세요');
-		$('[name=name]').focus();
+		$('[name = name]').focus();
 		return;
-	}
+	} */
 	
 	
 	if($('[name=b_num]').hasClass('chked') ) {
@@ -906,18 +911,18 @@ function insert() {
 	
 	
 		
-	if( tagIsInvalid( $('[name=b_name]') ) ) return;
-	if( tagIsInvalid( $('[name=phone]') ) ) return;
-	if( tagIsInvalid( $('[name=address]') ) ) return;
-/* 	if( tagIsInvalid( $('[name=file]') ) ) return;
-	if( tagIsInvalid( $('[name=file2]') ) ) return; */
-	if( ! file_check( )) return;
+/* 	if( tagIsInvalid( $('[name=b_name]') ) ) return;
+	if( tagIsInvalid( $('[name=b_phone]') ) ) return;
+	if( tagIsInvalid( $('[name=store_addr]') ) ) return;
+ 	if( tagIsInvalid( $('[name=file]') ) ) return;
+	if( tagIsInvalid( $('[name=file2]') ) ) return; 
+	if( ! file_check( )) return;  */
 	$('form').submit();
 
 }
 
 //태그의 입력상태가 invalid 하면 form submit 불가
-function tagIsInvalid( tag ) {
+/* function tagIsInvalid( tag ) {
 	var status =b_num_chk.tag_status( tag );
 	if( status.code =='invalid'){
 		alert( '신청 불가\n '+ status.desc );
@@ -926,11 +931,11 @@ function tagIsInvalid( tag ) {
 	}else {
 		return false; //아니요!
 	}
-}
+} */
 
 function file_check() {
-	var file = $('[name = file]');
-	var file2 = $('[name = file2]'); 
+	var file = $('[name = b_enter_copy]');
+	var file2 = $('[name = b_enter_copy2]'); 
 	if(!file && !file2) {
 		alert( '신청 불가\n 파일을 넣어주세요');
 		return false;
@@ -962,7 +967,7 @@ $('.chk').keyup(function (e) {
 //사업자번호 중복확인할 함수 선언
 function b_check(){
 	//올바른 아이디 입력값 상태인지 확인
-	var $id = $('[name=b_num]');
+	var $id = $('[name = b_num]');
 	if($id.hasClass('chked')) return; //중복확인이 되어 있다면 다시 중복확인 불필요!
 	console.log('중복확인'); //이제 버튼 눌러도 중복확인이 계속 진행되지 않는다.
 	
@@ -1042,11 +1047,13 @@ function AutoHypen(companyNum){
 
 //핸드폰 번호 자동 하이픈 이벤트 
 
-$('#phone').on('keyup', function(){
-        var num = $('#phone').val();
+$('#b_phone').on('keyup', function(){
+        var num = $('#b_phone').val();
         num.trim(); 
         this.value = autoHypenPhone(num) ;
 });
+
+
 
 function autoHypenPhone(str){
             str = str.replace(/[^0-9]/g, '');
@@ -1083,7 +1090,7 @@ function autoHypenPhone(str){
 $("#phoneChk").click(function(){
 
 	alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
-	 var phone = $("#phone").val();
+	 var phone = $("#b_phone").val();
 	$.ajax({
         type:"GET",
         url:"phoneCheck?phone=" + phone,

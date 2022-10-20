@@ -1,8 +1,6 @@
 package com.hanul.webcteam;
 
 
-
-
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +10,7 @@ import common.CommonService;
 import member.ssb.MemberDAO;
 import member.ssb.MemberVO;
 
+
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -19,11 +18,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import common.CommonService;
+import member.ssb.MemberDAO;
+import member.ssb.MemberVO;
+
+
+
+
 @Controller
 public class MemberController {
 	@Autowired private MemberDAO dao;
 	@Autowired private CommonService common;
-	
+
 	
 	//비밀번호재발급처리 요청
 		@ResponseBody @RequestMapping(value="/resetPw"
@@ -268,6 +280,7 @@ public class MemberController {
 		vo1.setPost(vo.getPost());
 		dao.getmodify(vo1);
 		session.setAttribute("loginInfo", vo1);
+
 		return "redirect:/";
 	}
 	
@@ -288,10 +301,11 @@ public class MemberController {
 	
 	
 	
+
 	//로그인 처리 요청 - 솔트 생성후 로그인이 되지않아 로그인 되게끔 수정 - ssb
 		@ResponseBody @RequestMapping("/memberlogin")
 		public boolean login(String email, String pw, HttpSession session) {
-			String salt = dao.member_salt(email); pw = common.getEncrypt(salt, pw);
+			//String salt = dao.member_salt(email); pw = common.getEncrypt(salt, pw);
 			//암호화된 비번
 			 
 			HashMap<String, String> map = new HashMap<String, String>();

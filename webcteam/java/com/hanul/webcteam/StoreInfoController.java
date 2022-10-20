@@ -15,6 +15,7 @@ public class StoreInfoController {
 	public String myStore(HttpServletRequest request) {
 		//화면 요청
 		return "store/mystore";
+
 	}
 
 	

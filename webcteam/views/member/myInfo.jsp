@@ -137,11 +137,13 @@ ul{list-style:none; }
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
+
                   <td><input type="text" name='pw' ></td>
                 </tr>
                 <tr>
                   <th><span>비밀번호 확인</span></th>
                   <td><input type="text" name='pw_ck'  ></td>
+
                 </tr>
                 <tr>
                   <th><span>휴대폰 번호</span></th>
@@ -174,6 +176,7 @@ ul{list-style:none; }
 
 <script src='js/member.js?<%=new java.util.Date()%>'></script>
 <script src='js/common_ssb.js?<%=new java.util.Date()%>'></script>
+
 <script type="text/javascript">
 
 //회원탈퇴 처리시

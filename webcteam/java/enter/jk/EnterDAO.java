@@ -1,6 +1,8 @@
 package enter.jk;
 
+
 import java.util.List;
+
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class EnterDAO {
+
 
 	@Autowired
 	@Qualifier("cteam")
@@ -48,5 +51,6 @@ public class EnterDAO {
 	public int update_enter_status(int id) {
 		return sql.update("enter.enter_status", id);
 	}
+
 
 }

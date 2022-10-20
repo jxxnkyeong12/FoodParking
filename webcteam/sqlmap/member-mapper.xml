@@ -29,6 +29,7 @@ where phone=#{phone} and email=#{email}
 
 
 
+
 <insert id="naver_join">
    INSERT INTO member (email, pw, name, manager, b_num, phone, social, addr, post, addr_more)
    VALUES (#{email}, #{pw, jdbcType=VARCHAR}
