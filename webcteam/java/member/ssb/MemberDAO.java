@@ -52,19 +52,7 @@ public class MemberDAO {
 	public int naver_join(MemberVO vo) {
 		return sql.insert("member.naver_join", vo);
 	}
-
-	public int member_email(MemberVO vo) {
-		return sql.selectOne("member.phone_email", vo);
-	}
-
-	public int member_reset_password(MemberVO vo) {
-		return sql.update("member.reset_password", vo);
-	}
-
-	public String member_salt(String email) {
-		return sql.selectOne("member.salt", email);
-	}
-
+	
 
 	
 }

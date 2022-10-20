@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.font { font-size: 20px }
+.font-b {font-size: 20px; color : #3367d6; }
+.font-g {font-size: 20px; color : #008000; }
+.font-r {font-size: 20px; color : #ff0000; }
+.font-o {font-size: 20px; color : #eb6b34; }
+
+
+
+/* 버튼 만들어줄 스타일이 필요하다! */
+.btnSet {
+	margin: 20px auto;
+}
+a.btn-fill, a.btn-empty {
+	height: 28px; padding: 3px 15px;
+	border: 1px solid #a181de; 
+	border-radius: 3px;
+	box-shadow: 2px 2px 3px #6a438f;
+}
+
+/* 채워진 버튼 하나 */
+a.btn-fill {
+	background-color:#a181de; color: #fff;
+}
+/* 안채워진 버튼! */
+a.btn-empty {
+	background-color: #fff; color: #9262bf;
+}
