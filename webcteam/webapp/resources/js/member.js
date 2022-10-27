@@ -4,15 +4,32 @@ var member = {
 	//키보드입력시 입력값 태그별 상태확인
 	tag_status: function( tag ){
 		var name = tag.attr('name');
-		
 		if( name=='pw' )  return this.pw_status(tag.val());
 		else if( name=='pw_ck' ) return this.pw_chk_status( tag.val() );
 		else if(name == 'email') return this.email_status(tag.val());
 		else if(name == 'name') return this.name_status(tag.val());
 		else if(name == 'b_num') return this.b_num_status(tag.val());
 	},
+
+	//사업자번호 상태값 확인
+	b_num_status: function(b_num) {
+		var reg = /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/;
+		if(b_num =="") return this.common.empty;
+		else if (b_num.match(this.space)) return this.common.space;
+		else if(!reg.test(b_num))  return this.b_num.invalid;
+		else if ( b_num.length < 5 )   return this.common.min;
+		else if ( b_num.length < 12 )  return this.common.max;
+		else if(b_num.length = 12)         return this.b_num.valid;
+	},
 	
-	
+	//사업자번호에만 적용될 값을 선언
+	b_num : {
+		usable: {code: 'valid', desc: '입점신청 가능한 사업자번호입니다'},
+		unusable: {code: 'invalid', desc: '이미 등록된 사업자번호입니다'},
+		invalid : {code: 'invalid', desc: '숫자 10자를 바르게 입력하세요'},
+		valid : { code: 'valid', desc : '확인버튼을 눌러주세요' }
+	},
+
 	//이메일 상태값 확인
 	email_status: function(email){
 		var reg = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;		

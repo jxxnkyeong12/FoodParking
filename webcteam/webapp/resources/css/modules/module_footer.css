@@ -274,7 +274,7 @@
 /* --------------------------------------------
 * data-module-name='footer_A009'
 -------------------------------------------- */
-[data-module-name='footer_A009'] .module_container { text-align:center; }
+[data-module-name='footer_A009'] .module_container { text-align:center; width: 1885px ;}
 [data-module-name='footer_A009'] ul { justify-content:center; }
 [data-module-name='footer_A009'] .logo_area { margin-right:0; flex-basis:100%; }
 [data-module-name='footer_A009'] .fnb_area { flex-basis:100%; margin-top:15px; margin-left:0; margin-right:0; }

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="enter">
+<!-- 메일 전송을 위해 메일 조회 -->
+<select id="enter_getEmail" resultType="String">
+select m.email
+from member m left outer join entering e
+on m.id=e.id
+where e.id = #{id}
+</select>
+
+
+<!-- 입점신청 글의 전체 건수 -->
+<select id="totalList" resultType="integer">
+select count(*) from entering
+</select>
 
 
 <!-- 입점수락한 신청사항은 진행상황을 2로 만들어 출력하지 않게 한다 -->
@@ -37,9 +50,10 @@ UPDATE member SET manager = 'Y'
 where id = #{id}
 </update>
 
-<!-- 입점신청 삭제처리 -->
-<delete id="store_delete">
- DELETE FROM entering WHERE id = #{id}
+<!-- 입점신청 취소처리 -->
+<delete id="store_update">
+UPDATE entering SET enter_status = 3 , cancle = #{cancle}
+where id = #{id}
 </delete>
 
 
@@ -54,9 +68,10 @@ where e.id= #{id}
 
 <!-- 매니저모드 입점신청한 가게 불러오기 - ssb -->
 <select id="admin_store_list" resultType="enter.jk.EnterVO">
-select *
-from entering
-where enter_status = 1
+select * from (select row_number() over(order by e.id) no, e.* 
+from entering e) 
+where no between #{beginList} and #{endList}
+order by no desc
 </select>
 
 
@@ -64,9 +79,9 @@ where enter_status = 1
 <!-- 입점신청서 insert jk -->
 <insert id="insert">
 insert into entering (b_num, store_addr, b_name, b_phone, b_enter_copy, b_enter_copy2
-					  ,	store_name, enter_status, id )
+					  ,	store_name, store_addr_more,post, enter_status, id )
 values (#{b_num}, #{store_addr},#{b_name}, #{b_phone}
-	     , #{b_enter_copy}, #{b_enter_copy2}, #{store_name}, '1', 1)
+	     , #{b_enter_copy}, #{b_enter_copy2}, #{store_name}, #{store_addr_more}, #{post}, '1', #{id})
 
 </insert>
 
@@ -74,7 +89,6 @@ values (#{b_num}, #{store_addr},#{b_name}, #{b_phone}
 <select id="b_num_check" resultType="integer">
 select count(*) from B_NUM_CHK where b_num = #{b_num}
 </select>
-
 
 
 

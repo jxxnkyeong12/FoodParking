@@ -26,12 +26,33 @@ function emptyCheck(){
 		var name = tag.attr('name');
 			 if ( name == 'b_num') return this.b_num_status( tag.val() );
 			 else if ( name == 'b_name') return this.b_name_status( tag.val() );
-			 else if ( name == 'phone') return this.phone_status( tag.val() );
-			 else if (name == 'address') return this.address_status(tag.val());
+			 else if ( name == 'store_name') return this.store_name_status( tag.val() );
+			 else if ( name == 'b_phone') return this.b_phone_status( tag.val() );
+			 else if (name == 'store_addr') return this.store_addr_status(tag.val());
+			
+			 else if (name == 'file') return this.file_status(tag.val());
+			 else if (name == 'file2') return this.file2_status(tag.val());
 		},
 	
 	
+	//파일 있냐 없냐만
+	file_status: function(file){
+		if(file == "") return this.common.empty;
+		else return this.b_name.valid;
+	},
 
+    //파일 있냐 없냐만
+	file2_status: function(file2){
+		if(file2 == "") return this.common.empty;
+		else return this.b_name.valid;
+	},
+
+
+	//가게명 유효성 검사
+	store_name_status: function(store_name) {
+		if(store_name =="") return this.common.empty;
+		else return this.b_name.valid;
+	},
 	
 	// 사업자 중복확인 상태를 판단할 함수 추가
 	b_num_check: function(usable) {
@@ -42,15 +63,15 @@ function emptyCheck(){
 	},
 	
 	//주소 확인
-	address_status : function(address) {
-		if(address =="") return this.common.empty;
-		else return this.address.valid;
+	store_addr_status : function(store_addr) {
+		if(store_addr =="") return this.common.empty;
+		else return this.store_addr.valid;
 	},
 
 		
    //전화번호 
-    phone_status : function(phone){
-	if(phone =="") return this.common.empty;
+    b_phone_status : function(b_phone){
+	if(b_phone =="") return this.common.empty;
 	else return this.phone.valid;
 	},
 	
@@ -82,9 +103,9 @@ function emptyCheck(){
 	
 	
 	//주소에 사용하려고
-	address : {
+	store_addr : {
 	    invalid : {code: 'invalid', desc: '주소를 입력해주세요'},
-		valid : {code: 'valid', desc : ''}
+		valid : {code: 'valid', desc : '1231231321'}
 	},
 	
 	
@@ -103,12 +124,12 @@ function emptyCheck(){
 	   noen : { code : 'invalid', desc : '한글로만 입력하세요' },
 	   empty: { code : 'invalid', desc : '대표자명을 입력하세요' },
 	   min : {code: 'invalid', desc: '한글 2글자 이상 입력하세요'},
-	   valid : { code: 'valid', desc : '' }
+	   valid : { code: 'valid', desc : '111' }
 	},
 	
 	phone : {
 		invalid : {code: 'invalid', desc: '숫자를 바르게 입력하세요'},
-		 valid : { code: 'valid', desc : '' }
+		 valid : { code: 'valid', desc : '111' }
 	},
 	
 	

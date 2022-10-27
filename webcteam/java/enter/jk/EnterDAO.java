@@ -1,5 +1,7 @@
 package enter.jk;
 
+
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class EnterDAO {
+
 
 	@Autowired
 	@Qualifier("cteam")
@@ -25,16 +28,18 @@ public class EnterDAO {
 	}
 
 	// 매니저모드 입점신청한 가게 불러오기 - ssb
-	public List<EnterVO> admin_store() {
-		return sql.selectList("enter.admin_store_list");
+	public EnterPageVO admin_store(EnterPageVO page) {
+		page.setTotalList(sql.selectOne("enter.totalList", page));
+		page.setList( sql.selectList("enter.admin_store_list", page));
+		return page;
 	}
 
 	public EnterVO notice_detail(int id) {
 		return sql.selectOne("enter.detail", id);
 	}
 
-	public int admin_store_cancle(int id) {
-		return sql.delete("enter.store_delete", id);
+	public int admin_store_cancle(EnterVO vo) {
+		return sql.update("enter.store_update", vo);
 	}
 
 	public int admin_make_store(EnterVO vo) {
@@ -47,6 +52,10 @@ public class EnterDAO {
 
 	public int update_enter_status(int id) {
 		return sql.update("enter.enter_status", id);
+	}
+
+	public String admin_get_email(int id) {
+		return sql.selectOne("enter.enter_getEmail", id);
 	}
 
 }

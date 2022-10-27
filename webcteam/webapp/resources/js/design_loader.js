@@ -1,21 +1,5 @@
 var SPECIAL_PAGE_CODE = false; // 스페셜 페이지 코드 처리
 
-if ( PAGE_CODE == 'login' || PAGE_CODE == 'forget' || PAGE_CODE == 'terms' || PAGE_CODE == 'policy' || PAGE_CODE == 'intro_members' || PAGE_CODE == 'dormancy_complete' || PAGE_CODE == 'dormancy_complete'|| PAGE_CODE == 'dormancy' ) {
-	SPECIAL_PAGE_CODE = PAGE_CODE;
-} else if ( PAGE_CODE == 'Join.join' ) {
-	SPECIAL_PAGE_CODE = 'joinJoin';
-} else if ( PAGE_CODE == 'Skin.categories.list' ) { // 카테고리
-	SPECIAL_PAGE_CODE = 'category';
-} else if ( PAGE_CODE == 'Skin.products.search' ) { // 검색
-	SPECIAL_PAGE_CODE = 'search';
-} else if ( PAGE_CODE == 'Skin.products.cart' ) { // 장바구니
-	SPECIAL_PAGE_CODE = 'cart';
-} else if ( PAGE_CODE == 'Skin.orders.create' ) { // 주문결제
-	SPECIAL_PAGE_CODE = 'order';
-} else if ( PAGE_CODE == 'Skin.mypages' ) { // 마이페이지
-	SPECIAL_PAGE_CODE = 'mypage';
-}
-
 
 
 // 레이아웃 랜더링( 일반 )

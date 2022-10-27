@@ -507,7 +507,7 @@ input[name=phone1], input[name=phone2], input[name=phone3] {
 	width: 30%
 }
 
-input[name=name], input[name=pw], input[name=pw_chk], input[name=b_num],
+input[name=name], input[name=pw], input[name=pw_ck], input[name=b_num],
 	input[name=addr], input[name=addr_more] {
 	width: 100%
 }
@@ -703,7 +703,7 @@ div.invalid {
 								</tr>
 								<tr>
 									<th><span>비밀번호 확인</span></th>
-									<td><input type="password" name="pw_chk" class="chk"
+									<td><input type="password" name="pw_ck" class="chk"
 										placeholder="비밀번호를 확인하세요">
 										<div class="valid">비밀번호를 다시 입력하세요</div></td>
 								</tr>
@@ -725,7 +725,7 @@ div.invalid {
 
 								<tr>
 									<th><span>주소</span></th>
-									<td><a class="email_chk" onclick="post()">우편번호 찾기</a> <input
+									<td><a class="email_chk" onclick="post()" style="cursor: pointer;">우편번호 찾기</a> <input
 										type="text" name="post" readonly> <input type="text"
 										name="addr" class="full" readonly> <input type="text"
 										name="addr_more" class="full"></td>
@@ -786,8 +786,9 @@ function join() {
 	}//if
 	
 	if(tagIsInvalid($('[name=pw]'))) return;
-	if(tagIsInvalid($('[name=pw_chk]'))) return;
+	if(tagIsInvalid($('[name=pw_ck]'))) return;
 	if(tagIsInvalid($('[name=name]'))) return;
+	if(tagIsInvalid($('[name=b_num]'))) return;
 	
 	$('form').submit();
 }

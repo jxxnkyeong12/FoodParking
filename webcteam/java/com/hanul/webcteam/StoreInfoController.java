@@ -14,7 +14,7 @@ public class StoreInfoController {
 	@RequestMapping("/myStore")
 	public String myStore(HttpServletRequest request) {
 		//화면 요청
-		return "store/mystore";
+		return "";
 	}
 
 	

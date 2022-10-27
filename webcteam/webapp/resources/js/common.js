@@ -1,8 +1,8 @@
  /**
   * 쿠키 데이터 변수
-  /
+  *
   * @type {string}
-
+  */
  var COOKIEDATA = document.cookie;
 
  /**
@@ -24,9 +24,6 @@
 
     return false;
 }
-
-
-
 
 /**
  * 자바스크립트 동적 호출 함수

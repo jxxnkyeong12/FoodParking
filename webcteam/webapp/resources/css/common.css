@@ -8,6 +8,72 @@
 
 
 
+a:link, a:visited{ text-decoration: none; color:  inherit;}
+
+.tb-wrap {height: 496px; overflow-y:auto; margin: 0 auto; } /* 스크롤 만들기 */
+.tb-wrap .tb-list {width: 100%}
+
+
+#container { padding: 20px 0 }
+
+
+ul { 
+	list-style-type: none;
+	align-items: center;
+	padding: 0;
+}
+
+.h3 {
+	text-align:center;
+	color : black;
+	font-size: 45px;
+}
+
+table { margin: 0 auto;  border-collapse:collapse; }
+table tr { height: 46px; }
+table.tb-list tr { height: 38px; }
+table th, table td { border: 1px solid black; }
+table td { padding: 8px 10px; }
+table th { background-color:#ffa570; }
+table td a:hover {font-weight: bold; color: #F25C05;}
+
+
+
+#list-top {
+	margin: 0 auto;
+	display: flex; 
+	justify-content: space-between;
+}
+
+#list-top ul { display: flex;} 
+#list-top ul li:not(:first-child) { margin-left: 5px} 
+
+
+.center {
+	position: absolute;
+	left: 50%; top: 50%;
+	transform: translate(-50%, -50%)	
+}
+
+
+.left { text-align: left }
+.right { text-align: right }
+.full { width: calc(100% - 22px) }
+
+
+/* 클래스도 추가해줘서 안보이게 처리해주기 */
+#delete, #attach-file, #delete-file, .attach-file, .delete-file { display:none; }
+.date + #delete { position:relative; right: 30px; } /*처음엔 안보이게  위치는 태그를 기준으로 relative*/
+#preview img, .preview img { max-width:100px; }
+
+
+.items-center {display: flex; align-items: center;}
+.items-center * {margin-right: 5px}
+table td .items-center:not(:first-child) {margin-top: 5px}
+
+
+
+
 /* 버튼 만들어줄 스타일이 필요하다! */
 .btnSet {
 	margin: 20px auto;
@@ -33,6 +99,12 @@ a.btn-empty {
 
 
 
+.w-pct90 { width:90% }
+.w-pct80 { width:80% }
+.w-pct70 { width:70% }
+.w-pct60 { width:60% }
+.w-pct50 { width:50% }
+.w-pct40 { width:40% }
 .w-px40 { width:40px }
 .w-px50 { width:50px }
 .w-px60 { width:60px }
@@ -54,3 +126,15 @@ a.btn-empty {
 .w-px800 { width:800px }
 .w-px1000 { width:1000px }
 .w-px1200 { width:1200px }
+
+.page-list { display: flex;  justify-content: center; line-height: 36px }
+.page-list span, .page-list a {
+	width: 38px; height: 38px; 
+	margin: 1px;	border: 1px solid transparent; text-align: center; color:  black; cursor: pointer;
+}
+.page-list span {
+	border: 1px solid #F25C05;  color:  black;    
+}
+.page-list a:hover {
+	background-color:  rgba(252, 224, 202, 1); color:  #F25C05; 
+}

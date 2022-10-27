@@ -5,19 +5,24 @@ package com.hanul.webcteam;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import common.CommonService;
 import enter.jk.EnterDAO;
+import enter.jk.EnterPageVO;
 import enter.jk.EnterVO;
 
 
@@ -38,18 +43,23 @@ public class ManagerController {
 		if(dao.update_member_manager(vo.getId()) >= 1) {
 			if(dao.update_enter_status(vo.getId()) >= 1) {
 				dao.admin_make_store(vo);
+				String email = dao.admin_get_email(vo.getId());
+				vo.setEmail(email);
+				common.sendEmail(vo.getEmail(), vo.getStore_name(), vo.getCancle(), 2);
 			}
 		}
-		return "/admin_store";
+		return "redirect:admin_store";
 	}
 	
 	
-	//입점신청 화면 요청
+	//입점신청 실패
 	@RequestMapping("/admin_store_cancle")
-	public String admin_store(int  id) {
-		dao.admin_store_cancle(id);
-		
-		return "redirect:/";
+	public String admin_store(EnterVO vo) {
+		dao.admin_store_cancle(vo);
+		String email = dao.admin_get_email(vo.getId());
+		vo.setEmail(email);
+		common.sendEmail(vo.getEmail(), vo.getStore_name(), vo.getCancle(), 1);
+		return "redirect:admin_store";
 	}
 	
 	
@@ -71,11 +81,21 @@ public class ManagerController {
 	
 	
 	
+	@Autowired private EnterPageVO page;
+	
 		//입점신청 화면 요청
 		@RequestMapping("/admin_store")
-		public String admin_store(Model model) {
-			List<EnterVO> list =  dao.admin_store();
-			model.addAttribute("list", list);
+		public String admin_store(HttpSession session, Model model
+									, String search, String keyword
+									, @RequestParam(defaultValue = "list") String viewType
+									, @RequestParam(defaultValue = "10")int pageList
+									, @RequestParam(defaultValue = "1") int curPage) {
+			
+			page.setCurPage(curPage);
+			page.setPageList(pageList);
+			
+		
+			model.addAttribute("page",  dao.admin_store(page));
 			return "manager/apply";
 		}
 

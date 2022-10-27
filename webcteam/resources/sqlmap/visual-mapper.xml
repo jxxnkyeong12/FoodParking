@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="visual">
+
+
+
+
+
+
+<!-- 월별 매출조회 -->
+<select id="day_total_price" resultType="hashmap">
+<![CDATA[
+select f.month month  ,NVL( sum(price), 0) price
+from (select  l.month, h.price
+            from (SELECT LEVEL month FROM DUAL CONNECT BY LEVEL <= 31) l  
+            LEFT OUTER JOIN
+            (select o.order_date, price, SUBSTR(o.order_date, 7,2) month
+                from order_history o LEFT OUTER join store_info s
+                on o.store_code = s.store_code
+                LEFT outer join member m
+                on s.id = m.id
+                where m.id = #{id}) h
+                on l.month = h.month
+                order by l.month) f
+group by f.month
+order by f.month
+
+]]>
+</select>
+		
+
+<!-- 월별 매출조회 -->
+<select id="total_price" resultType="hashmap">
+<![CDATA[
+select f.month month  ,NVL( sum(price), 0) price
+from (select  l.month, h.price
+            from (SELECT LEVEL month FROM DUAL CONNECT BY LEVEL <= 12) l  
+            LEFT OUTER JOIN
+            (select o.order_date, price, SUBSTR(o.order_date, 5,2) month
+                from order_history o LEFT OUTER join store_info s
+                on o.store_code = s.store_code
+                LEFT outer join member m
+                on s.id = m.id
+                where m.id = #{id}) h
+                on l.month = h.month
+                order by l.month) f
+group by f.month
+order by f.month
+
+]]>
+</select>
+		
+		
+</mapper>
+
+
+
+
+
+
+

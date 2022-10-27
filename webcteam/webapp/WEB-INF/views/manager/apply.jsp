@@ -45,7 +45,7 @@
 	border-color: #ffffff;
 	color: black;
 	text-align: center;
-	vertical-align: top;
+	vertical-align: middle;
 }
 
 
@@ -74,6 +74,9 @@
 	padding: 5px;
 	text-align: center;
 }
+.btnSet {
+	margin: 20px auto;
+}
 </style>
 </head>
 <body>
@@ -95,7 +98,7 @@
   </tr>
 </thead>
 <tbody>
-<c:forEach items="${list }" var="vo">
+<c:forEach items="${page.list }" var="vo">
   <tr>
     <td class="tg-pelv">${vo.b_num }</td>
     <td class="tg-pelv">${vo.b_name }</td>
@@ -106,14 +109,30 @@
     <td class="tg-pelv">${vo.store_addr_more }</td>
     <td class="tg-pelv"><a href='download?id=${vo.id }&b_enter_copy=${vo.b_enter_copy }' >${vo.b_enter_copy }</a></td>
     <td class="tg-pelv"><a href='download?id=${vo.id }&b_enter_copy=${vo.b_enter_copy2 }' >${vo.b_enter_copy2 }</a></td>
-    <td class="tg-pelv">
-    	<!-- <input type="button" class='app_btn' onclick="finish()" value="완료">  -->
-    	<a class="app_btn" onclick="finish()">완료</a>
-    	<!-- <input type="button" class='app_btn cancle' onclick="cancle()" value="취소">  -->
-    	<a class="app_btn" onclick="location='admin_store_cancle?id=${vo.id}'">취소</a>
-    </td>
+     <c:if test="${vo.enter_status eq 1 }">
+	    <td class="tg-pelv">
+	    	<!-- <input type="button" class='app_btn' onclick="finish()" value="완료">  -->
+	    	<a class="app_btn" onclick="finish(${vo.id})">완료</a>
+	    	<!-- <input type="button" class='app_btn cancle' onclick="cancle()" value="취소">  -->
+	    	<a class="app_btn" onclick="cancle(${vo.id})">취소</a>
+	    </td>
+    </c:if>
+    
+    <c:if test="${vo.enter_status eq 2 }">
+	    <td class="tg-pelv">
+	    	<a >심사통과</a>
+	    </td>
+    </c:if>
+    
+    
+    <c:if test="${vo.enter_status eq 3 }">
+	    <td class="tg-pelv">
+	    	<a >${vo.cancle }</a>
+	    </td>
+    </c:if>
+
   </tr>
-  <form method='post' action='admin_make_store'>
+  <form method='post' action='admin_store'>
 	<input type='hidden' name='id' value='${vo.id}' >
 	<input type='hidden' name='b_num' value='${vo.b_num}' >
 	<input type='hidden' name=b_name value='${vo.b_name }' >
@@ -122,27 +141,53 @@
 	<input type='hidden' name='post' value='${vo.post }' >
 	<input type='hidden' name='store_addr' value='${vo.store_addr }' >
 	<input type='hidden' name='store_addr_more' value='${vo.store_addr_more }' >
-</form>
+	<input type='hidden' name='cancle' value='${vo.cancle }' >
+	<input type='hidden' name='curPage' value='1'>
+	
+  </form>
+
   </c:forEach>
   
   
 </tbody>
 </table>
 
+<div class='btnSet'>
+	<jsp:include page="/WEB-INF/views/include/page.jsp"/>
+</div>
 
+
+<script src='js/common_ssb.js?<%=new java.util.Date()%>'></script>
+<script type="text/javascript">
+function finish(id) {
+	if(confirm('신청수락하시겠습니까?')){
+		$('form').attr('action', 'admin_make_store');
+		$('[name=id]').val(id);
+		$('form').submit();
+	}
+}
+
+//취소 눌렀을 때
+function cancle(id) {
+	if(confirm('신청취소 하시겠습니까?')){
+		var a = prompt("취소사유를 입력해 주세요");
+		if(a == null){
+			alert('승인취소를 취소하였습니다')
+		}else{
+			$('[name=cancle]').val(a);
+			$('[name=id]').val(id);
+			$('form').attr('action', 'admin_store_cancle');
+			$('form').submit();
+		}
+	}
+}
+</script>
 <!-- b_num, store_addr, b_name, b_phone, b_enter_copy,b_enter_copy2
             , store_name, store_addr_more, post; 
    private int enter_status, id; -->
 </body>
 
-<script src='js/common_ssb.js?<%=new java.util.Date()%>'></script>
-<script type="text/javascript">
-function finish() {
-	if(confirm('신청수락하시겠습니까?')){
-		$('form').submit();
-	}
-}
-</script>
+
 </html>
 
 
