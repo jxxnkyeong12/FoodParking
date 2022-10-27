@@ -1,0 +1,34 @@
+$(document).ready(function () {
+    $('form#login-form').submit( function () {
+        $.post('/members/login', $('form#login-form').serialize(), function (res) {
+            if (res.result) {
+                var return_url = res.return_url ? res.return_url : '/';
+                if (res.result_msg) {
+                    alert(res.result_msg);
+                }
+                location.replace(return_url);
+            } else {
+                alert(res.error);
+            }
+
+            return false;
+        });
+
+        return false;
+    });
+});
+
+/**
+ * 로그아웃 처리
+ */
+function logout() {
+    if(confirm("로그아웃하시겠습니까?")) {
+        $.get('/members/logout').done(function(res) {
+            if(res.result === true) {
+                location.replace('/');
+            } else {
+                alert(res.error);
+            }
+        });
+    }
+}
