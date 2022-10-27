@@ -112,7 +112,9 @@ function emptyCheck(){
 	//사업자번호에만 적용될 값을 선언
 	b_num : {
 		usable: {code: 'valid', desc: '입점신청 가능한 사업자번호입니다'},
-		unusable: {code: 'invalid', desc: '이미 등록된 사업자번호입니다'},
+
+		unusable: {code: 'invalid', desc: '이미 입점한 사업자번호입니다'},
+
 		invalid : {code: 'invalid', desc: '숫자 10자를 바르게 입력하세요'},
 		valid : { code: 'valid', desc : '확인버튼을 눌러주세요' }
 	},

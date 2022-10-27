@@ -7,13 +7,25 @@ public class StoreInfoVO {
 	private int store_code, id, store_category, store_post, review_cnt;
 	private String store_name, store_tel, open_close, store_addr, store_comment, store_image, 
 			store_logo, addr_more
-			, menu_image;
+			, menu_image , store_lat, store_lon;
 	private float star_rating, clean, taste, mood, kind ;
 	
 	
 	
 
 	
+	public String getStore_lat() {
+		return store_lat;
+	}
+	public void setStore_lat(String store_lat) {
+		this.store_lat = store_lat;
+	}
+	public String getStore_lon() {
+		return store_lon;
+	}
+	public void setStore_lon(String store_lon) {
+		this.store_lon = store_lon;
+	}
 	public float getClean() {
 		return clean;
 	}

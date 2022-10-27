@@ -206,9 +206,11 @@
 						</div>
 												<!-- +++++++++ free 배너 +++++++++ -->
 						<div class="level1_bnr_wrap">
-							<a href="https://www.clickn.co.kr" target="_blank" class="level1_bnr">
-								<img src="/images/logo_small.png" alt="CLICKN" class="logo">
-								<span class="txt">푸드파킹테스트</span>
+
+							<a onclick="window.scrollTo(0,0);" style="cursor: pointer;" class="level1_bnr">
+								<img src="images/food_logo.png" alt="CLICKN" class="logo">
+								<span class="txt">푸드파킹 ↑</span>
+
 							</a>
 						</div>
 						<!-- +++++++++ //free 배너 +++++++++ -->

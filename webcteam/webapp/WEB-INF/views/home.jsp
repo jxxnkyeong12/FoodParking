@@ -282,14 +282,12 @@ h1 {
 								<p>&nbsp;</p></div>
 								<div data-text-editable= "true" style= "font-size: 13px; letter-spacing: 0.1em; color:#000000; text-align: center;" >
 									<p><a href= "#none">view more</a></p></div>
-
- 
-
 												<form action="detail.ho" method="post"  >
 												<div class='card_top' style="text-align: center;">
 													<c:forEach items="${vo}" var="vo">
 														<a onclick="detail(${vo.store_code})">
  														<input type = "hidden" name = 'store_code' >
+
 															<div class="card">
 																<div class = 'card_content'>
 
@@ -402,8 +400,11 @@ $(document).ready(function () {
 		});
 });
 
-function detail(store_code) {
+
+function detail(store_code, store_lat, store_lon) {
 	$('[name=store_code]').val( store_code );
+	$('[name=store_lat]').val( store_lat );
+	$('[name=store_lon]').val( store_lon );
 	$('form').submit();
 }
 

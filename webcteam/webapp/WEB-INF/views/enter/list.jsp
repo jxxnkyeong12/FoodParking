@@ -721,9 +721,10 @@ div.invalid {
                   <td>
                     <input type="text" id ="b_phone"   name = 'b_phone' class="b_phone chk" placeholder="전화번호를 입력후 인증버튼을 눌러주세요" style="margin-top: 3px;"  maxlength="13" >
                   	  <a style="margin-top: 3px;" class = 'btn-fill doubleChk chk' id = 'phoneChk' > 인증 </a>
-       <!--            	 <input type="text" id = 'phone2' name = 'phone2' class="phone2" placeholder="인증번호 입력" class = 'chk' maxlength="4" style="margin-top: 3px;" disabled required>  
+
+                  	 <input type="text" id = 'phone2' name = 'phone2' class="phone2" placeholder="인증번호 입력" class = 'chk' maxlength="4" style="margin-top: 3px;" disabled required>  
                  	  <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주세요.</span>
-					 <input type="hidden" id="phoneDoubleChk"/>   -->
+					 <input type="hidden" id="phoneDoubleChk"/>
 					 <div class = 'valid' ></div>
 
                   </td>
@@ -1088,7 +1089,8 @@ function autoHypenPhone(str){
 
 
 //알없어서.. 잠깐 막아둠 ㅎㅎ;; 핸드폰 sms 인증 번호 날리기 
-/*  var code2 = "";
+
+ var code2 = "";
 $("#phoneChk").click(function(){
 
 	alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
@@ -1135,7 +1137,8 @@ $("#phoneChk").click(function(){
 		}
 	});
 	
-  */
+
+
 
 	
 </script>

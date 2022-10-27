@@ -249,6 +249,7 @@ public class CommonService {
 		}
 		return send;
 	}
+
 	
 	// 아이디, 비밀번호를 이메일로 전송 - ssb
 	public boolean sendEmail(String email, String name, String result, int status) {
@@ -307,6 +308,7 @@ public class CommonService {
 		return send;
 	}
 	
+
 
 	// 비밀번호를 암호화하는데 사용할 솔트생성
 	public String generateSalt() {
