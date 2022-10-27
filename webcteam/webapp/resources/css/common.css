@@ -7,6 +7,7 @@
 .font-o {font-size: 20px; color : #eb6b34; }
 
 
+
 a:link, a:visited{ text-decoration: none; color:  inherit;}
 
 .tb-wrap {height: 496px; overflow-y:auto; margin: 0 auto; } /* 스크롤 만들기 */
@@ -71,6 +72,7 @@ table td .items-center:not(:first-child) {margin-top: 5px}
 
 
 
+
 /* 버튼 만들어줄 스타일이 필요하다! */
 .btnSet {
 	margin: 20px auto;
@@ -102,7 +104,6 @@ a.btn-empty {
 .w-pct60 { width:60% }
 .w-pct50 { width:50% }
 .w-pct40 { width:40% }
-
 .w-px40 { width:40px }
 .w-px50 { width:50px }
 .w-px60 { width:60px }

@@ -69,9 +69,6 @@ set 		pw = #{pw}, name = #{name}, post = #{post}
 where email = #{email} 
 </update>
 
-
-
-
 <!-- 로그인 처리 -->
 <select id="login" resultType="member.ssb.MemberVO">
 select * from member where email=#{email} and pw=#{pw}

@@ -7,5 +7,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 			<import resource="classpath:db/*.xml"/> <!-- db패키지에 있는 모든 xml파일! -->
+
 				<context:component-scan base-package="home, notice.jk ,member.ssb,mystore.hs,join.hs, error, enter.jk, common"/>
+
 </beans>

@@ -1,10 +1,81 @@
 package mystore.hs;
 
+import java.util.List;
+
 public class MyStoreInfoVO {
-	private int store_code, id, store_category, review_cnt;
+	private int store_code, id, store_category, review_cnt, store_post;
 	private float star_rating, clean, taste, mood, kind;
 	private String store_name, store_tel, open_close, store_addr, store_comment, store_image, store_logo, nickname,
-			content, review_content, writedate, store_logo_path;
+			content, review_content, writedate, store_logo_path, b_num, store_logo_name, addr_more;
+
+	private List<LogoFileInfoVO> logoInfo; //로고 정보 담을 리스트
+	private List<MenuInfoVO> menuInfo; //메뉴 정보 담을 리스트
+	private List<StoreCategoryVO> categoryInfo; //카테고리 리스트
+	private List<StoreFileInfoVO> imageInfo; //가게 사진 담을 리스트
+	
+	public List<StoreFileInfoVO> getImageInfo() {
+		return imageInfo;
+	}
+
+	public void setImageInfo(List<StoreFileInfoVO> imageInfo) {
+		this.imageInfo = imageInfo;
+	}
+
+	public List<StoreCategoryVO> getCategoryInfo() {
+		return categoryInfo;
+	}
+
+	public void setCategoryInfo(List<StoreCategoryVO> categoryInfo) {
+		this.categoryInfo = categoryInfo;
+	}
+
+	public List<MenuInfoVO> getMenuInfo() {
+		return menuInfo;
+	}
+
+	public void setMenuInfo(List<MenuInfoVO> menuInfo) {
+		this.menuInfo = menuInfo;
+	}
+
+	public String getAddr_more() {
+		return addr_more;
+	}
+
+	public void setAddr_more(String addr_more) {
+		this.addr_more = addr_more;
+	}
+
+	public int getStore_post() {
+		return store_post;
+	}
+
+	public void setStore_post(int store_post) {
+		this.store_post = store_post;
+	}
+
+	public List<LogoFileInfoVO> getLogoInfo() {
+		return logoInfo;
+	}
+
+	public void setLogoInfo(List<LogoFileInfoVO> logoInfo) {
+		this.logoInfo = logoInfo;
+	}
+
+	public String getStore_logo_name() {
+		return store_logo_name;
+	}
+
+	public void setStore_logo_name(String store_logo_name) {
+		this.store_logo_name = store_logo_name;
+	}
+
+	public String getB_num() {
+		return b_num;
+	}
+
+	public void setB_num(String b_num) {
+		this.b_num = b_num;
+	}
 
 	public int getReview_cnt() {
 		return review_cnt;

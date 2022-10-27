@@ -1,6 +1,7 @@
 var SPECIAL_PAGE_CODE = false; // 스페셜 페이지 코드 처리
 
 
+
 // 레이아웃 랜더링( 일반 )
 function renderBlockLayout (data)
 {

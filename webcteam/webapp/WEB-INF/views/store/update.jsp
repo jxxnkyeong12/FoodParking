@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"	prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -248,34 +248,42 @@ a.email_chk {
 }
 
 .join_form table input {
-	border: 1px solid #ececec;
 	font-size: 14px;
 	color: #000000;
 	height: 35px;
-	padding: 10px;
 	float: left;
 }
 
-.join_form table input.email {
-	width: 75%;
-	display: inline-block;
+
+input[name=b_num], input[name=store_name],
+input[name=open_close], input[name=store_tel],
+input[name=store_addr], input[name=addr_more] {
+	border: 1px solid #ececec;
+	width: 100%;
+	padding: 10px;
 }
 
-.join_form table input.email2 {
-	width: 40%;
+input[name=store_addr] {
+	border: 1px solid #ececec;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 10px;
+}
+
+input[name=store_post] {
+	border: 1px solid #ececec;
+	width: 50%;
+	padding: 10px;
+}
+
+input[name=store_logo] {
+	border:none;
 }
 
 .join_form.idpwFind table input {
 	width: 519px;
 }
 
-.join_form.idpwFind table input.email {
-	width: 223px;
-}
-
-.join_form.idpwFind table input.email2 {
-	width: 263px
-}
 
 .join_form.idpwFind table input.phone {
 	width: 182px;
@@ -503,19 +511,6 @@ a.email_chk {
 	cursor: pointer;
 }
 
-input[name=phone1], input[name=phone2], input[name=phone3] {
-	width: 30%
-}
-
-input[name=name], input[name=pw], input[name=pw_chk], input[name=b_num],
-	input[name=addr], input[name=addr_more] {
-	width: 100%
-}
-
-input[name=addr] {
-	margin-top: 8px;
-	margin-bottom: 8px;
-}
 
 .overlayer.is-open {
 	display: block;
@@ -544,6 +539,31 @@ div.invalid {
 	width: 100%;
 }
 
+.file a img {
+	width: 25px;
+	height: 25px;
+}
+
+.delete-file a img {
+	width: 15px;
+	height: 15px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+
+.menu-info {
+	width: 25%;
+	text-align: center;
+	color: black;
+}
+
+#menu_info {
+	color: black;
+}
+
+#delete, #attach-file, #delete-file, .attach-file, .delete-file { display:none; }
+
+
 @media ( max-width : 1023px ) {
 	.wrap {
 		margin: 30px auto;
@@ -570,7 +590,6 @@ div.invalid {
 		color: #4c4c4c;
 		height: 37px;
 		padding: 10px;
-		width: 100%;
 	}
 	.join_form table input.email {
 		width: 31%;
@@ -665,14 +684,18 @@ div.invalid {
 	}
 }
 </style>
+
 </head>
 <body>
-	<form method="post" action="join">
+	<form method="post" action="update.st" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="${vo.id}">
+		<input type="hidden" name="store_code" value="${vo.store_code}">
+		
 		<div class="wrap wd668">
 			<div class="container">
 				<div class="form_txtInput">
-					<h2 class="sub_tit_txt">회원가입</h2>
-					<p class="exTxt">회원가입시 이메일 인증을 반드시 진행하셔야 합니다.</p>
+					<h2 class="sub_tit_txt">가게 정보 수정</h2>
+					<p class="exTxt">푸드파킹에 입점한 가게입니다. 가게 삭제를 원할 시 폐업신청을 눌러주세요. </p>
 					<div class="join_form">
 						<table>
 							<colgroup>
@@ -680,83 +703,118 @@ div.invalid {
 								<col width="auto" />
 							</colgroup>
 							<tbody>
-								<tr class="email">
-									<th><span>이메일</span></th>
-									<td><input type="text" name="email" class="email chk"
-										placeholder="food@parking.com" autofocus> <a
-										class="email_chk" onclick="email_check()"
-										style="cursor: pointer;">중복확인</a>
-										<div class="valid">이메일을 입력하세요</div></td>
-								</tr>
+							<tr>
+								<th><span>사업자번호</span></th>
+								<td><input type="text" name="b_num" maxlength="12" readonly value="${vo.b_num}"></td>
+							</tr>
 
-								<tr>
-									<th><span>이름</span></th>
-									<td><input type="text" name="name" class="chk"
-										placeholder="김푸파">
-										<div class="valid">이름을 입력하세요 (순수한글만 가능)</div></td>
-								</tr>
-								<tr>
-									<th><span>비밀번호</span></th>
-									<td><input type="password" name="pw" class="chk"
-										placeholder="비밀번호를 입력해주세요.">
-										<div class="valid">비밀번호를 입력하세요 (영문 대/소문자, 숫자 모두 포함)</div></td>
-								</tr>
-								<tr>
-									<th><span>비밀번호 확인</span></th>
-									<td><input type="password" name="pw_chk" class="chk"
-										placeholder="비밀번호를 확인하세요">
-										<div class="valid">비밀번호를 다시 입력하세요</div></td>
-								</tr>
+							<tr>
+								<th><span>가게 카테고리</span></th>
+								<!-- 1 한식 / 2 중식 / 3 분식 / 4 패스트푸드  / 5 양식 / 6 일식 / 7 카페 -->
+								<td><select name="store_category">
+										<c:forEach items="${category}" var="c">
+											<option ${vo.store_category eq c.store_category ? 'selected' : ''}
+												value="${c.store_category}">${c.category_name}
+											</option>
+										</c:forEach>
+									</select>
+								</td>
+							</tr>
 
-								<tr>
-									<th><span>사업자번호</span></th>
-									<td><input type="text" name="b_num" maxlength="12"
-										placeholder="사업자 번호를 입력하세요."></td>
-								</tr>
+							<tr>
+								<th><span>가게 이름</span></th>
+								<td><input type="text" name="store_name" value="${vo.store_name}"></td>
+							</tr>
 
-								<tr>
-									<th><span>핸드폰 번호</span></th>
-									<td><input type="text" name="phone1" value="010" readonly>
-										<span class="mar10">-</span> <input type="text" name="phone2"
-										placeholder="0000" maxlength="4"><span class="mar10">-</span>
-										<input type="text" name="phone3" placeholder="0000"
-										maxlength="4"></td>
-								</tr>
+							<tr>
+								<th><span>운영시간</span></th>
+								<td><input type="text" name="open_close" value="${vo.open_close}"></td>
+							</tr>
 
-								<tr>
-									<th><span>주소</span></th>
-									<td><a class="email_chk" onclick="post()" style="cursor: pointer;">우편번호 찾기</a> <input
-										type="text" name="post" readonly> <input type="text"
-										name="addr" class="full" readonly> <input type="text"
-										name="addr_more" class="full"></td>
-								</tr>
+							<tr>
+								<th><span>가게 전화번호</span></th>
+								<td><input type="text" name="store_tel" value="${vo.store_tel}" maxlength="12"></td>
+							</tr>
+
+							<tr>
+								<th><span>주소</span></th>
+								<td><a class="email_chk" onclick="post()" style="cursor: pointer;">우편번호 찾기</a>
+									<input type="text" name="store_post" readonly value="${vo.store_post}">
+									<input type="text" name="store_addr" class="full" readonly value="${vo.store_addr}">
+									<input type="text" name="addr_more" class="full" value="${vo.addr_more}">
+								</td>
+							</tr>
+
+							<tr>
+								<th><span>가게 로고 이미지 첨부</span></th>
+								<td><c:forEach items="${vo.logoInfo}" var="l">
+										<div class='file' data-id='${l.store_code}'>
+											<label>
+												<input type='file' name='logo_img' multiple class='attach-file'>
+												<a><img src="resources/images/add-file.png"></a>
+											</label>
+											<span class='file-name'>${l.store_logo_name}</span>
+											<div class="delete-file">
+												<a style="display:${empty l.store_logo_name ? 'none' : 'inline'}"><img src="resources/images/delete.png"></a>
+											</div>
+										</div>
+									</c:forEach></td>
+							</tr>
+							
+							<tr>
+								<th><span>가게 이미지 첨부</span></th>
+								<td><c:forEach items="${vo.imageInfo}" var="i">
+										<div class='file' data-id='${i.store_code}'>
+											<label>
+												<input type='file' name='store_img' multiple class='attach-file'>
+												<a><img src="resources/images/add-file.png"></a>
+											</label>
+											<span class='file-name'>${i.store_image_name}</span>
+											<div class="delete-file">
+												<a style="display:${empty i.store_image_name ? 'none' : 'inline'}"><img src="resources/images/delete.png"></a>
+											</div>
+										</div>
+									</c:forEach></td>
+							</tr>
 						</table>
+
+						<details>
+							<summary id="menu_info" style="cursor: pointer;">🍚 메뉴
+								정보 보기 </summary>
+							<table>
+								<colgroup>
+									<col width="30%" />
+									<col width="auto" />
+								</colgroup>
+								<tbody>
+									<tr>
+										<td class="menu-info">사진</td>
+										<td class="menu-info">이름</td>
+										<td class="menu-info">가격</td>
+										<td></td>
+									</tr>
+
+									<c:forEach items="${vo.menuInfo}" var="m">
+										<tr>
+											<td class="menu-info"><img src="${m.menu_image}"></td>
+											
+											<td class="menu-info">${m.menu_name}</td>
+											<td class="menu-info">${m.price}원</td>
+											<td>수정  /  삭제</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</details>
+
 						<div class="exform_txt">
-							<span>표시는 필수적으로 입력해주셔야 가입이 가능합니다.</span>
+							<a style="cursor: pointer;">폐업신청하기 →</a>
 						</div>
 					</div>
-					<!-- join_form E  -->
-					<div class="agree_wrap">
-						<div class="checkbox_wrap">
-							<input type="checkbox" id="news_letter" name="news_letter"
-								class="agree_chk"> <label for="news_letter">[선택]뉴스레터
-								수신동의</label>
-						</div>
-						<div class="checkbox_wrap mar27">
-							<input type="checkbox" id="marketing" name="marketing"
-								class="agree_chk"> <label for="marketing">[선택]마케팅
-								목적 개인정보 수집 및 이용에 대한 동의</label>
-							<ul class="explan_txt">
-								<li><span class="red_txt">항목 : 성별, 생년월일</span></li>
-								<li>고객님께서는 위의 개인정보 및 회원정보 수정 등을 통해 추가로 수집하는 개인정보에<br /> 대해
-									동의하지 않거나 개인정보를 기재하지 않음으로써 거부하실 수 있습니다.<br /> 다만 이때 회원 대상 서비스가
-									제한될 수 있습니다.
-								</li>
-							</ul>
-						</div>
+					
 					</div>
 					<div class="btn_wrap">
-						<a onclick='join()' style="cursor: pointer;">회원가입</a>
+						<a onclick='$("form").submit()' style="cursor: pointer;">정보 수정</a>
 					</div>
 				</div>
 				<!-- form_txtInput E -->
@@ -766,84 +824,42 @@ div.invalid {
 		<!-- container E -->
 	</form>
 
-	<script src='js/member.js?<%=new java.util.Date()%>'></script>
+<script src='js/common_ssb.js?<%=new java.util.Date()%>'></script>
 
-	<script>
-//회원가입 처리
-function join() {
-	if($('[name=email]').hasClass('chked')) {
-		if($('[name=email]').siblings('div').hasClass('invalid')) {
-			alert('이미 사용 중인 이메일 \n' + member.email.valid.desc);
-			return;
-		}//if
-	}else {
-		if(tagIsInvalid($('[name=email]'))) return;
-		else {
-			alert('중복 확인 안 함 \n' + member.email.valid.desc);
-			$('[name=email]').focus();
-			return
-		}
-	}//if
-	
-	if(tagIsInvalid($('[name=pw]'))) return;
-	if(tagIsInvalid($('[name=pw_chk]'))) return;
-	if(tagIsInvalid($('[name=name]'))) return;
-	if(tagIsInvalid($('[name=b_num]'))) return;
-	
-	$('form').submit();
-}
-
-
-//입력 상태가 invalid면 폼 제출 불가
-function tagIsInvalid(tag) {
-	var status = member.tag_status(tag);
-	if( status.code == 'invalid') {
-		alert('회원 가입이 불가능합니다 \n' + status.desc);
-		tag.focus();
-		return true;
-	}else {
-		return false;
-	}//if
-}//tagIsInvalid()
-
-
-//이메일 중복확인
-function email_check() {
-	var $email = $('[name = email]');
-	
-	if($email.hasClass('chked')) return;
-	
-	var status = member.tag_status($email);
-	if(status.code == 'invalid') {
-		alert('이메일 중복확인 불필요 \n' + status.desc);
-		$email.focus();
-		return;
-	}
-	
-	$.ajax({
-		url: 'email_check',
-		data : {email : $email.val()},
-		success: function(response) {
-			response = member.email_check(response);
-			$email.siblings('div').text(response.desc).removeClass().addClass(response.code);
-			$email.addClass('chked');
-		}, error: function(req, status) {
-			alert(status + ':' + req.status);
-		}
-	});
-}
-
-
-//체크 클래스
-$('.chk').keyup(function(e){
-	//이메일를 중복확인한 후, 다시 입력한다면 중복확인하지 않은 상태를 처리
-	if($(this).hasClass('chked')) $(this).removeClass('chked');
-	
-	var status = member.tag_status($(this));
-	$(this).siblings('div').text(status.desc).removeClass().addClass(status.code);
+<script>
+//핸드폰 번호 자동 하이픈 넣기
+$('[name=store_tel]').on('keyup', function() {
+	var num = $('[name=store_tel]').val();
+	num.trim();
+	this.value = AutoHypen(num);
 })
 
-
+function AutoHypen(store_tel) {
+	store_tel = store_tel.replace(/[^0-9]/g, '');
+	var tmp = '';
+	if (store_tel.length < 4) {
+		return str;
+	} else if (store_tel.length < 7) {
+		tmp += store_tel.substr(0, 3);
+		tmp += '-';
+		tmp += store_tel.substr(3);
+		return tmp;
+	} else if (store_tel.length < 11) {
+		tmp += store_tel.substr(0, 3);
+		tmp += '-';
+		tmp += store_tel.substr(3, 3);
+		tmp += '-';
+		tmp += store_tel.substr(6);
+		return tmp;
+	} else {
+		tmp += store_tel.substr(0, 3);
+		tmp += '-';
+		tmp += store_tel.substr(3, 4);
+		tmp += '-';
+		tmp += store_tel.substr(7);
+		return tmp;
+	}
+}
 
 //우편번호 및 주소 설정
 function post() {
@@ -859,55 +875,11 @@ function post() {
 			//빌딩 이름이 있는 경우
 			if (data.buildingName != '')
 				address += " (" + data.buildingName + ")";
-			$('[name = addr]').eq(0).val(address);
-			$('[name = post]').val(data.zonecode);
+			$('[name = store_addr]').eq(0).val(address);
+			$('[name = store_post]').val(data.zonecode);
 		}
 	}).open();
 }
-
-
-//핸드폰 번호 4자리 입력하면 자동 탭
-$('[name=phone2]').on('keyup', function() {
-	if(this.value.length == 4) {
-		$('[name=phone3]').focus()
-	}
-});
-
-
-//사업자 번호 자동 하이픈
-$('[name=b_num]').on('keyup', function(){
-	var num = $('[name=b_num]').val();
-	num.trim(); 
-	this.value = AutoHypen(num) ;
-});
-
-function AutoHypen(b_num){
-	b_num = b_num.replace(/[^0-9]/g, '');
-    var tmp = '';   
-
-    if(b_num.length < 4){
-		return b_num;
-    }else if(b_num.length < 6){
-    	tmp += b_num.substr(0,3);
-    	tmp += '-';
-    	tmp += b_num.substr(3,2);
-		return tmp;
-    }else if(b_num.length < 11){
-    	tmp += b_num.substr(0,3);
-    	tmp += '-';
-    	tmp += b_num.substr(3,2);
-    	tmp += '-';
-		tmp += b_num.substr(5);
-      return tmp;
-    }else{
-    	tmp += b_num.substr(0,3);
-		tmp += '-';
-		tmp += b_num.substr(3,2);
-      	tmp += '-';
-      	tmp += b_num.substr(5);
-      return tmp;
-    }
-  }
 </script>
 </body>
 </html>
