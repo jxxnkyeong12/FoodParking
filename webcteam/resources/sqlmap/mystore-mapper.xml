@@ -9,7 +9,7 @@
 	ON i.id = m.id
 	LEFT OUTER JOIN store_logo l
 	ON i.store_code = l.store_code
-	WHERE i.id = #{id}
+	WHERE m.id = #{id}
 </select>
 
 
@@ -26,6 +26,7 @@
 	SELECT *
 	FROM menu_info
 	WHERE store_code = #{store_code}
+	ORDER BY menu_id
 </select>
 
 
@@ -34,7 +35,8 @@
 	UPDATE store_info
 	SET store_name = #{store_name}, store_category = #{store_category}, open_close = #{open_close},
 		store_post = #{store_post}, store_addr = #{store_addr}, addr_more = #{addr_more},
-		store_tel = #{store_tel}, store_logo = #{store_logo}, store_image = #{store_image}
+		store_tel = #{store_tel}, store_logo = #{store_logo}, store_image = #{store_image},
+		store_comment = #{store_comment}
 	WHERE store_code = #{store_code}
 	AND id = #{id}
 </update>
@@ -46,6 +48,20 @@
 	SET store_logo_name = #{store_logo_name}, store_logo_path = #{store_logo_path}
 	WHERE store_code = #{store_code}
 </update>
+
+
+<!-- 가게 로고 없을 경우, 가게 로고 추가 -->
+<insert id="logo_insert">
+	INSERT INTO store_logo (store_code, store_logo_name, store_logo_path)
+	VALUES (#{store_code}, #{store_logo_name}, #{store_logo_path})
+</insert>
+	
+	
+<!-- 가게 로고 없는데 가게 로고 추가도 안 함... 기본 이미지로 넣기 -->
+<insert id="logo_default">
+	INSERT INTO store_logo (store_code, store_logo_name, store_logo_path)
+	VALUES (#{store_code}, '기본 로고', 'http://121.147.215.12:3304/cteam/upload/store_logo/store_logo_default.png')
+</insert>
 
 
 <!-- 가게 이미지 정보 불러오기-->
@@ -64,6 +80,17 @@
 	AND store_image_num = #{store_image_num}
 </update>
 
+<!-- 가게 이미지 없을 때 추가 -->
+<insert id="image_insert">
+	INSERT INTO store_image(store_code, store_image_name, store_image_path)
+	VALUES (#{store_code}, #{store_image_name}, #{store_image_path})
+</insert>
+
+<!-- 가게 이미지도 없는데 파일 첨부도 안 함 -->
+<insert id="image_default">
+	INSERT INTO store_image(store_code, store_image_name, store_image_path)
+	VALUES (#{store_code}, '기본 이미지', 'http://121.147.215.12:3304/cteam/upload/store_logo/store_logo_default.png')
+</insert>
 
 <!-- 카테고리 목록 가져오기 -->
 <select id="category_list" resultType="mystore.hs.StoreCategoryVO">
@@ -72,4 +99,28 @@
 </select>
 
 
+<!-- 메뉴 정보 삭제 -->
+<delete id="menu_delete">
+	DELETE FROM menu_info
+	WHERE store_code = #{store_code} AND menu_id = #{menu_id}
+</delete>
+
+<!-- 메뉴 정보 추가하기 -->
+<insert id="menu_add">
+	INSERT INTO menu_info(price, menu_image, menu_name, menu_code, store_code)
+	VALUES (#{price}, #{menu_image}, #{menu_name}, 0, #{store_code})
+</insert>
+
+<!-- 가게 삭제 -->
+<delete id="close_store">
+	DELETE FROM store_info
+	WHERE store_code = #{store_code}
+</delete>
+
+<!-- 비밀번호 일치 여부 확인 -->
+<select id="pw_check" resultType="Integer">
+	SELECT COUNT(*)
+	FROM member
+	WHERE pw = #{pw}
+</select>
 </mapper>

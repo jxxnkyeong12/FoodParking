@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import home.StoreInfoVO;
+
 @Repository
 public class MyStoreDAO {
 	@Autowired @Qualifier("cteam") private SqlSession sql;
@@ -36,4 +38,35 @@ public class MyStoreDAO {
 		return sql.update("mystore.image_update", image);
 	}
 
+	public int menu_delete(MenuInfoVO vo) {
+		return sql.delete("mystore.menu_delete", vo);
+	}
+
+	public int menu_add(MenuInfoVO vo) {
+		return sql.insert("mystore.menu_add", vo);
+	}
+
+	public int close_store(int store_code, String pw) {
+		int pw_check = sql.selectOne("mystore.pw_check",pw);
+		if(pw_check == 1) {
+			sql.delete("mystore.close_store", store_code);
+		}
+		return 0;
+	}
+
+	public void logo_insert(LogoFileInfoVO logoInfo) {
+		sql.insert("mystore.logo_insert", logoInfo);
+	}
+
+	public void logo_default(int store_code) {
+		sql.insert("mystore.logo_default", store_code);
+	}
+
+	public void image_insert(StoreFileInfoVO imageInfo) {
+		sql.insert("mystore.image_insert", imageInfo);
+	}
+	
+	public void image_default(int store_code) {
+		sql.insert("mystore.image_default", store_code);
+	}
 }

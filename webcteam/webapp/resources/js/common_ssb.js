@@ -110,6 +110,7 @@ function loading(is){
 
 $(document).on( 'change', '.attach-file', function(){
       var attached = this.files[0];
+      console.log('attached', attached)
       var $div = $(this).closest('div');
       //선택한 파일 있는 경우
       if( attached ){

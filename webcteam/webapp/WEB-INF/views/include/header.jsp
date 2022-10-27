@@ -810,47 +810,57 @@
 								</div>
 
 								<!-- GNB -->
-								<c:if test="${not empty loginInfo}">
-								<ul id="GnbMenu" class="gnb" style="font-family: Noto Sans KR">
-									<li><a href='/pages/about' style='font-size: 16px'>소개</a>
-										<button type="button" class='btn_depth2_view'></button>
-										<div class='navi_depth2_wrap'>
-											<ul class='navi_depth2'>
-												<li><a href='/pages/about'>인사말</a></li>
-												<li><a href='/pages/history'>푸드파킹 둘러보기</a></li>
-											</ul>
-										</div></li>
-									<li><a href='enter.en'  style="font-size: 16px;">입점신청양식</a>
-									</li>
-									<li><a href='pages/so' style="font-size: 16px;">가게 정보</a></li>
-									<li><a href='/pages/news' style="font-size: 16px;">푸드
-											소식</a></li>
-									<li><a href='myStore' style="font-size: 16px;">가게 정보</a></li>
-									<li><a href='notice.no' style="font-size: 16px;">공지/이벤트</a>
-									</li>
-								
-								</ul>
-								</c:if>
-								<c:if test="${empty loginInfo}">
-								<ul id="GnbMenu" class="gnb" style="font-family: Noto Sans KR">
-									<li><a href='/pages/about' style='font-size: 16px'>소개</a>
-										<button type="button" class='btn_depth2_view'></button>
-										<div class='navi_depth2_wrap'>
-											<ul class='navi_depth2'>
-												<li><a href='/pages/about'>인사말</a></li>
-												<li><a href='/pages/history'>푸드파킹 둘러보기</a></li>
-											</ul>
-										</div></li>
-									<li><a href='enter.en'  style="font-size: 16px;">입점신청양식</a>
-									</li>
-									<li><a href='pages/so' style="font-size: 16px;">푸드파킹 소개</a></li>
-									<li><a href='/pages/news' style="font-size: 16px;">푸드
-											소식</a></li>
-									<li><a href='myStore' style="font-size: 16px; display: none;">가게 정보</a>
-									</li>
-										<li><a href='notice.no' style="font-size: 16px; ">공지/이벤트</a></li>
-								</ul>
-								</c:if>
+                        <c:if test="${not empty loginInfo}">
+                        <ul id="GnbMenu" class="gnb" style="font-family: Noto Sans KR">
+                           <li><a href='/pages/about' style='font-size: 16px'>소개</a>
+                              <button type="button" class='btn_depth2_view'></button>
+                              <div class='navi_depth2_wrap'>
+                                 <ul class='navi_depth2'>
+                                    <li><a href='/pages/about'>인사말</a></li>
+                                    <li><a href='/pages/history'>푸드파킹 둘러보기</a></li>
+                                 </ul>
+                              </div></li>
+                           <li><a href='pages/so' style="font-size: 16px;">푸드파킹 소개</a></li>
+                           <li><a href='/pages/news' style="font-size: 16px;">푸드   소식</a></li>
+                           <li><a href='notice.no' style="font-size: 16px;">공지/이벤트</a>
+                           </li>
+                           <c:if test="${loginInfo.manager.equals('N') }">
+                                 <li><a href='enter.en'  style="font-size: 16px;">입점신청양식</a>
+                           </li>
+                           </c:if>
+                           <c:if test="${loginInfo.manager.equals('Y') }">
+                                 <li><a href='mystore.st' style="font-size: 16px;">가게 정보</a>
+                                 </li>
+                           </c:if>
+                           <c:if test="${loginInfo.manager.equals('M') }">
+                                 <li><a href='admin_store' style='font-size: 16px'>관리자 업무</a>
+                                 <button type="button" class='btn_depth2_view'></button>
+                                 <div class='navi_depth2_wrap'>
+                                    <ul class='navi_depth2'>
+                                       <li><a href='admin_store'>입점희망</a></li>
+                                       <li><a href='admin_review'>삭제요청 리뷰 확인하기</a></li>
+                                    </ul>
+                                 </div></li>
+                              </c:if>
+                        
+                        </ul>
+                        </c:if>
+                        <c:if test="${empty loginInfo}">
+                        <ul id="GnbMenu" class="gnb" style="font-family: Noto Sans KR">
+                           <li><a href='/pages/about' style='font-size: 16px'>소개</a>
+                              <button type="button" class='btn_depth2_view'></button>
+                              <div class='navi_depth2_wrap'>
+                                 <ul class='navi_depth2'>
+                                    <li><a href='/pages/about'>인사말</a></li>
+                                    <li><a href='/pages/history'>푸드파킹 둘러보기</a></li>
+                                 </ul>
+                              </div></li>
+                           <li><a href='pages/so' style="font-size: 16px;">푸드파킹 소개</a></li>
+                           <li><a href='/pages/news' style="font-size: 16px;">푸드
+                                 소식</a></li>
+                              <li><a href='notice.no' style="font-size: 16px; ">공지/이벤트</a></li>
+                        </ul>
+                        </c:if>
 							</div>
 
 							<!-- Aside open button( 햄거버 ) -->

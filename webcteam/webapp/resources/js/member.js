@@ -5,7 +5,7 @@ var member = {
 	tag_status: function( tag ){
 		var name = tag.attr('name');
 		if( name=='pw' )  return this.pw_status(tag.val());
-		else if( name=='pw_chk' ) return this.pw_chk_status( tag.val() );
+		else if( name=='pw_ck' ) return this.pw_chk_status( tag.val() );
 		else if(name == 'email') return this.email_status(tag.val());
 		else if(name == 'name') return this.name_status(tag.val());
 		else if(name == 'b_num') return this.b_num_status(tag.val());

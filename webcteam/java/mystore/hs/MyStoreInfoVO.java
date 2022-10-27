@@ -6,13 +6,23 @@ public class MyStoreInfoVO {
 	private int store_code, id, store_category, review_cnt, store_post;
 	private float star_rating, clean, taste, mood, kind;
 	private String store_name, store_tel, open_close, store_addr, store_comment, store_image, store_logo, nickname,
-			content, review_content, writedate, store_logo_path, b_num, store_logo_name, addr_more;
+			content, review_content, writedate, store_logo_path, b_num, store_logo_name, addr_more, menu_name;
 
 	private List<LogoFileInfoVO> logoInfo; //로고 정보 담을 리스트
 	private List<MenuInfoVO> menuInfo; //메뉴 정보 담을 리스트
 	private List<StoreCategoryVO> categoryInfo; //카테고리 리스트
 	private List<StoreFileInfoVO> imageInfo; //가게 사진 담을 리스트
 	
+	
+	
+	public String getMenu_name() {
+		return menu_name;
+	}
+
+	public void setMenu_name(String menu_name) {
+		this.menu_name = menu_name;
+	}
+
 	public List<StoreFileInfoVO> getImageInfo() {
 		return imageInfo;
 	}

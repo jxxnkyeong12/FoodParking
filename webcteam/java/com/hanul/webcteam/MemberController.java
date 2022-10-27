@@ -291,7 +291,7 @@ public class MemberController {
    //로그인 처리 요청 - 솔트 생성후 로그인이 되지않아 로그인 되게끔 수정 - ssb
       @ResponseBody @RequestMapping("/memberlogin")
       public boolean login(String email, String pw, HttpSession session) {
-         String salt = dao.member_salt(email); pw = common.getEncrypt(salt, pw);
+         //String salt = dao.member_salt(email); pw = common.getEncrypt(salt, pw);
          //암호화된 비번
           
          HashMap<String, String> map = new HashMap<String, String>();

@@ -1,11 +1,9 @@
 package com.hanul.webcteam;
 
-
 import java.util.List;
 
 import java.text.DateFormat;
 import java.util.Date;
->>>>>>> 3fbbcecaf671370b01849f00ea9085dc484b833f
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -21,41 +19,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import home.HometStoreDAO;
 import home.StoreInfoVO;
 
-
-
 @Controller
 public class HomeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
 
-	  @Autowired private HometStoreDAO dao;
-	
-	
-	  
-	  //메인화면에서 가게 클릭시 가게 상세하게 나오게 하려고
-	  @RequestMapping("/detail.ho")
-	  public String detail(int store_code) {
-		  
-		  return "home/detail";
-	  }
-	  
-	
-	//메인화면으로 입점가게 리스트 뿌리는 메소드
+	@Autowired
+	private HometStoreDAO dao;
 
+	// 메인화면에서 가게 클릭시 가게 상세하게 나오게 하려고
+	@RequestMapping("/detail.ho")
+	public String detail(int store_code) {
+
+		return "home/detail";
+	}
+
+	// 메인화면으로 입점가게 리스트 뿌리는 메소드
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+		List<StoreInfoVO> vo = dao.home_store_enter();
+		model.addAttribute("vo", vo);
 		return "home";
 	}
 
-	
 }

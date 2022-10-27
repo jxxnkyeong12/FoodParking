@@ -40,7 +40,7 @@ public class ManagerController {
 				dao.admin_make_store(vo);
 			}
 		}
-		return "/admin_store";
+		return "redirect:admin_store";
 	}
 	
 	

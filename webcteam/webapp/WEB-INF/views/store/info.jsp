@@ -142,7 +142,7 @@ a.email_chk {
 	padding: 10px;
 	height: 52px;
 	line-height: 30px;
-	width: 168px;
+	width: 250px;
 	display: block;
 	text-align: center;
 	margin: 0 auto;
@@ -431,6 +431,12 @@ input[name=store_logo] {
 	font-weight: bold;
 }
 
+td .store_comment {
+	width: 100%;
+	height: 150px;
+	border: 1px solid #ececec;
+}
+
 .explan_txt {
 	margin: 3px 0 0 22px;
 }
@@ -691,8 +697,9 @@ details td{
 
 </head>
 <body>
-	<form method="post" action="update.st" enctype="multipart/form-data">
+	<form method="post">
 		<input type="hidden" name="id" value="${vo.id}">
+		<input type="hidden" name="store_code" value="${vo.store_code}">
 		<div class="wrap wd668">
 			<div class="container">
 				<div class="form_txtInput">
@@ -749,6 +756,14 @@ details td{
 								</tr>
 								
 								<tr>
+									<th><span>가게 소개글</span></th>
+									<td>
+										<textarea rows="1" cols="1" readonly="readonly" class="store_comment" name="store_comment">${vo.store_comment}
+										</textarea>
+									</td>
+								</tr>
+								
+								<tr>
 									<th><span>운영시간</span></th>
 									<td><input type="text" name="open_close" value="${vo.open_close}" readonly></td>
 								</tr>
@@ -767,27 +782,35 @@ details td{
 
 								<tr>
 									<th><span>가게 로고</span></th>
-									<td><c:forEach items="${vo.logoInfo}" var="l">
-										<div class='file' data-id='${l.store_code}'>
-											<div class="delete-file"><a><img src="resources/images/delete.png"></a></div>
-											<div><img src="${vo.store_logo}"></div>	
-										</div>
-										</c:forEach>
+									<td><c:choose>
+											<c:when test="${!empty vo.store_logo}">
+												<img src="${vo.store_logo}">
+											</c:when>
+											<c:otherwise>
+												로고 없음
+											</c:otherwise>
+										</c:choose>
 									</td>
 								</tr>
 								
 								<tr>
 									<th><span>가게 이미지</span></th>
-									<td><c:forEach items="${vo.imageInfo}" var="i">
+									<td><c:choose>
+											<c:when test="${!empty vo.store_image}">
+												<img src="${vo.store_image}">
+											</c:when>
+											<c:otherwise>
+												로고 없음
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<%-- <c:forEach items="${vo.imageInfo}" var="i">
 										<div class='file' data-id='${i.store_code}'>
 											<div class="delete-file"><a><img src="resources/images/delete.png"></a></div>
 											<div><img src="${vo.store_image}"></div>	
 										</div>
-										</c:forEach>
-									</td>
+									</c:forEach> --%>
 								</tr>
-								
-								
 						</table>
 						
 						<details>
@@ -816,15 +839,13 @@ details td{
 						</details>
 						
 						<div class="exform_txt">
-							<a href="modify.st" style="cursor: pointer;">가게 정보 수정하기 →</a>
-							<div>
-								<a href="delete.st" style="cursor: pointer;">폐업신청하기 →</a>
-							</div>
+							<a onclick="close_store()" style="cursor: pointer;">폐업신청하기 →</a>
+						</div>
+						
+						<div class="btn_wrap">
+							<a href="modify.st" style="cursor: pointer;">가게 정보 수정하기</a>
 						</div>
 					</div>
-					
-					</div>
-					
 				</div>
 				<!-- form_txtInput E -->
 			</div>
@@ -834,6 +855,32 @@ details td{
 	</form>
 
 <script src='js/common_ssb.js?<%=new java.util.Date()%>'></script>
+
+<script>
+function close_store() {
+	var pw = prompt("비밀번호를 입력하세요");
+	if(pw != null) {
+		$.ajax({
+			type : "POST",
+			url : "<c:url value='/close_store.st'/>",
+			data: {
+			 store_code: ${vo.store_code},
+			 pw : pw
+			},
+			success: function(result){
+				if(result == 0) {
+					alert("삭제되었습니다.");
+				}else {
+					alert("비밀번호가 틀렸습니다");
+				}
+			},
+			error: function(xhr, status, error) {
+				alert(error);
+			}
+		});
+	}
+ }
+</script>
 
 </body>
 </html>

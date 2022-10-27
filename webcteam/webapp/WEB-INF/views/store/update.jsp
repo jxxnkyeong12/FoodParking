@@ -250,7 +250,6 @@ a.email_chk {
 .join_form table input {
 	font-size: 14px;
 	color: #000000;
-	height: 35px;
 	float: left;
 }
 
@@ -260,6 +259,7 @@ input[name=open_close], input[name=store_tel],
 input[name=store_addr], input[name=addr_more] {
 	border: 1px solid #ececec;
 	width: 100%;
+	height: 35px;
 	padding: 10px;
 }
 
@@ -497,6 +497,10 @@ input[name=store_logo] {
 	text-align: right;
 }
 
+.checkbox {
+	vertical-align: middle;
+}
+
 .overlayer {
 	position: fixed;
 	display: none;
@@ -557,12 +561,65 @@ div.invalid {
 	color: black;
 }
 
-#menu_info {
+#menu_modify {
 	color: black;
+	margin-top: 20px;
 }
+
+
 
 #delete, #attach-file, #delete-file, .attach-file, .delete-file { display:none; }
 
+.menu_insert {
+    cursor: pointer;
+    color: black;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+a.menu_add {
+	text-align: center;
+	float: right;
+	color: #fff;
+	background-color: #F25C05;
+	font-weight: bold;
+	padding: 7px;
+	height: 34px;
+	line-height: 21px;
+	width: 45px;
+	display: block;
+	margin: 0 auto;
+}
+
+td .store_comment {
+	width: 100%;
+	height: 150px;
+	border: 1px solid #ececec;
+}
+
+a.btn_menu_add, a.btn_menu_delete {
+    float: right;
+    color: #fff;
+    background-color: #F25C05;
+    font-weight: bold;
+    padding: 7px;
+    height: 34px;
+    line-height: 21px;
+    width: 70px;
+    display: block;
+    text-align: center;
+    float: left;
+}
+
+a.btn_menu_delete {
+	margin-left: 10px;
+	background-color: gray;
+}
+
+input[type=checkbox] {
+	height: 35px;
+    float: left;
+}
 
 @media ( max-width : 1023px ) {
 	.wrap {
@@ -584,7 +641,7 @@ div.invalid {
 	.join_form table {
 		width: 100%;
 	}
-	.join_form table input {
+	.join_form table {
 		border: 1px solid #ececec;
 		font-size: 14px;
 		color: #4c4c4c;
@@ -684,10 +741,10 @@ div.invalid {
 	}
 }
 </style>
-
+<script src='js/common_ssb.js?<%=new java.util.Date()%>'></script>
 </head>
 <body>
-	<form method="post" action="update.st" enctype="multipart/form-data">
+	<form id='menu' method="post" action="update.st" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${vo.id}">
 		<input type="hidden" name="store_code" value="${vo.store_code}">
 		
@@ -725,6 +782,13 @@ div.invalid {
 								<th><span>가게 이름</span></th>
 								<td><input type="text" name="store_name" value="${vo.store_name}"></td>
 							</tr>
+							
+							<tr>
+								<th><span>가게 소개글</span></th>
+								<td>
+									<textarea rows="1" cols="1" class="store_comment" name="store_comment">${vo.store_comment}</textarea>
+								</td>
+							</tr>
 
 							<tr>
 								<th><span>운영시간</span></th>
@@ -747,74 +811,155 @@ div.invalid {
 
 							<tr>
 								<th><span>가게 로고 이미지 첨부</span></th>
-								<td><c:forEach items="${vo.logoInfo}" var="l">
-										<div class='file' data-id='${l.store_code}'>
-											<label>
-												<input type='file' name='logo_img' multiple class='attach-file'>
-												<a><img src="resources/images/add-file.png"></a>
-											</label>
-											<span class='file-name'>${l.store_logo_name}</span>
-											<div class="delete-file">
-												<a style="display:${empty l.store_logo_name ? 'none' : 'inline'}"><img src="resources/images/delete.png"></a>
+								<td><c:choose>
+										<c:when test="${!empty vo.logoInfo}"> <!-- 로고 있을 때 -->
+											<c:forEach items="${vo.logoInfo}" var="l">
+												<div class='file' data-id='${l.store_code}'>
+													<label>
+														<input type='file' name='logo_img' multiple class='attach-file'>
+														<a><img src="resources/images/add-file.png"></a>
+													</label>
+													<span class='file-name'>${l.store_logo_name}</span>
+													<div class="delete-file">
+														<a style="display:${empty l.store_logo_name ? 'none' : 'inline'}">
+														<img src="resources/images/delete.png"></a>
+													</div>
+												</div>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<div class="file">
+												<label>
+													<input type='file' name='logo_img' class='attach-file'>
+													<a><img src="resources/images/add-file.png"></a>
+													<span class='file-name'></span>
+												</label>
+												<span class="file-name"></span>
+												<div class="delete-file">
+													<a><img src="resources/images/delete.png"></a>
+												</div>
 											</div>
-										</div>
-									</c:forEach></td>
+										</c:otherwise>
+									</c:choose>
+								</td>
 							</tr>
 							
 							<tr>
 								<th><span>가게 이미지 첨부</span></th>
-								<td><c:forEach items="${vo.imageInfo}" var="i">
+								<td><c:choose>
+										<c:when test="${!empty vo.imageInfo}"> <!-- 로고 있을 때 -->
+											<c:forEach items="${vo.imageInfo}" var="l">
+												<div class='file' data-id='${l.store_code}'>
+													<label>
+														<input type='file' name='store_img' multiple class='attach-file'>
+														<a><img src="resources/images/add-file.png"></a>
+													</label>
+													<span class='file-name'>${l.store_image_name}</span>
+													<div class="delete-file">
+														<a style="display:${empty l.store_image_name ? 'none' : 'inline'}">
+														<img src="resources/images/delete.png"></a>
+													</div>
+												</div>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<div class="file">
+												<label>
+													<input type='file' name='store_img' class='attach-file'>
+													<a><img src="resources/images/add-file.png"></a>
+													<span class='file-name'></span>
+												</label>
+												<span class="file-name"></span>
+												<div class="delete-file">
+													<a><img src="resources/images/delete.png"></a>
+												</div>
+											</div>
+										</c:otherwise>
+									</c:choose><%-- 
+									
+									<c:forEach items="${vo.imageInfo}" var="i">
 										<div class='file' data-id='${i.store_code}'>
 											<label>
-												<input type='file' name='store_img' multiple class='attach-file'>
+												<input type='file' name='store_img' class='attach-file'>
 												<a><img src="resources/images/add-file.png"></a>
 											</label>
 											<span class='file-name'>${i.store_image_name}</span>
-											<div class="delete-file">
-												<a style="display:${empty i.store_image_name ? 'none' : 'inline'}"><img src="resources/images/delete.png"></a>
+											<div class="delete-file file">
+												<a style="display:${empty i.store_image_name ? 'none' : 'inline'}">
+												<img src="resources/images/delete.png"></a>
 											</div>
 										</div>
-									</c:forEach></td>
+									</c:forEach> --%>
+								</td>
 							</tr>
 						</table>
 
-						<details>
-							<summary id="menu_info" style="cursor: pointer;">🍚 메뉴
-								정보 보기 </summary>
+						<details id="menu_modify">
+							<summary id="menu_info" style="cursor: pointer;">🍚 메뉴 정보 수정하기 </summary>
+							<div style="margin-top:15px;">
+								
+								<a onclick="input_add()" class="btn_menu_add" style="cursor: pointer;">추가</a>
+								<a onclick="menu_delete()" class="btn_menu_delete" style="cursor: pointer;">삭제</a>
+								
+							</div>
 							<table>
 								<colgroup>
-									<col width="30%" />
+									<col width="8%" />
 									<col width="auto" />
 								</colgroup>
-								<tbody>
+								<tbody class="add-input">
 									<tr>
+										<td></td>
 										<td class="menu-info">사진</td>
 										<td class="menu-info">이름</td>
 										<td class="menu-info">가격</td>
-										<td></td>
 									</tr>
-
+									<tr>
+										<!-- <td><a onclick="menu_add()" style="cursor: pointer;" >확인</a></td>
+										<td class="menu-info">
+											<div class="file">
+												<label>
+													<input type='file' name='menu_upload_image' class='attach-file'>
+													<a><img src="resources/images/add-file.png"></a>
+													<span class='file-name'></span>
+												</label>
+												<span class="file-name"></span>
+												<div class="delete-file">
+													<a><img src="resources/images/delete.png"></a>
+												</div>
+											</div>
+										</td>
+										<td class="menu-info" style="padding-left: 20px">
+											<input type="text" name="menu_name" placeholder="메뉴 이름">
+										</td>
+										<td class="menu-info" style="padding-left: 20px">
+											<input type="text" name="price" placeholder="가격 (숫자만 입력)">
+										</td> -->
+									</tr>
+									
+									
 									<c:forEach items="${vo.menuInfo}" var="m">
-										<tr>
-											<td class="menu-info"><img src="${m.menu_image}"></td>
-											
-											<td class="menu-info">${m.menu_name}</td>
-											<td class="menu-info">${m.price}원</td>
-											<td>수정  /  삭제</td>
+										<tr class="menu_tr_delete">
+											<td style="display: flex; justify-content: center;">
+												<input type="checkbox" name="menu_chk" value="${m.menu_id}">
+												<%-- <input type="hidden" value="${m.menu_id}" name="menu_id">
+												<a class="menu_delete" onclick="menu_delete()" style="cursor: pointer;">
+												삭제</a> --%>
+											</td>
+											<td class="menu-info menu_image">
+<!-- 											<input type='file' name='menu_upload_image' multiple class='attach-file'> -->
+												<a><img src="${m.menu_image}"></a></td>
+											<td class="menu-info menu_name">${m.menu_name}</td>
+											<td class="menu-info menu_price">${m.price}원</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 						</details>
-
-						<div class="exform_txt">
-							<a style="cursor: pointer;">폐업신청하기 →</a>
-						</div>
-					</div>
 					
 					</div>
 					<div class="btn_wrap">
-						<a onclick='$("form").submit()' style="cursor: pointer;">정보 수정</a>
+						<a onclick='update()' style="cursor: pointer;">수정완료</a>
 					</div>
 				</div>
 				<!-- form_txtInput E -->
@@ -824,9 +969,129 @@ div.invalid {
 		<!-- container E -->
 	</form>
 
-<script src='js/common_ssb.js?<%=new java.util.Date()%>'></script>
 
 <script>
+//폼 전송
+function update() {
+	$("form").submit();
+}
+
+
+//체크된 메뉴들 삭제
+function menu_delete() {
+	var cnt = $("input[name='menu_chk']:checked").length;
+
+	$("input[name=menu_chk]:checked").each(function(){
+		
+		if(cnt == 0) {
+			alert('선택된 메뉴가 없습니다.');
+			
+		}else {
+			if(confirm('정말 삭제하시겠습니까?')) {
+				var tr_value = $(this).val();
+				var $tr = $(this).closest('tr');
+				$.ajax({
+	    		      type : "POST",
+	    		      url : "<c:url value='/menu_delete.st'/>",
+	    		      data: {
+	    		    	  store_code: ${vo.store_code},
+	    		    	  menu_id: tr_value
+	    		      },
+	    		      success: function(result){
+	    		      	console.log(result);
+	    		      },
+	    		      error: function(xhr, status, error) {
+	    		      	alert(error);
+	    		      }
+	    		});
+				
+				$tr.remove();
+			}else{
+				
+			}//if(confirm)
+		}//if(cnt)
+	})
+}
+
+
+$(document).on('click', '.menu_add', function(){
+	var $tr = $(this).closest('tr');
+	var form = new FormData( );
+    form.append( "menu_upload_image",   $tr.find("[name=menu_upload_image]")[0].files[0] );
+    form.append( "menu_name",  $tr.find("[name=menu_name]").val() );
+    form.append( "price",  $tr.find("[name=price]").val() );
+    form.append("store_code", ${vo.store_code});
+    
+    $.ajax({
+		url : "<c:url value='/menu_add.st'/>"
+		, type : "POST"
+		, processData : false
+		, contentType: false
+		, data : form
+		, success:function(response) {
+			alert("성공하였습니다.");
+			console.log(response);
+		},
+		error: function (jqXHR) { 
+           alert(jqXHR.responseText); 
+		}
+	});
+    
+	//메뉴이름, 가격 태그 타입 바꾸기
+	$tr.find('[name=price]').attr("readonly", true);
+	$tr.find('[name=menu_name]').attr("readonly", true);
+	//$tr.find('[name=menu_add_confirm]').append('<input type="checkbox" name="menu_chk" value="${m.menu_id}">');
+	$tr.find('[name=menu_add_confirm]').append('<input type="checkbox" name="menu_chk" value="${m.menu_id}">');
+	$tr.find('[name=menu_add_confirm]').remove();
+	$tr.find('.delete-file').remove();
+	$tr.find('[name=menu_upload]').remove();
+	
+});
+
+
+//이미지 미리보기
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('preview').src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    document.getElementById('preview').src = "";
+  }
+}
+
+
+//추가 버튼 눌렀을 때 input 한 줄 추가
+function input_add() {
+	$('.add-input').append(
+		'<tr>' +
+			'<td><a name="menu_add_confirm" class="menu_add" style="cursor: pointer;">확인</a></td>' +
+// 			'<td><a onclick="menu_add()" style="cursor: pointer;">확인</a></td>' +
+			'<td class="menu-info">' +
+				'<div class="file">' +
+					'<label>' +
+						'<input type="file" onchange="readURL(this);" name="menu_upload_image" id="menu_image" class="attach-file">' +
+						'<a name="menu_upload"><img src="resources/images/add-file.png"></a>' +
+// 						'<span class="file-name"></span>' +
+					'</label> <a id="preview"></a>' +
+					'<span class="file-name"></span>' +
+					'<div class="delete-file">' +
+					'<a><img src="resources/images/delete.png"></a>' +
+				'</div>' +
+				'</div>' +
+			'</td>' +
+			'<td class="menu-info" style="padding-left: 20px">' +
+				'<input type="text" name="menu_name" placeholder="메뉴 이름">' +
+			'</td>' +
+			'<td class="menu-info" style="padding-left: 20px">' +
+				'<input type="number" name="price" placeholder="가격 (숫자만 입력)">' +
+			'</td>' +
+		'</tr>'
+	)
+}
+
 //핸드폰 번호 자동 하이픈 넣기
 $('[name=store_tel]').on('keyup', function() {
 	var num = $('[name=store_tel]').val();
