@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+   <!-- 회원의 salt조회 -->
+
+
+   <select resultType="string" id="salt"> select salt from member where
+      email=#{email} </select>
+
+   <!-- 비밀번호변경 -->
+
+
+   <update id="reset_password"> update member set salt=#{salt}, pw=#{pw} where
+      email=#{email} </update>
+
+   <!-- 아이디에 해당하는 이메일이 맞는지 확인 -->
+
+
+   <select resultType="integer" id="phone_email"> select count(*) from member
+      where phone=#{phone} and email=#{email} </select>
+
+   <insert id="naver_join">INSERT INTO member (email, pw, name, manager, b_num,
+      phone, social, addr, post, addr_more)VALUES (#{email}, #{pw,
+      jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, 'Y', #{b_num,
+      jdbcType=VARCHAR}, '010-1111-2222', 'N', #{addr, jdbcType=VARCHAR},
+      #{post, jdbcType=VARCHAR}, #{addr_more, jdbcType=VARCHAR}) </insert>
+
+   <!-- 카카오 자동로그인후 변경된 정보 자동수정처리 -->
+
+
+   <update id="naver_update"> update member set email=#{email}, pw = #{pw,
+      jdbcType=VARCHAR}, name = #{name, jdbcType=VARCHAR}, manager='Y',
+      b_num=#{b_num, jdbcType=VARCHAR}, phone='010-1111-2222', social='K',
+      addr=#{addr, jdbcType=VARCHAR}, post=#{post, jdbcType=VARCHAR},
+      addr_more=#{addr_more, jdbcType=VARCHAR} where email = #{email}
+   </update>
+
+   <insert id="kakao_join">INSERT INTO member (email, pw, name, manager, b_num,
+      phone, social, addr, post, addr_more)VALUES (#{email}, #{pw,
+      jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, 'Y', #{b_num,
+      jdbcType=VARCHAR}, '010-1111-2222', 'N', #{addr, jdbcType=VARCHAR},
+      #{post, jdbcType=VARCHAR}, #{addr_more, jdbcType=VARCHAR}) </insert>
+
+   <!-- 카카오 자동로그인후 변경된 정보 자동수정처리 -->
+
+
+   <update id="kakao_update"> update member set email=#{email}, pw = #{pw,
+      jdbcType=VARCHAR}, name = #{name, jdbcType=VARCHAR}, manager='Y',
+      b_num=#{b_num, jdbcType=VARCHAR}, phone='010-1111-2222', social='K',
+      addr=#{addr, jdbcType=VARCHAR}, post=#{post, jdbcType=VARCHAR},
+      addr_more=#{addr_more, jdbcType=VARCHAR} where email = #{email}
+   </update>
+
+   <!-- 아이디 존재여부 확인 -->
+
+
+   <select resultType="integer" id="email_check"> select count(*) from member
+      where email=#{email} </select>
+
+   <!-- 회원탈퇴 처리 -->
+
+
+   <delete id="delete"> DELETE FROM member WHERE email = #{email} </delete>
+
+   <!-- 회원정보 수정처리 -->
+
+
+   <update id="member_update"> update member set pw = #{pw}, name = #{name}, post =
+      #{post}, addr = #{addr}, addr_more = #{addr_more}, salt = #{salt}
+      where email = #{email} </update>
+
+   <!-- 로그인 처리 -->
+
+
+   <select resultType="member.ssb.MemberVO" id="login"> select * from
+      member where email=#{email} and pw=#{pw} </select>
+
+</mapper>
