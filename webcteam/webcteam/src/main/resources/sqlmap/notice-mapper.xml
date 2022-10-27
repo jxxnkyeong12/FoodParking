@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+
+
+
+
+<!-- 공지글 총 건수 조회 jk -->
+<select id="totalList" resultType="integer">
+select count(*) from notice <include refid="search_where"/>
+</select>
+
+
+<!-- 공지사항 조회 jk-->
+
+<select id="list" resultType="notice.jk.NoticeVO">
+select *
+from (select rownum no , n.*
+          from (select n.*, nickname 
+            		from notice n left outer join member m on n.ID = m.id ) n
+       order by no desc ) n  
+where no between #{beginList} and #{endList}
+</select>
+
+
+
+<!-- 검색하려고 jk -->
+<sql id='like'>
+like '%' || #{keyword} || '%'
+</sql>
+
+<sql id='search_where'>
+	<choose>
+		<when test="search=='title' or search=='content'">
+		where ${search} <include refid="like"/>
+		</when>
+		<when test="search=='all'">
+		where title <include refid="like"/>
+		or content <include refid="like"/>
+		or id in (select id from member where name <include refid="like"/>)
+		</when>
+		<when test="search=='writer'">
+		where id in (select id from member where name <include refid="like"/>)
+		</when>
+		<when test="search=='t_c'">
+		where title <include refid="like"/>
+		or content <include refid="like"/>
+		</when>
+	</choose>
+</sql>
+
+
+</mapper>
