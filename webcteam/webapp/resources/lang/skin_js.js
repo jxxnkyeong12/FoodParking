@@ -1,1 +1,0 @@
-if(typeof window.i18n === "undefined"){window.i18n={};}window.i18n.skin_js={"msg":{"editormode_not_support":"\ub514\uc790\uc778\uc5d0\ub514\ud130 \ubaa8\ub4dc\uc5d0\uc11c\ub294 \uc9c0\uc6d0\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4."}};window.locale="kr";
