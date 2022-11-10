@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderinfo">
+
+<insert id="order_info_insert" >
+insert into order_info(category_code, store_code, id, order_date, phone, menu_cnt, price, order_state, order_time, order_peple, total_info) 
+ VALUES(#{category_code,  jdbcType=VARCHAR}, #{store_code,  jdbcType=VARCHAR}, #{id,  jdbcType=VARCHAR}, #{order_date,  jdbcType=VARCHAR}
+ , #{phone,  jdbcType=VARCHAR}, #{menu_cnt,  jdbcType=VARCHAR}, #{price,  jdbcType=VARCHAR}
+ , #{order_state,  jdbcType=VARCHAR}, #{order_time,  jdbcType=VARCHAR}, #{order_peple,  jdbcType=VARCHAR}, #{total_info, jdbcType=VARCHAR})
+</insert>
+
+
+<!-- 주문정보테이블 상제 -->
+<delete id="order_info_delete">
+DELETE FROM order_info
+WHERE id = #{id}
+</delete>
+
+
+
+<!-- 주문정보테이블 조회 -->
+<select id="order_info_select" resultType="andorder.OrderInfoVO">
+select o.* 
+from order_info o LEFT outer join store_info s 
+on o.store_code = s.store_code 
+left outer join member m 
+on s.id = m.id 
+where m.id = #{id} 
+</select>
+
+
+
+<insert id="order_history_insert"> 
+ insert into order_history( menu_cnt, price, order_date, order_num, category_code, store_code, id, total_info)
+ values(#{menu_cnt}, #{price}, #{order_date}, #{order_num}, #{category_code}, #{store_code}, #{id}, #{total_info} ) 
+ </insert>
+
+
+
+</mapper>

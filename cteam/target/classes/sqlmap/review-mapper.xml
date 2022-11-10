@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="andReview">
+
+
+
+
+<!-- 리뷰내용 수정update jk -->
+<update id = "update">
+update review set  clean = #{clean}, taste = #{taste}, mood = #{mood}
+							  , kind = #{kind} , star_rating =  #{star_rating}
+							  , review_content = #{review_content, jdbcType=VARCHAR}
+							  , review_image = #{review_image, jdbcType=VARCHAR}
+where id = #{id}
+and star_code = #{star_code}		  
+</update>
+
+<!-- .리뷰 상세 detail jk-->
+<select id="detail"  resultType="andreview.ReviewVO">
+select re.*, si.*, ri.REVIEW_IMAGE_NAME, ri.review_image_path from review re left outer join STORE_INFO si
+on re.store_code = si.store_code
+left outer join review_image ri
+on ri.review_image_num = si.store_code 
+where re.star_code = #{star_code}
+and re.id = #{id}
+</select>
+
+<!--리뷰 삭제 jk 하는 -->
+<delete id="delete" >
+delete from review 
+where id = #{id}
+</delete>
+
+<!--  리뷰 리스트 조회  jk-->
+<select id="list" resultType="andreview.ReviewVO">
+select re.id,re.star_code, re.review_content , re.review_image , si.store_name, round(avg(re.star_rating),1) star_rating
+from review re left outer join store_info si
+on re.store_code = si.store_code
+where re.id= #{id}
+GROUP BY  re.id, re.review_content , re.review_image , si.store_name,re.star_code
+</select>
+
+<!-- 리뷰 insert 하는중 jk-->
+<insert id="insert">
+insert into review( id, store_code, review_image
+								, star_rating, clean, taste, mood, kind
+								,writedate ,  review_content)
+values( #{id}, #{store_code}, #{review_image, jdbcType=VARCHAR}
+			, #{star_rating}, #{clean}, #{taste}, #{mood}, #{kind}
+			, sysdate , #{review_content, jdbcType=VARCHAR} )
+</insert>
+</mapper>

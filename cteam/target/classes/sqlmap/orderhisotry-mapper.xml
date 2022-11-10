@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="andorderhistory">
+
+<!-- 주문내역 리스트 jk -->
+<select id="list" resultType="andorder.OrderHistoryVO">
+select oh.*, si.store_name from order_history oh left outer join store_info si
+on oh.store_code = si.store_code
+where oh.id = #{id}
+</select>
+
+</mapper>

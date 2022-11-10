@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="iot">
+
+<!-- 테이블 사용여부 조회 -->
+<select id="getTable" resultType="iot.IotVO">
+select *
+from rasp
+where TABLE_NUM = #{table} and end_time is  null
+</select>
+
+<!-- 테이블 내역조회 -->
+<select id="getTable_history" resultType="iot.IotVO">
+select *
+from rasp
+where TABLE_NUM = #{table} and end_time is not null
+</select>
+
+
+</mapper>

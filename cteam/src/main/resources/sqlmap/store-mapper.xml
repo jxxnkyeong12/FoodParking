@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store">
+
+<!-- 장바구니 전체 삭제 -->
+<delete id="basket_delete_all">
+ DELETE FROM basket 
+ where id = #{id}
+</delete>
+
+<!-- 장바구니 삭제 -->
+<delete id="basket_delete">
+DELETE FROM basket 
+ WHERE category_code = #{category_code}
+</delete>
+
+
+
+<!-- 장바구니 중복체크 -->
+<select id="basket" resultType="andstoreinfo.BasketVO">
+select *
+from basket
+where id = #{id}
+</select>
+
+<!-- 장바구니 출력 -->
+<select id="basket_list" resultType="andstoreinfo.BasketVO">
+select b.*, m.menu_name, m.menu_image, b.menu_cnt * b.menu_price total_price
+from basket b LEFT outer join menu_info m
+ON b.menu_code = m.menu_id
+where id = #{id}
+and m.store_code = #{store_code}
+</select>
+
+
+
+<!-- 장바구니 추가 -->
+<insert id="basket_insert">
+insert into basket(store_code, id, menu_cnt, menu_code, menu_price)
+values( #{vo.store_code}, #{id}, 1 ,#{vo.menu_id},#{vo.price} )
+</insert>
+
+
+
+<!-- home화면 랜덤 가게 리스트 sb & jk(파일) -->
+<select id="list" resultType="andstoreinfo.StoreInfoVO">
+SELECT i.store_code, i.store_category, i.store_logo, i.store_name, i.store_addr, round(avg(r.star_rating),1) star_rating, count(r.store_code) review_cnt
+FROM store_info i  LEFT OUTER JOIN review r
+ON i.store_code = r.store_code
+GROUP BY i.store_code, i.store_category, i.store_logo, i.store_name, i.store_addr
+</select>
+
+
+<select id="menu_list" resultType="andstoreinfo.StoreMenuVO">
+select m.*, s.*
+from menu_info m LEFT outer join store_info s
+on m.store_code = s.store_code
+where s.store_code = #{store_code}
+</select>
+
+
+<!-- 가게 평점 min 조회 jk-->
+<select id="store_min"  resultType="andstoreinfo.StoreInfoVO">
+select to_char(writedate, 'yyyy-mm-dd') writedate, rv.star_rating, rv.*, m.*, count(store_code) over(partition by store_code) cnt
+from review rv left outer join member m
+on rv.id = m.id
+where store_code = #{store_code}
+order by rv.star_rating asc
+</select>
+
+<!-- 가게 평점 max 조회 jk-->
+<select id="store_max"  resultType="andstoreinfo.StoreInfoVO">
+select to_char(writedate, 'yyyy-mm-dd') writedate, rv.star_rating, rv.*, m.*, count(store_code) over(partition by store_code) cnt
+from review rv left outer join member m
+on rv.id = m.id
+where store_code = #{store_code}
+order by rv.star_rating desc
+</select>
+
+<!--가게리뷰 최신순 조회 jk  -->
+<select id="store_review" resultType="andstoreinfo.StoreInfoVO">
+select to_char(writedate, 'yyyy-mm-dd') writedate, rv.star_rating, rv.*, m.*, count(store_code) over(partition by store_code) cnt
+from review rv left outer join member m
+on rv.id = m.id
+where store_code = #{store_code}  
+order by 1 desc
+</select>
+
+<!-- 가게리뷰 평점 조회 jk -->
+<select id="store_score" resultType="andstoreinfo.StoreInfoVO">
+select round(avg(star_rating),1) star_rating, round(avg(taste), 1) taste
+		 , round(avg(mood),1) mood, round(avg(kind),1) kind
+		 , round(avg(clean),1) clean,
+          store_code ,  count(store_code) review_cnt
+from review 
+where store_code = #{store_code}
+GROUP BY store_code
+</select>
+
+
+<!-- 가게 리뷰 많은순으로 출력 hs -->
+<select id="review_asc" resultType="andstoreinfo.StoreInfoVO">
+	SELECT count(r.store_code) review_cnt, r.store_code, i.store_name, i.store_addr, i.store_logo, round(avg(r.star_rating),1) star_rating, i.store_category
+	FROM review r LEFT OUTER JOIN store_info i
+	ON r.store_code = i.store_code
+	GROUP BY r.store_code, i.store_name, i.store_addr, i.store_logo, i.store_category
+	ORDER BY count(r.store_code) desc
+</select>
+
+<!-- 특정 가게 정보 출력 hs -->
+<select id="store_detail" resultType="andstoreinfo.StoreInfoVO">
+	SELECT *
+	FROM store_info
+	WHERE store_code = #{store_code}
+</select>
+</mapper>
+
+
